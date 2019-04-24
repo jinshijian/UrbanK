@@ -1,31 +1,9 @@
 library(tidyverse)
+pkgload::load_all(".", attach_testthat = FALSE)
 
 data_orig <- read.csv("AllCities_Victoria_RDS.csv") %>% as_tibble()
 
-type_df <- tibble(
-  Type = c(
-    "fine granular structure", "single grain", "medium granular structure",
-    "thin and medium plate-like structure", "massive", "medium subangular blocky",
-    "medium and fine granular", "coarse granular blocky", "fine subangular blocky",
-    "fine and medium granular structure", "medium platy structure",
-    "fine and medium subangular blocky", "fine and medium prismatic structure",
-    "medium granular and strong", "medium angular blocky", "fine angular structure",
-    "medium prismatic parting to moderate medium subangular blocky",
-    "medium prismatic structure parting to moderate medium subangular blocky",
-    "coarse prismatic", "medium prismatic", "angular blocky",
-    "very coarse prismatic structure", "very fine granular structure",
-    "coarse subangular blocky" , "fine subangular and angular blocky",
-    "very fine and fine subangular blocky", "medium and coarse subangular blocky",
-    "subangular blocky", "fine granular structure and weak very fine subangular blocky"
-  ),
-  Top_Type = c(
-    "granular", "single grain", "granular", "platy", "massive",
-    "blocky", "granular", "blocky", "blocky", "granular", "platy",
-    "blocky", "prismatic", "granular", "blocky", "blocky", "blocky",
-    "blocky", "prismatic", "prismatic", "blocky", "prismatic", "granular",
-    "blocky", "blocky", "blocky", "blocky", "blocky", "granular"      
-  )
-)
+type_df <- as_tibble(soil_types())
 
 ann_fit <- function(data, .pb = NULL) {
   if (!is.null(.pb)) .pb$tick()
@@ -71,18 +49,6 @@ rf_sscs <- function(data, .pb = NULL) {
   )
 }
 
-myscale <- function(x) {
-  hi <- max(x)
-  lo <- min(x)
-  (x - lo) / (hi - lo)
-}
-
-unscale <- function(x, y = x) {
-  hi <- max(y)
-  lo <- min(y)
-  x * (hi - lo) + lo
-}
-
 cor_kfs <- function(x, y) cor(x, y[["Unsaturated_K2cm_cmhr"]], method = "spearman")
 
 data_structure <- data_orig %>%
@@ -99,7 +65,7 @@ data_structure <- data_orig %>%
   mutate_at(paste0("Percent_", c("Clay", "Silt", "Sand")), ~.x * ratio) %>%
   mutate_at(
     c(paste0("Percent_", c("Clay", "Silt", "Sand")), "Unsaturated_K2cm_cmhr"),
-    list(scaled = myscale)
+    list(scaled = scale_range)
   )
 
 nrep <- 50
