@@ -1,0 +1,14 @@
+Package: urbankfs
+Title: UrbanKFS modeling project
+Version: 0.0.0.9000
+Authors@R: c(
+  person("Alexey", "Shiklomanov", email = "alexey.shiklomanov@pnnl.gov", role = c("cre", "aut")),
+  person("Jinshi", "Jian", role = c("cre", "aut")))
+Description: Fit artificial neural networks and random forest models to soil data, and predict using existing models.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat
