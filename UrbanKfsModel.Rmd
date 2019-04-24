@@ -46,7 +46,7 @@ head(subhist)
 colnames(subhist) <- c("CLAY", "SILT", "SAND", "Unsaturated_K2cm_cmhr")
 subhist$col <- "red"
 
-data_orig <- read.csv('G:/My Drive/MyResearch/29. PstDoc/EPA/SSURGOUrban/ANN_Ksat/AllCities_Victoria_RDS.csv')
+data_orig <- read.csv('AllCities_Victoria_RDS.csv')
 # resetta test data
 test_rosetta <- read.csv("test_with_rosetta_V3.csv")
 test_rosetta$Model <- 'ROSETTA'
@@ -114,7 +114,7 @@ ann_Ksat <- ann_ssc(train)
 
 train$p.ann_Ksat <- compute(ann_Ksat, train[,c('Percent_Sand' , 'Percent_Silt' , 'Percent_Clay')])$net.result
 test$p.ann_Ksat <- compute(ann_Ksat, test[,c('Percent_Sand' , 'Percent_Silt' , 'Percent_Clay')])$net.result
-  
+
 # scale back the value
 train$kfs <- train$Unsaturated_K2cm_cmhr * (max(data$Unsaturated_K2cm_cmhr)-min(data$Unsaturated_K2cm_cmhr)) + min(data$Unsaturated_K2cm_cmhr)
 train$kfs_m <- train$p.ann_Ksat * (max(data$Unsaturated_K2cm_cmhr)-min(data$Unsaturated_K2cm_cmhr)) + min(data$Unsaturated_K2cm_cmhr)
@@ -124,6 +124,9 @@ train$Model <- 'ANN'
 test$kfs <- test$Unsaturated_K2cm_cmhr * (max(data$Unsaturated_K2cm_cmhr)-min(data$Unsaturated_K2cm_cmhr)) + min(data$Unsaturated_K2cm_cmhr)
 test$kfs_m <- test$p.ann_Ksat * (max(data$Unsaturated_K2cm_cmhr)-min(data$Unsaturated_K2cm_cmhr)) + min(data$Unsaturated_K2cm_cmhr)
 test$Model <- 'ANN'
+
+head(train)
+head(test)
   
 # correlation
 cor(train$kfs_m, train$kfs, method = c("spearman"))

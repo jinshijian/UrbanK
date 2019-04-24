@@ -209,12 +209,8 @@ update_structure <- function( data ) {
 # prepare data for ANN and RF modeling
 
 data_ann <- function (sdata) {
-  data <- sdata[,c(which(colnames(sdata)=="Percent_Sand")
-                      , which(colnames(sdata)=="Percent_Silt")
-                      , which(colnames(sdata)=="Percent_Clay")
-                      , which(colnames(sdata)=="Ksat_cmhr") 
-                      , which(colnames(sdata)=="Unsaturated_K2cm_cmhr")  )]
-  return(data)
+  ann_cols <- c("Percent_Sand", "Percent_Silt", "Percent_Clay", "Ksat_cmhr", "Unsaturated_K2cm_cmhr")
+  sdata[, ann_cols]
 }
 
 
