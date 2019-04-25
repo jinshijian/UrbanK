@@ -116,6 +116,7 @@ ggplot() +
   labs(x = expression('Predicted K2' ~ (cm ~ hr^{-1})),
        y = expression('Observed K2' ~ (cm ~ hr^{-1}))) +
   cowplot::theme_cowplot()
+ggsave("figures/regression.png", width = 6, height = 8, units = "in", dpi = 300)
 
 # Correlations
 pred %>%
@@ -132,6 +133,7 @@ pred %>%
   facet_grid(vars(model), vars(data_type)) +
   labs(x = "Correlation between prediction and data") +
   cowplot::theme_cowplot()
+ggsave("figures/correlation.png", width = 8, height = 8, units = "in", dpi = 300)
 
 ##################################################
 # Other plots
