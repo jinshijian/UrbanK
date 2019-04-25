@@ -13,6 +13,7 @@ scale_range <- function(x) {
 
 #' @rdname scale_range
 unscale_range <- function(x, y = x) {
+  stopifnot(is.numeric(y))
   hi <- max(y)
   lo <- min(y)
   x * (hi - lo) + lo

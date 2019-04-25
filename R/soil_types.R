@@ -36,3 +36,11 @@ soil_types <- function(col = NULL, stringsAsFactors = FALSE) {
   if (is.null(col)) return(type_df)
   type_df[[col]]
 }
+
+#' Alphabetical list of soil types, to be used as factor levels 
+#'
+#' @return Character vector of soil types, in alphabetical order
+#' @export
+soil_type_levels <- function() {
+  sort(unique(soil_types("Top_Type")))
+}
