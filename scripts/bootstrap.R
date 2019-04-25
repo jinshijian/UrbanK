@@ -38,7 +38,7 @@ fitted_models <- fitted_models_big %>%
   mutate(model_fit = modify_if(model_fit, ~inherits(., "randomForest"), shrink_randomforest))
 
 # Store models
-usethis::use_data(fitted_models, overwrite = TRUE)
+usethis::use_data(fitted_models, compress = "xz")
 
 ##################################################
 # Statistical analysis
