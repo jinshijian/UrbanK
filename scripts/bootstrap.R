@@ -47,7 +47,15 @@ usethis::use_data(fitted_models, overwrite = TRUE)
 pred <- results %>%
   select(.id, train_df, test_df, model, fit) %>%
   gather(data_type, data, train_df, test_df) %>%
-  mutate(predicted = purrr::map2(fit, data, predict))
+  mutate(
+    predicted = purrr::map2(fit, data, predict),
+    model = fct_recode(
+      model,
+      "Neural network" = "ann",
+      "RandomForest (no type)" = "rf1",
+      "RandomForest (with type)" = "rf2"
+    )
+  )
 
 pred_fits <- pred %>%
   filter(data_type == "test_df") %>%
@@ -87,6 +95,7 @@ pred_summary <- pred %>%
     n = length
   ))
 
+# Predicted-observed regressions
 ggplot() +
   aes(x = predicted, y = mean) +
   geom_point(aes(y = observed, x = mean),
@@ -104,7 +113,29 @@ ggplot() +
   ) +
   geom_line(aes(y = mean), data = pred_lm) +
   facet_grid(vars(model)) +
+  labs(x = expression('Predicted K2' ~ (cm ~ hr^{-1})),
+       y = expression('Observed K2' ~ (cm ~ hr^{-1}))) +
   cowplot::theme_cowplot()
+
+# Correlations
+pred %>%
+  unnest(data, predicted) %>%
+  mutate(data_type = fct_inorder(data_type) %>% fct_recode(
+    "Training" = "train_df",
+    "Testing" = "test_df"
+  )) %>%
+  group_by(model, .id, data_type) %>%
+  summarize(corr = cor(predicted, Unsaturated_K2cm_cmhr, method = "spearman")) %>%
+  ggplot() +
+  aes(x = corr) +
+  geom_density() +
+  facet_grid(vars(model), vars(data_type)) +
+  labs(x = "Correlation between prediction and data") +
+  cowplot::theme_cowplot()
+
+##################################################
+# Other plots
+##################################################
 
 ggplot(pred_fits) +
   aes(slope = slope, intercept = intercept, group = .id) +
@@ -188,13 +219,3 @@ ggplot(pred_summary) +
   cowplot::theme_cowplot() +
   coord_cartesian(xlim = c(0, 10), ylim = c(0, 20))
 
-pred %>%
-  unnest(data, predicted) %>%
-  group_by(model, .id, data_type) %>%
-  summarize(corr = cor(predicted, Unsaturated_K2cm_cmhr, method = "spearman")) %>%
-  ggplot() +
-  aes(x = corr) +
-  geom_density() +
-  facet_grid(vars(model), vars(data_type)) +
-  labs(x = "Correlation between prediction and data") +
-  cowplot::theme_cowplot()
