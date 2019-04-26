@@ -8,6 +8,7 @@
 #' @return Nested `data.frame` of predicted soil conductivities for
 #'   each model sample.
 #' @author Alexey Shiklomanov
+#' @importFrom magrittr "%>%"
 #' @export
 #' @examples
 #' df <- data.frame(

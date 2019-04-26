@@ -13,4 +13,9 @@ RoxygenNote: 6.1.1
 Suggests: 
     testthat
 Imports: 
-    rlang
+    rlang,
+    purrr,
+    neuralnet,
+    randomForest,
+    dplyr,
+    tidyr
