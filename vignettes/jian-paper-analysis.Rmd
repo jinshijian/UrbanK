@@ -135,7 +135,6 @@ ggplot() +
   labs(x = expression('Predicted K2' ~ (cm ~ hr^{-1})),
        y = expression('Observed K2' ~ (cm ~ hr^{-1}))) +
   theme_cowplot()
-## ggsave("figures/regression.png", width = 6, height = 8, units = "in", dpi = 300)
 ```
 
 Histogram of correlation coefficients for the training and testing data.
@@ -158,7 +157,6 @@ pred %>%
   facet_grid(vars(model_type), vars(data_type)) +
   labs(x = "Correlation between prediction and data") +
   theme_cowplot()
-## ggsave("figures/correlation.png", width = 8, height = 8, units = "in", dpi = 300)
 ```
 
 # Urban data predictions
@@ -184,7 +182,11 @@ hist_summary
 
 How well does it do?
 
-```{r}
+```{r fig-urbandata, fig.cap = fig_urbandata_cap}
+fig_urbandata_cap <- paste0(
+  "Predicted vs. observed plot for urban data. ",
+  "Dashed line is the 1:1 fit, and blue line with grey shading is a `observed ~ predicted` linear fit."
+)
 histdata %>%
   left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay",
                                  "Top_Type")) %>%
