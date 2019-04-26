@@ -20,6 +20,7 @@ normalize_soil_pct <- function(sand, silt, clay) {
 }
 
 #' @rdname normalize_soil_pct
+#' @export
 normalize_soil_pct_data <- function(df,
                                     soil_cols = paste0("Percent_", c("Sand", "Silt", "Clay"))) {
   assertthat::assert_that(

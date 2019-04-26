@@ -17,6 +17,7 @@ library(tidyr)
 library(modelr)
 library(purrr)
 library(urbankfs)
+library(ggplot2)
 library(cowplot)
 requireNamespace("randomForest", quietly = TRUE)
 ```
@@ -42,12 +43,7 @@ pred <- fitted_models %>%
   gather(data_type, data, train_data, test_data) %>%
   mutate(
     predicted = map2(model_fit, data, predict),
-    model_type = fct_recode(
-      model_type,
-      "Neural network" = "ann",
-      "RandomForest (no type)" = "rf1",
-      "RandomForest (with type)" = "rf2"
-    )
+    model_type = fct_recode(model_type, !!!pretty_model_types())
   )
 ```
 
@@ -165,4 +161,40 @@ pred %>%
 
 # Urban data predictions
 
+Model predictions for Urban data.
+First, load the data.
 
+```{r}
+histdata <- read.csv("extdata/UrbanSoilK_V3.csv") %>%
+  as_tibble() %>%
+  mutate(Top_Type = factor(Top_Type, soil_type_levels())) %>%
+  normalize_soil_pct_data()
+```
+
+Generate bootstrapped predictions for the data.
+`urbankfs` makes this easy with the `predict_bootstrap` function, which also has `summary` method for quickly generating tidy outputs.
+
+```{r}
+hist_predict <- predict_bootstrap(histdata, fitted_models)
+hist_summary <- summary(hist_predict)
+hist_summary
+```
+
+How well does it do?
+
+```{r}
+histdata %>%
+  left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay",
+                                 "Top_Type")) %>%
+  ggplot() +
+  aes(x = mean, xmin = q050, xmax = q950, y = Ksat) +
+  geom_errorbarh(color = "grey50", size = 0.5) +
+  geom_point(size = 0.7) +
+  geom_smooth(method = "lm", color = "blue") +
+  geom_abline(linetype = "dashed") +
+  facet_grid(vars(model_type)) +
+  labs(x = expression("Predicted Ksat" ~ (cm ~ hr^-1)),
+       y = expression("Observed Ksat" ~ (cm ~ hr^-1))) +
+  theme_cowplot() +
+  coord_cartesian(xlim = c(0, 35))
+```

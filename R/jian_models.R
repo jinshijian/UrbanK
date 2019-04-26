@@ -89,3 +89,21 @@ download_jian_fits <- function(destfile, ...) {
   download.file(url, destfile = destfile, ...)
   invisible(destfile)
 }
+
+#' Nicer factor levels for model type
+#'
+#' @param pretty Where should the pretty name be? If `"name"`
+#'   (default), the pretty label is the name and value is the original
+#'   (useful for, e.g., [forcats::fct_recode()]). If `"value"`, the
+#'   reverse.
+#' @return Character vector with
+#' @author Alexey Shiklomanov
+#' @export
+pretty_model_types <- function(pretty = c("name", "value")) {
+  pretty <- match.arg(pretty)
+  c(
+    "Neural network" = "ann",
+    "RandomForest (no type)" = "rf1",
+    "RandomForest (with type)" = "rf2"
+  )
+}

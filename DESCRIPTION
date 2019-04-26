@@ -12,7 +12,6 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Suggests: 
     modelr,
-    forcats,
     testthat
 Imports: 
     rlang,
@@ -21,4 +20,5 @@ Imports:
     randomForest,
     dplyr,
     tidyr,
-    assertthat
+    assertthat,
+    forcats

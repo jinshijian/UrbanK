@@ -58,6 +58,7 @@ predict_bootstrap <- function(data, fitted_models = fitted_models) {
 #' @param quantiles Numeric vector of quantiles for summary
 #'   statistics. Default = `c(0.05, 0.5, 0.95)`.
 #' @return `data.frame` of prediction summaries
+#' @export
 summary.urbankfs_prediction <- function(object, quantiles = c(0.05, 0.5, 0.95), ...) {
   qfuns <- purrr::map(quantiles, ~purrr::partial(quantile, probs = .x))
   names(qfuns) <- sprintf("q%03.f", quantiles * 1000)
@@ -67,5 +68,9 @@ summary.urbankfs_prediction <- function(object, quantiles = c(0.05, 0.5, 0.95), 
     dplyr::summarize_at(dplyr::vars(predicted), rlang::list2(
       mean = mean,
       sd = sd,
-      !!!qfuns))
+      !!!qfuns)) %>%
+    dplyr::mutate(model_type = forcats::fct_recode(
+      model_type,
+      !!!pretty_model_types()
+    ))
 }
