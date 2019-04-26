@@ -1,3 +1,5 @@
 ^LICENSE\.md$
 ^scripts/
 ^figures/
+
+^extdata/fitted_models.rda$

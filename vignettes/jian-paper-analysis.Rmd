@@ -1,0 +1,168 @@
+---
+title: Jian et al. paper analysis
+---
+
+# Introduction
+
+This vignette goes through the basic steps of the Jian et al. paper analysis, demonstrating some of the features of the `urbankfs` R package along the way.
+
+# Setup
+
+Load packages.
+
+```{r}
+library(dplyr)
+library(forcats)
+library(tidyr)
+library(modelr)
+library(purrr)
+library(urbankfs)
+library(cowplot)
+requireNamespace("randomForest", quietly = TRUE)
+```
+
+Load the _full_ set of fitted models.
+Because it is large (>100MB), this file is not distributed with the package.
+To obtain it, either download from OSF (via `urbankfs::download_jian_fits`) or re-generate it with the `scripts/fit_models.R` script.
+
+```{r}
+# download_jian_fits("extdata/fitted_models.rda")
+load("extdata/fitted_models.rda")
+```
+
+# Test and training data predictions
+
+Generate neural network and random forest predictions for the training and test data.
+`randomForest` provides a `predict` method for the `randomForest` S3 class.
+`urbankfs` defines a custom `predict` method for its neural network fits that is a thin wrapper around `neuralnet::compute` and which also undoes the scaling that happens during fitting.
+
+```{r}
+pred <- fitted_models %>%
+  select(sample, train_data, test_data, model_type, model_fit) %>%
+  gather(data_type, data, train_data, test_data) %>%
+  mutate(
+    predicted = map2(model_fit, data, predict),
+    model_type = fct_recode(
+      model_type,
+      "Neural network" = "ann",
+      "RandomForest (no type)" = "rf1",
+      "RandomForest (with type)" = "rf2"
+    )
+  )
+```
+
+Fit a linear model, `observed ~ predicted`, for each bootstrapped sample, and extract the coefficients and R^2^.
+
+```{r}
+pred_fits <- pred %>%
+  filter(data_type == "test_data") %>%
+  unnest(data, predicted) %>%
+  select(sample, model_type, observed = Unsaturated_K2cm_cmhr, predicted) %>%
+  group_by(sample, model_type) %>%
+  summarize(
+    fit = list(lm(observed ~ predicted)),
+    coefs = list(coefficients(fit)),
+    slope = coefs[[2]],
+    intercept = coefs[[1]],
+    r2 = summary(fit)[["adj.r.squared"]]
+  )
+```
+
+Use the linear model fits from above to generate a range of predictions of the observed data.
+This is mostly for plotting the linear 1:1 fits in subsequent steps.
+
+```{r}
+obs <- tibble(
+  predicted = fitted_models %>%
+    unnest(train_data) %>%
+    pull(Unsaturated_K2cm_cmhr) %>%
+    seq_range(20)
+)
+
+pred_lm <- pred_fits %>%
+  mutate(xpred = list(obs),
+         lmpred = map2(fit, xpred, predict)) %>%
+  unnest(xpred, lmpred) %>%
+  group_by(model_type, predicted) %>%
+  summarize_at(vars(lmpred), list(
+    mean = mean,
+    sd = sd,
+    lo = ~quantile(., 0.1),
+    hi = ~quantile(., 0.9)
+  ))
+```
+
+Summarize the neural network and random forest model predictions at each point.
+These will be drawn as points with horizontal error bars.
+
+```{r}
+pred_summary <- pred %>%
+  filter(data_type == "test_df") %>%
+  unnest(data, predicted) %>%
+  group_by(model, observed = Unsaturated_K2cm_cmhr) %>%
+  summarize_at(vars(predicted), list(
+    mean = mean,
+    sd = sd,
+    lo = ~quantile(., 0.1),
+    hi = ~quantile(., 0.9),
+    n = length
+  ))
+```
+
+Draw the observed vs. predicted scatter plot, with true 1:1 line (dashed) and the bootstrapped linear regression (blue shaded region).
+
+```{r fig-regression, fig.cap = fig_regression_cap}
+fig_regression_cap <- paste0(
+  "Observed vs. predicted regression for neural network and random forest models. ",
+  "Dashed line is the 1:1 fit, and blue shaded region is the observed ~ predicted regression."
+)
+ggplot() +
+  aes(x = predicted, y = mean) +
+  geom_point(aes(y = observed, x = mean),
+             data = pred_summary,
+             size = 0.5) +
+  geom_errorbarh(aes(y = observed, xmin = lo, xmax = hi, x = NULL),
+                 data = pred_summary,
+                 color = "gray40",
+                 size = 0.5) +
+  geom_ribbon(
+    data = pred_lm,
+    aes(ymin = lo, ymax = hi, y = NULL),
+    alpha = 0.5,
+    fill = "blue"
+  ) +
+  geom_line(aes(y = mean), data = pred_lm) +
+  geom_abline(linetype = "dashed") +
+  facet_grid(vars(model)) +
+  labs(x = expression('Predicted K2' ~ (cm ~ hr^{-1})),
+       y = expression('Observed K2' ~ (cm ~ hr^{-1}))) +
+  theme_cowplot()
+## ggsave("figures/regression.png", width = 6, height = 8, units = "in", dpi = 300)
+```
+
+Histogram of correlation coefficients for the training and testing data.
+
+```{r fig-correlation, fig.cap = fig_correlation_cap}
+fig_correlation_cap <- paste0(
+  "Histogram of correlation coefficients for the training and testing data."
+)
+pred %>%
+  unnest(data, predicted) %>%
+  mutate(data_type = fct_inorder(data_type) %>% fct_recode(
+    "Training" = "train_df",
+    "Testing" = "test_df"
+  )) %>%
+  group_by(model, .id, data_type) %>%
+  summarize(corr = cor(predicted, Unsaturated_K2cm_cmhr, method = "spearman")) %>%
+  ggplot() +
+  aes(x = corr) +
+  geom_density() +
+  facet_grid(vars(model), vars(data_type)) +
+  labs(x = "Correlation between prediction and data") +
+  theme_cowplot()
+## ggsave("figures/correlation.png", width = 8, height = 8, units = "in", dpi = 300)
+```
+
+# Urban data predictions
+
+
