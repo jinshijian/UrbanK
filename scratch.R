@@ -1,5 +1,0 @@
-dir.create("R")
-usethis::use_description()
-usethis::use_mit_license(name = "Alexey Shiklomanov")
-usethis::use_roxygen_md()
-usethis::use_testthat()
