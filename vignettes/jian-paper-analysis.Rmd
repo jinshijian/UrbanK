@@ -16,10 +16,12 @@ library(forcats)
 library(tidyr)
 library(modelr)
 library(purrr)
-library(urbankfs)
 library(ggplot2)
 library(cowplot)
+library(urbankfs)
+# devtools::install(here::here())
 requireNamespace("randomForest", quietly = TRUE)
+requireNamespace("here", quietly = TRUE)
 ```
 
 Load the _full_ set of fitted models.
@@ -27,8 +29,8 @@ Because it is large (>100MB), this file is not distributed with the package.
 To obtain it, either download from OSF (via `urbankfs::download_jian_fits`) or re-generate it with the `scripts/fit_models.R` script.
 
 ```{r}
-# download_jian_fits("extdata/fitted_models.rda")
-load("extdata/fitted_models.rda")
+# download_jian_fits(here::here("extdata/fitted_models.rda"))
+load(here::here("extdata", "fitted_models.rda"))
 ```
 
 # Test and training data predictions
@@ -93,9 +95,9 @@ These will be drawn as points with horizontal error bars.
 
 ```{r}
 pred_summary <- pred %>%
-  filter(data_type == "test_df") %>%
+  filter(data_type == "test_data") %>%
   unnest(data, predicted) %>%
-  group_by(model, observed = Unsaturated_K2cm_cmhr) %>%
+  group_by(model_type, observed = Unsaturated_K2cm_cmhr) %>%
   summarize_at(vars(predicted), list(
     mean = mean,
     sd = sd,
@@ -129,7 +131,7 @@ ggplot() +
   ) +
   geom_line(aes(y = mean), data = pred_lm) +
   geom_abline(linetype = "dashed") +
-  facet_grid(vars(model)) +
+  facet_grid(vars(model_type)) +
   labs(x = expression('Predicted K2' ~ (cm ~ hr^{-1})),
        y = expression('Observed K2' ~ (cm ~ hr^{-1}))) +
   theme_cowplot()
@@ -145,15 +147,15 @@ fig_correlation_cap <- paste0(
 pred %>%
   unnest(data, predicted) %>%
   mutate(data_type = fct_inorder(data_type) %>% fct_recode(
-    "Training" = "train_df",
-    "Testing" = "test_df"
+    "Training" = "test_data",
+    "Testing" = "train_data"
   )) %>%
-  group_by(model, .id, data_type) %>%
+  group_by(model_type, sample, data_type) %>%
   summarize(corr = cor(predicted, Unsaturated_K2cm_cmhr, method = "spearman")) %>%
   ggplot() +
   aes(x = corr) +
   geom_density() +
-  facet_grid(vars(model), vars(data_type)) +
+  facet_grid(vars(model_type), vars(data_type)) +
   labs(x = "Correlation between prediction and data") +
   theme_cowplot()
 ## ggsave("figures/correlation.png", width = 8, height = 8, units = "in", dpi = 300)
@@ -165,7 +167,7 @@ Model predictions for Urban data.
 First, load the data.
 
 ```{r}
-histdata <- read.csv("extdata/UrbanSoilK_V3.csv") %>%
+histdata <- read.csv(here::here("extdata/UrbanSoilK_V3.csv")) %>%
   as_tibble() %>%
   mutate(Top_Type = factor(Top_Type, soil_type_levels())) %>%
   normalize_soil_pct_data()
