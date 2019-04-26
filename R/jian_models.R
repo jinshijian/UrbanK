@@ -69,3 +69,23 @@ predict.urbankfs_ann <- function(object, newdata, ...) {
   out <- result[["net.result"]]
   unscale_range(out, attr(object, "scale_factors"))
 }
+
+#' Download full bootstrap (500 fits) of model fits from the Open
+#' Science Framework (OSF)
+#'
+#' The project is hosted at https://osf.io/fzrcq/.
+#'
+#' @param ... Additional arguments to [utils::download.file()]
+#' @inheritParams utils::download.file
+#' @return `destfile`, invisibly
+#' @export
+#' @examples
+#' @export
+#' \dontrun{
+#' load(download_jian_fits("full_model_fits.rda"))
+#' }
+download_jian_fits <- function(destfile, ...) {
+  url <- "https://osf.io/download/ebsym/"
+  download.file(url, destfile = destfile, ...)
+  invisible(destfile)
+}

@@ -66,3 +66,31 @@ shrink_randomforest <- function(object) {
   class(out) <- "randomForest"
   out
 }
+
+#' Check that objects have the same length
+#'
+#' @param ... Objects
+#' @return
+#' @author Alexey Shiklomanov
+same_length <- function(...) {
+  dots <- list(...)
+  lens <- lengths(dots)
+  length(unique(lens)) == 1
+}
+
+#' @rdname same_length
+assertthat::on_failure(same_length) <- function(call, env) {
+  args <- vapply(call[-1], deparse, character(1))
+  argstr <- paste(sprintf("`%s`", args), collapse = ", ")
+  sprintf("%s have different lengths.", argstr)
+}
+
+#' Check that object is numeric and positive
+is_positive <- function(x) {
+  assertthat::assert_that(is.numeric(x))
+  all(x >= 0)
+}
+
+assertthat::on_failure(is_positive) <- function(call, env) {
+  sprintf("Some members of `%s` are not positive.", deparse(call[["x"]]))
+}
