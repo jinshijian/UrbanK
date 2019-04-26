@@ -1,9 +1,22 @@
-library(tidyverse)
 pkgload::load_all(".", attach_testthat = FALSE)
+library(tibble)
+library(dplyr)
+library(purrr)
+library(tidyr)
+library(modelr)
+library(progress)
+library(usethis)
 
-data_orig <- read.csv("AllCities_Victoria_RDS.csv") %>% as_tibble()
+# Number of samples to bootstrap
+n_boot <- 500
+
+data_orig <- file.path("extdata", "AllCities_Victoria_RDS.csv") %>%
+  read.csv() %>%
+  as_tibble()
 
 type_df <- as_tibble(soil_types())
+
+soil_vars <- paste0("Percent_", c("Sand", "Silt", "Clay"))
 
 data_structure <- data_orig %>%
   filter_at(c("Unsaturated_K2cm_cmhr", "Percent_Sand", "Type"),
@@ -11,34 +24,42 @@ data_structure <- data_orig %>%
   select(-Top_Type) %>%
   mutate(Type = as.character(Type),) %>%
   left_join(type_df, by = "Type") %>%
-  mutate(
-    Top_Type = factor(Top_Type, soil_type_levels()),
-    sum = Percent_Sand + Percent_Silt + Percent_Clay,
-    ratio = 100 / sum
-  ) %>%
-  mutate_at(paste0("Percent_", c("Clay", "Silt", "Sand")), ~.x * ratio)
+  mutate(Top_Type = factor(Top_Type, soil_type_levels())) %>%
+  normalize_soil_pct_data()
+  
+data_list <- data_structure %>%
+  crossv_mc(n_boot) %>%
+  mutate_at(c("train", "test"), list(df = ~map(., as_tibble)))
 
-data_list <- modelr::crossv_mc(data_structure, 50) %>%
-  dplyr::mutate_at(c("train", "test"), list(df = ~map(., as_tibble)))
 fun_list <- list(
   ann = fit_jian_ann,
-  rf1 = purrr::partial(fit_jian_rf, top_type = FALSE),
-  rf2 = purrr::partial(fit_jian_rf, top_type = TRUE)
+  rf1 = partial(fit_jian_rf, top_type = FALSE),
+  rf2 = partial(fit_jian_rf, top_type = TRUE)
 )
-fun_df <- tibble::enframe(fun_list, "model", "fun")
-data_funs <- tidyr::crossing(data_list, fun_df)
 
-pb <- progress::progress_bar$new(total = nrow(data_funs))
+fun_df <- enframe(fun_list, "model", "fun")
+data_funs <- crossing(data_list, fun_df)
+
+pb <- progress_bar$new(total = nrow(data_funs))
+
 results <- data_funs %>%
-  dplyr::mutate(fit = purrr::map2(train_df, fun, ~with_pb(.y, pb)(.x)))
+  mutate(fit = map2(train_df, fun, ~with_pb(.y, pb)(.x)))
 
-fitted_models_big <- results %>%
+# Save these in extdata for use in downstream analyses
+fitted_models <- results %>%
   select(sample = .id, model_type = model, model_fit = fit)
-fitted_models <- fitted_models_big %>%
+save(fitted_models, file = "extdata/fitted_models.rda", compress = "xz")
+saveRDS(data_funs, file = "extdata/data_funs.rds")
+
+# Store the first 100 runs locally inside the package
+fitted_models_full <- fitted_models
+fitted_models <- fitted_models_full %>%
+  filter(as.numeric(sample) <= 100) %>%
   mutate(model_fit = modify_if(model_fit, ~inherits(., "randomForest"), shrink_randomforest))
 
 # Store models
-usethis::use_data(fitted_models, compress = "xz")
+use_data(fitted_models, compress = "xz")
+fs::file_size("data/fitted_models.rda")
 
 ##################################################
 # Statistical analysis
@@ -194,6 +215,8 @@ pred_summary_lm <- pred_summary %>%
                     abs(intercept), r2)
   )
 
+f <- download_jian_fits(tempfile())
+
 pred_lm <- pred_summary_lm %>%
   unnest(xpred, pred_mean, pred_se) %>%
   mutate(lo = pred_mean - pred_se,
@@ -220,4 +243,3 @@ ggplot(pred_summary) +
   labs(y = "Observed", x = "Predicted") +
   cowplot::theme_cowplot() +
   coord_cartesian(xlim = c(0, 10), ylim = c(0, 20))
-
