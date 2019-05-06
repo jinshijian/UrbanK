@@ -1,5 +1,7 @@
 #!/usr/bin/env Rscript
 
+options(conflicts.policy = NULL)
+
 library(tibble)
 library(dplyr)
 library(purrr)
@@ -25,7 +27,7 @@ data_structure <- data_orig %>%
   filter_at(c("Unsaturated_K2cm_cmhr", "Percent_Sand", "Type"),
             negate(is.na)) %>%
   select(-Top_Type) %>%
-  mutate(Type = as.character(Type),) %>%
+  mutate(Type = as.character(Type)) %>%
   left_join(type_df, by = "Type") %>%
   mutate(Top_Type = factor(Top_Type, soil_type_levels())) %>%
   normalize_soil_pct_data()

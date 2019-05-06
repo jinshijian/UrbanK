@@ -69,6 +69,7 @@ summary.urbankfs_prediction <- function(object, quantiles = c(0.05, 0.5, 0.95), 
       mean = mean,
       sd = sd,
       !!!qfuns)) %>%
+    dplyr::ungroup() %>%
     dplyr::mutate(model_type = forcats::fct_recode(
       model_type,
       !!!pretty_model_types()
