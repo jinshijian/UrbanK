@@ -1,5 +1,6 @@
 #!/usr/bin/env Rscript
 
+# For compatibility with R >=3.6
 options(conflicts.policy = NULL)
 
 library(tibble)

@@ -24,7 +24,7 @@ normalize_soil_pct <- function(sand, silt, clay) {
 normalize_soil_pct_data <- function(df,
                                     soil_cols = paste0("Percent_", c("Sand", "Silt", "Clay"))) {
   assertthat::assert_that(
-    assertthat::has_name(df, soil_cols)
+    all(assertthat::has_name(df, soil_cols))
   )
   df[, soil_cols] <- do.call(
     normalize_soil_pct,
