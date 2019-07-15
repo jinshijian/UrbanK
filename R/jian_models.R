@@ -4,6 +4,7 @@
 #' fits a random forest model (with or without `top_type` included).
 #'
 #' @param data Input data for fit.
+#' @param use_rock Logical. If `TRUE`, include the `Percent_Rock` as a predictor.
 #' @param top_type Logical. If `TRUE`, include the `Top_Type` as a
 #'   predictor in the Random Forest model.
 #' @return For `fit_jian_ann`, the output of [neuralnet::neuralnet()],
@@ -12,16 +13,18 @@
 #'   output of [randomForest::randomForest()].
 #' @author Alexey Shiklomanov
 #' @export
-fit_jian_ann <- function(data) {
+fit_jian_ann <- function(data, use_rock = FALSE) {
   cols <- c(
     "Unsaturated_K2cm_cmhr",
     paste0("Percent_", c("Sand", "Silt", "Clay"))
   )
+  if (use_rock) cols <- c(cols, "Percent_Rock")
   sdata_unscaled <- data[, cols]
   out_scale <- range(sdata_unscaled[["Unsaturated_K2cm_cmhr"]])
   sdata <- purrr::map_dfc(sdata_unscaled, scale_range)
+  form <- as.formula(paste("Unsaturated_K2cm_cmhr ~", paste(cols[-1], collapse = " + ")))
   out <- neuralnet::neuralnet(
-    Unsaturated_K2cm_cmhr ~ Percent_Sand + Percent_Silt + Percent_Clay,
+    form,
     data = sdata,
     hidden = c(5, 3),
     linear.output = TRUE,
@@ -29,16 +32,18 @@ fit_jian_ann <- function(data) {
   )
   class(out) <- c("urbankfs_ann", class(out))
   attr(out, "scale_factors") <- out_scale
+  attr(out, "use_rock") <- use_rock
   out
 }
 
 #' @rdname fit_jian_ann
 #' @export
-fit_jian_rf <- function(data, top_type = FALSE) {
+fit_jian_rf <- function(data, use_rock = FALSE, top_type = FALSE) {
   cols <- c(
     "Unsaturated_K2cm_cmhr",
     paste0("Percent_", c("Sand", "Silt", "Clay"))
   )
+  if (use_rock) cols <- c(cols, "Percent_Rock")
   if (top_type) cols <- c(cols, "Top_Type")
   sdata <- data[, cols]
   form_string <- sprintf("%s ~ %s", cols[[1]], paste(
@@ -63,6 +68,8 @@ fit_jian_rf <- function(data, top_type = FALSE) {
 #' @export predict.urbankfs_ann
 predict.urbankfs_ann <- function(object, newdata, ...) {
   cols <- paste0("Percent_", c("Sand", "Silt", "Clay"))
+  use_rock <- attr(object, "use_rock")
+  if (!is.null(use_rock) && use_rock) cols <- c(cols, "Percent_Rock")
   sdata_unscaled <- newdata[, cols]
   sdata <- purrr::map_dfc(sdata_unscaled, scale_range)
   result <- neuralnet::compute(object, sdata, ...)
@@ -101,9 +108,17 @@ download_jian_fits <- function(destfile, ...) {
 #' @export
 pretty_model_types <- function(pretty = c("name", "value")) {
   pretty <- match.arg(pretty)
-  c(
-    "Neural network" = "ann",
-    "RandomForest (no type)" = "rf1",
-    "RandomForest (with type)" = "rf2"
+  dict <- c(
+    "Neural network (no rock)" = "ann",
+    "Neural network (with rock)" = "annr",
+    "RandomForest (no rock, no type)" = "rf1",
+    "RandomForest (with rock, no type)" = "rf1r",
+    "RandomForest (no rock, with type)" = "rf2",
+    "RandomForest (with rock, with type)" = "rf2r"
   )
+  if (pretty == "name") return(dict)
+  # If `value`, swap the names and values
+  out <- names(dict)
+  names(out) <- dict
+  out
 }

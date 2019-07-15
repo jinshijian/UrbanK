@@ -57,12 +57,13 @@ pred_fits <- pred %>%
   unnest(data, predicted) %>%
   select(sample, model_type, observed = Unsaturated_K2cm_cmhr, predicted) %>%
   group_by(sample, model_type) %>%
-  summarize(
-    fit = list(lm(observed ~ predicted)),
-    coefs = list(coefficients(fit)),
-    slope = coefs[[2]],
-    intercept = coefs[[1]],
-    r2 = summary(fit)[["adj.r.squared"]]
+  summarize(fit = list(lm(observed ~ predicted))) %>%
+  ungroup() %>%
+  mutate(
+    coefficients = map(fit, coefficients),
+    slope = map_dbl(coefficients, 2),
+    intercept = map_dbl(coefficients, 1),
+    r2 = map_dbl(fit, ~summary(.)[["adj.r.squared"]])
   )
 ```
 
@@ -149,7 +150,7 @@ pred %>%
     "Training" = "test_data",
     "Testing" = "train_data"
   )) %>%
-  group_by(model_type, sample, data_type) %>%
+
   summarize(corr = cor(predicted, Unsaturated_K2cm_cmhr, method = "spearman")) %>%
   ggplot() +
   aes(x = corr) +
@@ -168,7 +169,7 @@ First, load the data.
 histdata <- read.csv(here::here("extdata/UrbanSoilK_V3.csv")) %>%
   as_tibble() %>%
   mutate(Top_Type = factor(Top_Type, soil_type_levels())) %>%
-  normalize_soil_pct_data()
+  normalize_soil_pct_data(add_rock = TRUE)
 ```
 
 Generate bootstrapped predictions for the data.

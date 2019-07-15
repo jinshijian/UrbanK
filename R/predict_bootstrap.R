@@ -34,7 +34,8 @@ predict_bootstrap <- function(data, fitted_models = fitted_models) {
   }
 
   data_sub <- data %>%
-    dplyr::select(need_cols) %>%
+    # Percent Rock is optional...
+    dplyr::select(need_cols, dplyr::one_of("Percent_Rock")) %>%
     dplyr::mutate(Top_Type = factor(Top_Type, soil_type_levels()))
   n_na <- is.na(data_sub[["Top_Type"]])
   if (any(n_na)) {

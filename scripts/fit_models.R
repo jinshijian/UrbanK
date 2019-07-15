@@ -22,8 +22,6 @@ data_orig <- file.path("extdata", "AllCities_Victoria_RDS.csv") %>%
 
 type_df <- as_tibble(soil_types())
 
-soil_vars <- paste0("Percent_", c("Sand", "Silt", "Clay"))
-
 data_structure <- data_orig %>%
   filter_at(c("Unsaturated_K2cm_cmhr", "Percent_Sand", "Type"),
             negate(is.na)) %>%
@@ -39,8 +37,11 @@ data_list <- data_structure %>%
 
 fun_list <- list(
   ann = fit_jian_ann,
+  annr = partial(fit_jian_ann, use_rock = TRUE),
   rf1 = partial(fit_jian_rf, top_type = FALSE),
-  rf2 = partial(fit_jian_rf, top_type = TRUE)
+  rf1r = partial(fit_jian_rf, use_rock = TRUE, top_type = FALSE),
+  rf2 = partial(fit_jian_rf, top_type = TRUE),
+  rf2r = partial(fit_jian_rf, use_rock = TRUE, top_type = TRUE)
 )
 
 fun_df <- enframe(fun_list, "model", "fun")
@@ -53,7 +54,7 @@ pb <- progress_bar$new(total = nrow(data_funs))
 # Save these in extdata for use in downstream analyses
 fitted_models <- data_funs %>%
   mutate(model_fit = map2(train_data, fit_fun, ~with_pb(.y, pb)(.x)))
-save(fitted_models, file = "extdata/fitted_models.rda", compress = "xz")
+save(fitted_models, file = "extdata/fitted_models.rda")
 if (requireNamespace("fs", quietly = TRUE)) fs::file_size("extdata/fitted_models.rda")
 
 # Store the first 100 runs locally inside the package

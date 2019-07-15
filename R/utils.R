@@ -87,7 +87,7 @@ assertthat::on_failure(same_length) <- function(call, env) {
 
 #' Check that object is numeric and positive
 is_positive <- function(x) {
-  assertthat::assert_that(is.numeric(x))
+  assertthat::assert_that(all(is.numeric(x)))
   all(x >= 0)
 }
 

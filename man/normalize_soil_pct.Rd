@@ -5,10 +5,10 @@
 \alias{normalize_soil_pct_data}
 \title{Normalize soil sand, silt, and clay percentages to 100%}
 \usage{
-normalize_soil_pct(sand, silt, clay)
+normalize_soil_pct(sand, silt, clay, add_rock = FALSE)
 
 normalize_soil_pct_data(df, soil_cols = paste0("Percent_", c("Sand",
-  "Silt", "Clay")))
+  "Silt", "Clay")), add_rock = TRUE)
 }
 \arguments{
 \item{sand, silt, clay}{Percentages (0 - 100%) of sand, silt, and clay in soil}
