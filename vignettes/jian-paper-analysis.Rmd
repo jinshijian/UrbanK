@@ -1,5 +1,5 @@
 ---
-title: Jian et al. paper analysis
+title: "Jian et al. paper analysis"
 ---
 
 # Introduction
@@ -150,7 +150,7 @@ pred %>%
     "Training" = "test_data",
     "Testing" = "train_data"
   )) %>%
-
+  group_by(model_type, sample, data_type) %>%
   summarize(corr = cor(predicted, Unsaturated_K2cm_cmhr, method = "spearman")) %>%
   ggplot() +
   aes(x = corr) +
