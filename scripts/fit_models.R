@@ -48,11 +48,20 @@ data_funs <- crossing(data_list, fun_df) %>%
   select(sample = .id, train_data = train_df, test_data = test_df,
          model_type = model, fit_fun = fun)
 
-pb <- progress_bar$new(total = nrow(data_funs))
+if (requireNamespace("furrr", quietly = TRUE)) {
+  # Fit in parallel
+  message("Detected furrr package. Running in parallel.")
+  future::plan("multiprocess")
+  fitted_models <- data_funs %>%
+    mutate(model_fit = furrr::future_map2(train_data, fit_fun, ~.y(.x),
+                                          .progress = TRUE))
+} else {
+  pb <- progress_bar$new(total = nrow(data_funs))
+  fitted_models <- data_funs %>%
+    mutate(model_fit = map2(train_data, fit_fun, ~with_pb(.y, pb)(.x)))
+}
 
 # Save these in extdata for use in downstream analyses
-fitted_models <- data_funs %>%
-  mutate(model_fit = map2(train_data, fit_fun, ~with_pb(.y, pb)(.x)))
 save(fitted_models, file = "extdata/fitted_models.rda")
 if (requireNamespace("fs", quietly = TRUE)) fs::file_size("extdata/fitted_models.rda")
 
