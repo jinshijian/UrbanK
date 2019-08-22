@@ -95,12 +95,11 @@ predict.urbankfs_ann <- function(object, newdata, ...) {
 #' @param ... Additional arguments to [utils::download.file()]
 #' @inheritParams utils::download.file
 #' @return `destfile`, invisibly
-#' @export
 #' @examples
-#' @export
 #' \dontrun{
 #' load(download_jian_fits("full_model_fits.rda"))
 #' }
+#' @export
 download_jian_fits <- function(destfile, ...) {
   url <- "https://osf.io/download/ebsym/"
   download.file(url, destfile = destfile, ...)
