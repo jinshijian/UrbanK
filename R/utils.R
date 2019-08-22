@@ -70,7 +70,8 @@ shrink_randomforest <- function(object) {
 #' Check that objects have the same length
 #'
 #' @param ... Objects
-#' @return
+#' @return `TRUE` is all elements in `...` have the same length, and `FALSE`
+#'   otherwise
 #' @author Alexey Shiklomanov
 same_length <- function(...) {
   dots <- list(...)
@@ -78,7 +79,6 @@ same_length <- function(...) {
   length(unique(lens)) == 1
 }
 
-#' @rdname same_length
 assertthat::on_failure(same_length) <- function(call, env) {
   args <- vapply(call[-1], deparse, character(1))
   argstr <- paste(sprintf("`%s`", args), collapse = ", ")
