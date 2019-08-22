@@ -19,8 +19,8 @@ fit_jian_ann <- function(data, use_rock = FALSE, verbose = FALSE) {
     "Unsaturated_K2cm_cmhr",
     paste0("Percent_", c("Sand", "Silt", "Clay"))
   )
-  if (use_rock) cols <- c(cols, "Percent_Rock")
-  sdata_unscaled <- data[, cols]
+  if (use_rock) cols <- c(cols, "Percent_Rock_Fragment")
+  sdata_unscaled <- prepare_data(data, use_rock = use_rock)
   out_scale <- range(sdata_unscaled[["Unsaturated_K2cm_cmhr"]])
   sdata <- purrr::map_dfc(sdata_unscaled, scale_range)
   form <- as.formula(paste("Unsaturated_K2cm_cmhr ~", paste(cols[-1], collapse = " + ")))
@@ -53,9 +53,9 @@ fit_jian_rf <- function(data, use_rock = FALSE, top_type = FALSE) {
     "Unsaturated_K2cm_cmhr",
     paste0("Percent_", c("Sand", "Silt", "Clay"))
   )
-  if (use_rock) cols <- c(cols, "Percent_Rock")
+  if (use_rock) cols <- c(cols, "Percent_Rock_Fragment")
   if (top_type) cols <- c(cols, "Top_Type")
-  sdata <- data[, cols]
+  sdata <- prepare_data(data, use_rock = use_rock, top_type = top_type)
   form_string <- sprintf("%s ~ %s", cols[[1]], paste(
     cols[-1], collapse = " + "
   ))
