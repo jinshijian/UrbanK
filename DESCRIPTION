@@ -7,7 +7,7 @@ Authors@R: c(
 Description: Fit artificial neural networks and random forest models to soil data, and predict using existing models.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
+LazyData: false
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Suggests: 
