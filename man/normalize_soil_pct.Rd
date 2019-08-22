@@ -3,23 +3,28 @@
 \name{normalize_soil_pct}
 \alias{normalize_soil_pct}
 \alias{normalize_soil_pct_data}
-\title{Normalize soil sand, silt, and clay percentages to 100%}
+\title{Normalize soil sand, silt, clay, and rock percentages to 100%}
 \usage{
-normalize_soil_pct(sand, silt, clay, add_rock = FALSE)
+normalize_soil_pct(Percent_Sand, Percent_Silt, Percent_Clay,
+  Percent_Rock_Fragment = NULL)
 
-normalize_soil_pct_data(df, soil_cols = paste0("Percent_", c("Sand",
-  "Silt", "Clay")), add_rock = TRUE)
+normalize_soil_pct_data(df, add_rock = TRUE)
 }
 \arguments{
-\item{sand, silt, clay}{Percentages (0 - 100%) of sand, silt, and clay in soil}
+\item{Percent_Sand, Percent_Silt, Percent_Clay}{Percentages (0 - 100%) of sand, silt, and clay in soil}
+
+\item{Percent_Rock_Fragment}{Percent rock in soil. If \code{NULL} (default), re-normalize sand,
+silt, and clay to 100%}
 
 \item{df}{\code{data.frame} containing soil percentages in columns
 \code{soil_cols}}
 
-\item{soil_cols}{Column names corresponding to sand, silt, and clay}
+\item{add_rock}{(Logical) If \code{TRUE}, add rock data}
 }
 \description{
-Normalize soil sand, silt, and clay percentages to 100%
+If no \code{Percent_Rock_Fragment} is given (\code{Percent_Rock_Fragment = NULL}, default), renormalize sand, silt, and
+clay percents so that they sum to 100%. If rock is given, normalize sand,
+silt, and clay so that their sum = \code{Percent_Rock_Fragment - 100}.
 }
 \author{
 Alexey Shiklomanov

@@ -1,48 +1,49 @@
-#' Normalize soil sand, silt, and clay percentages to 100%
+#' Normalize soil sand, silt, clay, and rock percentages to 100%
 #'
-#' @param sand,silt,clay Percentages (0 - 100%) of sand, silt, and clay in soil
+#' If no `Percent_Rock_Fragment` is given (`Percent_Rock_Fragment = NULL`, default), renormalize sand, silt, and
+#' clay percents so that they sum to 100%. If rock is given, normalize sand,
+#' silt, and clay so that their sum = `Percent_Rock_Fragment - 100`.
+#'
+#' @param Percent_Sand,Percent_Silt,Percent_Clay Percentages (0 - 100%) of sand, silt, and clay in soil
+#' @param Percent_Rock_Fragment Percent rock in soil. If `NULL` (default), re-normalize sand,
+#'   silt, and clay to 100%
 #' @param df `data.frame` containing soil percentages in columns
 #'   `soil_cols`
-#' @param soil_cols Column names corresponding to sand, silt, and clay
+#' @param add_rock (Logical) If `TRUE`, add rock data
 #' @return 
 #' @author Alexey Shiklomanov
 #' @export
-normalize_soil_pct <- function(sand, silt, clay, add_rock = FALSE) {
+normalize_soil_pct <- function(Percent_Sand, Percent_Silt, Percent_Clay, Percent_Rock_Fragment = NULL) {
   assertthat::assert_that(
-    is_positive(sand),
-    is_positive(silt),
-    is_positive(clay),
-    same_length(sand, silt, clay)
+    is_positive(Percent_Sand),
+    is_positive(Percent_Silt),
+    is_positive(Percent_Clay),
+    same_length(Percent_Sand, Percent_Silt, Percent_Clay),
+    is.null(Percent_Rock_Fragment) || is_positive(Percent_Rock_Fragment),
+    is.null(Percent_Rock_Fragment) || same_length(Percent_Sand, Percent_Rock_Fragment)
   )
-  sum <- sand + silt + clay
-  if (sum > 100) {
-    ratio2 <- 100 / sum
-    sand <- sand * ratio2
-    silt <- silt * ratio2
-    clay <- clay * ratio2
-    sum <- 100
+  ssc_sum <- Percent_Sand + Percent_Silt + Percent_Clay
+  if (is.null(Percent_Rock_Fragment)) {
+    # Re-normalize sand, silt, and clay to 100%
+    out <- lapply(list(Percent_Sand, Percent_Silt, Percent_Clay), `*`, 100 / ssc_sum)
+    return(out)
   }
-  if (add_rock) {
-    rock <- 100 - sum
-    list(sand, silt, clay, rock)
-  } else {
-    ratio <- 100 / sum
-    lapply(list(sand, silt, clay), `*`, ratio)
-  }
+  sum <- Percent_Sand + Percent_Silt + Percent_Clay + Percent_Rock_Fragment
+  ratio <- (100 - Percent_Rock_Fragment) / ssc_sum
+  ssc_list <- lapply(list(Percent_Sand, Percent_Silt, Percent_Clay), `*`, ratio)
+  c(ssc_list, list(Percent_Rock_Fragment))
 }
 
 #' @rdname normalize_soil_pct
 #' @export
-normalize_soil_pct_data <- function(df,
-                                    soil_cols = paste0("Percent_", c("Sand", "Silt", "Clay")),
-                                    add_rock = TRUE) {
+normalize_soil_pct_data <- function(df, add_rock = TRUE) {
+  soil_cols <- paste0("Percent_", c("Sand", "Silt", "Clay"))
+  if (add_rock) {
+    soil_cols <- c(soil_cols, "Percent_Rock_Fragment")
+  }
   assertthat::assert_that(
     all(assertthat::has_name(df, soil_cols))
   )
-  out_names <- c("sand", "silt", "clay")
-  argv <- as.list(setNames(df[, soil_cols], out_names))
-  argv[["add_rock"]] <- add_rock
-  if (add_rock) soil_cols <- c(soil_cols, "Percent_Rock")
-  df[, soil_cols] <- do.call(normalize_soil_pct, argv)
+  df[, soil_cols] <- do.call(normalize_soil_pct, as.list(df[, soil_cols]))
   df
 }

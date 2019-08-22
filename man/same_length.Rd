@@ -9,6 +9,10 @@ same_length(...)
 \arguments{
 \item{...}{Objects}
 }
+\value{
+\code{TRUE} is all elements in \code{...} have the same length, and \code{FALSE}
+otherwise
+}
 \description{
 Check that objects have the same length
 }

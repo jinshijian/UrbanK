@@ -4,7 +4,7 @@
 #' fits a random forest model (with or without `top_type` included).
 #'
 #' @param data Input data for fit.
-#' @param use_rock Logical. If `TRUE`, include the `Percent_Rock` as a predictor.
+#' @param use_rock Logical. If `TRUE`, include the `Percent_Rock_Fragment` as a predictor.
 #' @param top_type Logical. If `TRUE`, include the `Top_Type` as a
 #'   predictor in the Random Forest model.
 #' @param verbose Logical. If `TRUE`, print the number of attempts.
@@ -19,8 +19,8 @@ fit_jian_ann <- function(data, use_rock = FALSE, verbose = FALSE) {
     "Unsaturated_K2cm_cmhr",
     paste0("Percent_", c("Sand", "Silt", "Clay"))
   )
-  if (use_rock) cols <- c(cols, "Percent_Rock")
-  sdata_unscaled <- data[, cols]
+  if (use_rock) cols <- c(cols, "Percent_Rock_Fragment")
+  sdata_unscaled <- prepare_data(data, use_rock = use_rock)
   out_scale <- range(sdata_unscaled[["Unsaturated_K2cm_cmhr"]])
   sdata <- purrr::map_dfc(sdata_unscaled, scale_range)
   form <- as.formula(paste("Unsaturated_K2cm_cmhr ~", paste(cols[-1], collapse = " + ")))
@@ -53,9 +53,9 @@ fit_jian_rf <- function(data, use_rock = FALSE, top_type = FALSE) {
     "Unsaturated_K2cm_cmhr",
     paste0("Percent_", c("Sand", "Silt", "Clay"))
   )
-  if (use_rock) cols <- c(cols, "Percent_Rock")
+  if (use_rock) cols <- c(cols, "Percent_Rock_Fragment")
   if (top_type) cols <- c(cols, "Top_Type")
-  sdata <- data[, cols]
+  sdata <- prepare_data(data, use_rock = use_rock, top_type = top_type)
   form_string <- sprintf("%s ~ %s", cols[[1]], paste(
     cols[-1], collapse = " + "
   ))
@@ -79,7 +79,7 @@ fit_jian_rf <- function(data, use_rock = FALSE, top_type = FALSE) {
 predict.urbankfs_ann <- function(object, newdata, ...) {
   cols <- paste0("Percent_", c("Sand", "Silt", "Clay"))
   use_rock <- attr(object, "use_rock")
-  if (!is.null(use_rock) && use_rock) cols <- c(cols, "Percent_Rock")
+  if (!is.null(use_rock) && use_rock) cols <- c(cols, "Percent_Rock_Fragment")
   sdata_unscaled <- newdata[, cols]
   sdata <- purrr::map_dfc(sdata_unscaled, scale_range)
   result <- neuralnet::compute(object, sdata, ...)
@@ -95,12 +95,11 @@ predict.urbankfs_ann <- function(object, newdata, ...) {
 #' @param ... Additional arguments to [utils::download.file()]
 #' @inheritParams utils::download.file
 #' @return `destfile`, invisibly
-#' @export
 #' @examples
-#' @export
 #' \dontrun{
 #' load(download_jian_fits("full_model_fits.rda"))
 #' }
+#' @export
 download_jian_fits <- function(destfile, ...) {
   url <- "https://osf.io/download/ebsym/"
   download.file(url, destfile = destfile, ...)

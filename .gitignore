@@ -1,3 +1,6 @@
 /extdata/fitted_models.rda
 /vignettes/*.html
 .Rproj.user
+/vignettes/*.jpg
+/vignettes/jian-paper-analysis.docx
+/vignettes/results2.csv

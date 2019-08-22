@@ -23,14 +23,13 @@ data_orig <- file.path("extdata", "AllCities_Victoria_RDS.csv") %>%
 type_df <- as_tibble(soil_types())
 
 data_structure <- data_orig %>%
-  filter_at(c("Unsaturated_K2cm_cmhr", "Percent_Sand", "Type"),
-            negate(is.na)) %>%
-  select(-Top_Type) %>%
+  select(Percent_Sand, Percent_Silt, Percent_Clay, Percent_Rock_Fragment,
+         Unsaturated_K2cm_cmhr, Type) %>%
+  filter_at(vars(-Percent_Rock_Fragment), negate(is.na)) %>%
   mutate(Type = as.character(Type)) %>%
   left_join(type_df, by = "Type") %>%
-  mutate(Top_Type = factor(Top_Type, soil_type_levels())) %>%
-  normalize_soil_pct_data()
-  
+  mutate(Top_Type = factor(Top_Type, soil_type_levels()))
+
 data_list <- data_structure %>%
   crossv_mc(n_boot) %>%
   mutate_at(c("train", "test"), list(df = ~map(., as_tibble)))
@@ -49,11 +48,20 @@ data_funs <- crossing(data_list, fun_df) %>%
   select(sample = .id, train_data = train_df, test_data = test_df,
          model_type = model, fit_fun = fun)
 
-pb <- progress_bar$new(total = nrow(data_funs))
+if (requireNamespace("furrr", quietly = TRUE)) {
+  # Fit in parallel
+  message("Detected furrr package. Running in parallel.")
+  future::plan("multiprocess")
+  fitted_models <- data_funs %>%
+    mutate(model_fit = furrr::future_map2(train_data, fit_fun, ~.y(.x),
+                                          .progress = TRUE))
+} else {
+  pb <- progress_bar$new(total = nrow(data_funs))
+  fitted_models <- data_funs %>%
+    mutate(model_fit = map2(train_data, fit_fun, ~with_pb(.y, pb)(.x)))
+}
 
 # Save these in extdata for use in downstream analyses
-fitted_models <- data_funs %>%
-  mutate(model_fit = map2(train_data, fit_fun, ~with_pb(.y, pb)(.x)))
 save(fitted_models, file = "extdata/fitted_models.rda")
 if (requireNamespace("fs", quietly = TRUE)) fs::file_size("extdata/fitted_models.rda")
 
