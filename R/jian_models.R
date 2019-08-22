@@ -7,13 +7,14 @@
 #' @param use_rock Logical. If `TRUE`, include the `Percent_Rock` as a predictor.
 #' @param top_type Logical. If `TRUE`, include the `Top_Type` as a
 #'   predictor in the Random Forest model.
+#' @param verbose Logical. If `TRUE`, print the number of attempts.
 #' @return For `fit_jian_ann`, the output of [neuralnet::neuralnet()],
 #'   but with the special class attribute `urbankfs_ann` (so we can
 #'   define our own `predict` S3 method). For `fit_jian_rf`, the
 #'   output of [randomForest::randomForest()].
 #' @author Alexey Shiklomanov
 #' @export
-fit_jian_ann <- function(data, use_rock = FALSE) {
+fit_jian_ann <- function(data, use_rock = FALSE, verbose = FALSE) {
   cols <- c(
     "Unsaturated_K2cm_cmhr",
     paste0("Percent_", c("Sand", "Silt", "Clay"))
@@ -23,13 +24,22 @@ fit_jian_ann <- function(data, use_rock = FALSE) {
   out_scale <- range(sdata_unscaled[["Unsaturated_K2cm_cmhr"]])
   sdata <- purrr::map_dfc(sdata_unscaled, scale_range)
   form <- as.formula(paste("Unsaturated_K2cm_cmhr ~", paste(cols[-1], collapse = " + ")))
-  out <- neuralnet::neuralnet(
-    form,
-    data = sdata,
-    hidden = c(5, 3),
-    linear.output = TRUE,
-    stepmax = 1e6
-  )
+  runmodel <- TRUE
+  i <- 0
+  while(runmodel) {
+    i <- i + 1
+    if (verbose) message("Attempt ", i)
+    out <- neuralnet::neuralnet(
+      form,
+      data = sdata,
+      hidden = c(5, 3),
+      linear.output = TRUE,
+      stepmax = 1e6
+    )
+    test_predict <- neuralnet::compute(out, sdata)[["net.result"]]
+    runmodel <- any(test_predict < 0)
+  }
+  
   class(out) <- c("urbankfs_ann", class(out))
   attr(out, "scale_factors") <- out_scale
   attr(out, "use_rock") <- use_rock

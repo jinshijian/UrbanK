@@ -15,6 +15,13 @@ normalize_soil_pct <- function(sand, silt, clay, add_rock = FALSE) {
     same_length(sand, silt, clay)
   )
   sum <- sand + silt + clay
+  if (sum > 100) {
+    ratio2 <- 100 / sum
+    sand <- sand * ratio2
+    silt <- silt * ratio2
+    clay <- clay * ratio2
+    sum <- 100
+  }
   if (add_rock) {
     rock <- 100 - sum
     list(sand, silt, clay, rock)

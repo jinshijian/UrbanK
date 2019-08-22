@@ -5,7 +5,7 @@
 \alias{fit_jian_rf}
 \title{Fit models from Jian et al. paper}
 \usage{
-fit_jian_ann(data, use_rock = FALSE)
+fit_jian_ann(data, use_rock = FALSE, verbose = FALSE)
 
 fit_jian_rf(data, use_rock = FALSE, top_type = FALSE)
 }
@@ -13,6 +13,8 @@ fit_jian_rf(data, use_rock = FALSE, top_type = FALSE)
 \item{data}{Input data for fit.}
 
 \item{use_rock}{Logical. If \code{TRUE}, include the \code{Percent_Rock} as a predictor.}
+
+\item{verbose}{Logical. If \code{TRUE}, print the number of attempts.}
 
 \item{top_type}{Logical. If \code{TRUE}, include the \code{Top_Type} as a
 predictor in the Random Forest model.}

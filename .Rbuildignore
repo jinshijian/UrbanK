@@ -2,4 +2,7 @@
 ^scripts/
 ^figures/
 
-^extdata/fitted_models.rda$
+^extdata/
+^manuscript/
+^.*\.Rproj$
+^\.Rproj\.user$

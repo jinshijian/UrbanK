@@ -12,6 +12,7 @@ scale_range <- function(x) {
 }
 
 #' @rdname scale_range
+#' @export
 unscale_range <- function(x, y = x) {
   stopifnot(is.numeric(y))
   hi <- max(y)
