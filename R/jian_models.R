@@ -4,7 +4,7 @@
 #' fits a random forest model (with or without `top_type` included).
 #'
 #' @param data Input data for fit.
-#' @param use_rock Logical. If `TRUE`, include the `Percent_Rock` as a predictor.
+#' @param use_rock Logical. If `TRUE`, include the `Percent_Rock_Fragment` as a predictor.
 #' @param top_type Logical. If `TRUE`, include the `Top_Type` as a
 #'   predictor in the Random Forest model.
 #' @param verbose Logical. If `TRUE`, print the number of attempts.
@@ -79,7 +79,7 @@ fit_jian_rf <- function(data, use_rock = FALSE, top_type = FALSE) {
 predict.urbankfs_ann <- function(object, newdata, ...) {
   cols <- paste0("Percent_", c("Sand", "Silt", "Clay"))
   use_rock <- attr(object, "use_rock")
-  if (!is.null(use_rock) && use_rock) cols <- c(cols, "Percent_Rock")
+  if (!is.null(use_rock) && use_rock) cols <- c(cols, "Percent_Rock_Fragment")
   sdata_unscaled <- newdata[, cols]
   sdata <- purrr::map_dfc(sdata_unscaled, scale_range)
   result <- neuralnet::compute(object, sdata, ...)

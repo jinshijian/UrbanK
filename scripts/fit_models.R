@@ -23,14 +23,13 @@ data_orig <- file.path("extdata", "AllCities_Victoria_RDS.csv") %>%
 type_df <- as_tibble(soil_types())
 
 data_structure <- data_orig %>%
-  filter_at(c("Unsaturated_K2cm_cmhr", "Percent_Sand", "Type"),
-            negate(is.na)) %>%
-  select(-Top_Type) %>%
+  select(Percent_Sand, Percent_Silt, Percent_Clay, Percent_Rock_Fragment,
+         Unsaturated_K2cm_cmhr, Type) %>%
+  filter_at(vars(-Percent_Rock_Fragment), negate(is.na)) %>%
   mutate(Type = as.character(Type)) %>%
   left_join(type_df, by = "Type") %>%
-  mutate(Top_Type = factor(Top_Type, soil_type_levels())) %>%
-  normalize_soil_pct_data()
-  
+  mutate(Top_Type = factor(Top_Type, soil_type_levels()))
+
 data_list <- data_structure %>%
   crossv_mc(n_boot) %>%
   mutate_at(c("train", "test"), list(df = ~map(., as_tibble)))

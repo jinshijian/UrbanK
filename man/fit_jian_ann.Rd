@@ -12,7 +12,7 @@ fit_jian_rf(data, use_rock = FALSE, top_type = FALSE)
 \arguments{
 \item{data}{Input data for fit.}
 
-\item{use_rock}{Logical. If \code{TRUE}, include the \code{Percent_Rock} as a predictor.}
+\item{use_rock}{Logical. If \code{TRUE}, include the \code{Percent_Rock_Fragment} as a predictor.}
 
 \item{verbose}{Logical. If \code{TRUE}, print the number of attempts.}
 
