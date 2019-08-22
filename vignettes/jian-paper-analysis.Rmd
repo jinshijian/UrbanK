@@ -17,14 +17,13 @@ This vignette goes through the basic steps of the Jian et al. paper analysis, de
 
 Load packages.
 
-```{r}
+```{r setup}
 library(dplyr)
 library(forcats)
 library(tidyr)
 library(modelr)
 library(purrr)
 library(ggplot2)
-# theme_bw()
 library(cowplot)
 library(urbankfs)
 # devtools::install(here::here())
@@ -36,7 +35,7 @@ Load the _full_ set of fitted models.
 Because it is large (>100MB), this file is not distributed with the package.
 To obtain it, either download from OSF (via `urbankfs::download_jian_fits`) or re-generate it with the `scripts/fit_models.R` script.
 
-```{r}
+```{r load-models}
 # download_jian_fits(here::here("extdata/fitted_models.rda"))
 load(here::here("extdata", "fitted_models.rda"))
 ```
@@ -47,22 +46,36 @@ Generate neural network and random forest predictions for the training and test 
 `randomForest` provides a `predict` method for the `randomForest` S3 class.
 `urbankfs` defines a custom `predict` method for its neural network fits that is a thin wrapper around `neuralnet::compute` and which also undoes the scaling that happens during fitting.
 
-```{r}
+```{r predict}
+model_rock_type <- tribble(
+  ~model_type, ~use_rock, ~top_type,
+  "ann", FALSE, FALSE,
+  "annr", TRUE, FALSE,
+  "rf1", FALSE, FALSE,
+  "rf1r", TRUE, FALSE,
+  "rf2", FALSE, TRUE,
+  "rf2r", TRUE, TRUE
+)
 pred <- fitted_models %>%
   select(sample, train_data, test_data, model_type, model_fit) %>%
   gather(data_type, data, train_data, test_data) %>%
+  left_join(model_rock_type, by = "model_type") %>%
   mutate(
-    predicted = map2(model_fit, data, predict),
+    # Subset the data so that it first the needs of the model
+    data_prep = pmap(list(data, use_rock, top_type), prepare_data),
+    # Actually run the predictions
+    predicted = map2(model_fit, data_prep, predict),
+    # Make the model_type labels plot-ready
     model_type = fct_recode(model_type, !!!pretty_model_types())
   )
 ```
 
 Fit a linear model, `observed ~ predicted`, for each bootstrapped sample, and extract the coefficients and R^2^.
 
-```{r}
+```{r fit-line-to-pred}
 pred_fits <- pred %>%
   filter(data_type == "test_data") %>%
-  unnest(data, predicted) %>%
+  unnest(data_prep, predicted) %>%
   select(sample, model_type, observed = Unsaturated_K2cm_cmhr, predicted) %>%
   group_by(sample, model_type) %>%
   summarize(fit = list(lm(observed ~ predicted))) %>%
@@ -78,7 +91,7 @@ pred_fits <- pred %>%
 Use the linear model fits from above to generate a range of predictions of the observed data.
 This is mostly for plotting the linear 1:1 fits in subsequent steps.
 
-```{r}
+```{r predict-observed}
 obs <- tibble(
   predicted = fitted_models %>%
     unnest(train_data) %>%
@@ -102,10 +115,10 @@ pred_lm <- pred_fits %>%
 Summarize the neural network and random forest model predictions at each point.
 These will be drawn as points with horizontal error bars.
 
-```{r}
+```{r summarize-point-predictions}
 pred_summary <- pred %>%
   filter(data_type == "test_data") %>%
-  unnest(data, predicted) %>%
+  unnest(data_prep, predicted) %>%
   group_by(model_type, observed = Unsaturated_K2cm_cmhr) %>%
   summarize_at(vars(predicted), list(
     mean = mean,
@@ -167,7 +180,7 @@ fig_correlation_cap <- paste0(
   "Histogram of correlation coefficients for the training and testing data."
 )
 pred %>%
-  unnest(data, predicted) %>%
+  unnest(data_prep, predicted) %>%
   mutate(data_type = fct_inorder(data_type) %>% fct_recode(
     "Training" = "test_data",
     "Testing" = "train_data"
@@ -186,19 +199,24 @@ pred %>%
 
 Model predictions for Urban data.
 First, load the data.
+Note that the urban soil data does not report rock percentage.
 
-```{r}
+```{r load-urban-data}
 histdata <- read.csv(here::here("extdata/UrbanSoilK_V3.csv")) %>%
   as_tibble() %>%
   mutate(Top_Type = factor(Top_Type, soil_type_levels())) %>%
-  normalize_soil_pct_data(add_rock = TRUE)
+  normalize_soil_pct_data(add_rock = FALSE)
 ```
 
 Generate bootstrapped predictions for the data.
 `urbankfs` makes this easy with the `predict_bootstrap` function, which also has `summary` method for quickly generating tidy outputs.
+Note that we can only use models without rock percentage as a predictor because it is not reported.
 
-```{r}
-hist_predict <- predict_bootstrap(histdata, fitted_models)
+```{r predict-urban-data}
+fitted_models_norock <- fitted_models %>%
+  left_join(model_rock_type, "model_type") %>%
+  filter(!use_rock)
+hist_predict <- predict_bootstrap(histdata, fitted_models_norock)
 hist_summary <- summary(hist_predict)
 hist_summary
 ```
@@ -231,16 +249,17 @@ histdata %>%
 ```
 
 
-```{r}
+```{r table-1-summary}
 # summary for Table 1
-min(data_structure$Ksat_cmhr)
+# ANS: This object doesn't exist in this Rmd document
+## min(data_structure$Ksat_cmhr)
 histdata %>%
   left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay",
                                  "Top_Type")) %>% select(Percent_Sand, Percent_Silt, Percent_Clay, Ksat, Ksat_Rosseta, mean, model_type)
 ```
 
 
-```{r}
+```{r table-2-summary}
 # summary for Table 2
 pred_summary$mean <- ifelse(pred_summary$mean < 0, 0.001, pred_summary$mean)
 pred_summary %>% mutate(S_M = observed - mean) -> pred_summary
@@ -272,7 +291,7 @@ results <- evaluation()
 ```
 
 
-```{r}
+```{r table-3-summary}
 # summary for Table 3
 hist_summary$mean <- ifelse(hist_summary$mean < 0, 0.001, hist_summary$mean)
 
