@@ -1,0 +1,8 @@
+^LICENSE\.md$
+^scripts/
+^figures/
+
+^extdata/
+^manuscript/
+^.*\.Rproj$
+^\.Rproj\.user$
