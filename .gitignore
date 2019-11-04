@@ -4,3 +4,10 @@
 /vignettes/*.jpg
 /vignettes/jian-paper-analysis.docx
 /vignettes/results2.csv
+
+# big file in extdata
+/extdata/fitted_models.rda
+
+# all files in manuscript
+manuscript/
+

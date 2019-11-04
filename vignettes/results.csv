@@ -1,0 +1,4 @@
+"var_modelType.i.","inter","slope","r2","E","d","RMSE","p"
+"Neural network (no rock)",1.569,0.461,0.248,-0.049,0.673,6.126,0.913
+"RandomForest (no rock, no type)",0.475,0.983,0.349,0.431,0.698,4.738,0.214
+"RandomForest (no rock, with type)",0.285,1.056,0.366,0.428,0.699,4.677,0.212
