@@ -11,3 +11,6 @@
 # all files in manuscript
 manuscript/
 
+# Big file
+.RData
+.Rhistory
