@@ -1,23 +1,19 @@
 ---
 title: "Jian et al. paper analysis"
-output: word_document
+output:
+  word_document: default
+  html_document:
+    df_print: paged
 ---
 
-```{r}
-# questions need double check
-# 1. How many times repeaded for hist data?
-
-```
 
 # Introduction
 
 This vignette goes through the basic steps of the Jian et al. paper analysis, demonstrating some of the features of the `urbankfs` R package along the way.
 
-# Setup
+# Load packages
 
-Load packages.
-
-```{r setup}
+```{r load packages}
 library(dplyr)
 library(forcats)
 library(tidyr)
@@ -35,9 +31,22 @@ requireNamespace("randomForest", quietly = TRUE)
 
 ```
 
+# Setup  
+
+```{r setup}
+knitr::opts_chunk$set(results = 'hide', message = TRUE, include = TRUE,
+                      echo = FALSE, warning = FALSE,
+                      # fig.height = 4, fig.width = 8, 
+                      cache = F)
+```
+
+
 Load the _full_ set of fitted models.
 Because it is large (>100MB), this file is not distributed with the package.
-To obtain it, either download from OSF (via `urbankfs::download_jian_fits`) or re-generate it with the `scripts/fit_models.R` script.
+To obtain it: 
+1. download from OSF (via `urbankfs::download_jian_fits`),
+2. or re-generate it with the `scripts/fit_models.R` script,
+3. or download it from https://github.com/jinshijian/UrbanKfs --> 'release'
 
 ```{r load-models}
 # download_jian_fits(here::here("extdata/fitted_models.rda"))
@@ -58,25 +67,6 @@ histdata <- read.csv(here::here("extdata/UrbanSoilK_V3.csv")) %>%
   normalize_soil_pct_data(add_rock = FALSE)
 ```
 
-Generate bootstrapped predictions for the data.
-`urbankfs` makes this easy with the `predict_bootstrap` function, which also has `summary` method for quickly generating tidy outputs.
-Note that we can only use models without rock percentage as a predictor because it is not reported.
-
-```{r predict-urban-data}
-fitted_models_norock <- fitted_models %>%
-  left_join(model_rock_type, "model_type") %>%
-  filter(!use_rock)
-hist_predict <- predict_bootstrap(histdata, fitted_models_norock)
-hist_summary <- summary(hist_predict)
-hist_summary
-```
-
-
-# Test and training data predictions
-
-Generate neural network and random forest predictions for the training and test data.
-`randomForest` provides a `predict` method for the `randomForest` S3 class.
-`urbankfs` defines a custom `predict` method for its neural network fits that is a thin wrapper around `neuralnet::compute` and which also undoes the scaling that happens during fitting.
 
 ```{r predict}
 model_rock_type <- tribble(
@@ -101,6 +91,27 @@ pred <- fitted_models %>%
     model_type = fct_recode(model_type, !!!pretty_model_types())
   )
 ```
+
+
+Generate bootstrapped predictions for the data.
+`urbankfs` makes this easy with the `predict_bootstrap` function, which also has `summary` method for quickly generating tidy outputs.
+Note that we can only use models without rock percentage as a predictor because it is not reported.
+
+```{r predict-urban-data}
+fitted_models_norock <- fitted_models %>%
+  left_join(model_rock_type, "model_type") %>%
+  filter(!use_rock)
+hist_predict <- predict_bootstrap(histdata, fitted_models_norock)
+hist_summary <- summary(hist_predict)
+hist_summary
+```
+
+
+# Test and training data predictions
+
+Generate neural network and random forest predictions for the training and test data.
+`randomForest` provides a `predict` method for the `randomForest` S3 class.
+`urbankfs` defines a custom `predict` method for its neural network fits that is a thin wrapper around `neuralnet::compute` and which also undoes the scaling that happens during fitting.
 
 
 
@@ -374,5 +385,11 @@ write.csv(results2, "results2.csv", row.names = F)
 results2
 ```
 
+
+```{r}
+# questions need double check
+# 1. How many times repeaded for hist data?
+# Set chunks defaults; these options will be applied to all subsequent chunks
+```
 
 
