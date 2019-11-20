@@ -1,0 +1,848 @@
+Sort,SampleSite_ID,SamplePoint_ID,ApproximateAddress,Park_Name,City,Year_Built,Parcel_Number,Latitude,Longitude,Adjusted_Lat,Adjusted_Long,Land_Use,Demolition_Type,Point_Notes,Soil_Series,SamplePoint_ID,Soil_Series,MapUnit,MapUnit_Key,SurveyArea,MapUnitName,MapUnit_Logic
+1,CLS1,CLP1,1722 VICTORIA,1722 VICTORIA,Cleveland,1919,11702062,41.5493,-81.5658,41.5493,-81.5658,FILL,PRE,,Elnora,CLP1,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+4,CLS1,CLP2,1722 VICTORIA,1722 VICTORIA,Cleveland,1919,11702062,41.5493,-81.5658,41.5493,-81.5658,NATIVE,PRE,,Elnora,CLP2,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+10,CLS2,CLP3,1037 GALEWOOD,1037 GALEWOOD,Cleveland,1916,11512029,41.5506,-81.5813,41.5506,-81.5813,FILL,POST,,Hornell,CLP3,Hornell,HsC,287314,OH035,"Hornell-Urban land complex, rolling",Hornell map unit that contains the point.
+16,CLS2,CLP4,1037 GALEWOOD,1037 GALEWOOD,Cleveland,1916,11512029,41.5506,-81.5813,41.5506,-81.5813,NATIVE,POST,,Hornell,CLP4,Hornell,HsC,287314,OH035,"Hornell-Urban land complex, rolling",Hornell map unit that contains the point.
+21,CLS3,CLP5,1097 GALEWOOD,1097 GALEWOOD,Cleveland,1916,11514029,41.5492,-81.5798,41.5492,-81.5798,FILL,PRE,,Hornell,CLP5,Hornell,HsC,287314,OH035,"Hornell-Urban land complex, rolling",Hornell map unit that contains the point.
+25,CLS3,CLP6,1097 GALEWOOD,1097 GALEWOOD,Cleveland,1916,11514029,41.5492,-81.5798,41.5492,-81.5798,NATIVE,PRE,,Hornell,CLP6,Hornell,HsC,287314,OH035,"Hornell-Urban land complex, rolling",Hornell map unit that contains the point.
+32,CLS4,CLP7,11507 OHLMAN,11507 OHLMAN,Cleveland,1910,11021119,41.5323,-81.6049,41.5323,-81.6049,FILL,POST,,Elnora,CLP7,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+37,CLS4,CLP8,11507 OHLMAN,11507 OHLMAN,Cleveland,1910,11021119,41.5323,-81.6049,41.5323,-81.6049,NATIVE,POST,,Elnora,CLP8,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+46,CLS5,CLP9,1096 E 112,1096 E 112,Cleveland,1910,10922087,41.5279,-81.6078,41.5279,-81.6078,FILL,POST,,Hornell,CLP9,Hornell,HsC,287314,OH035,"Hornell-Urban land complex, rolling",Closest and most widespread Hornell map unit near point.
+56,CLS5,CLP10,1096 E 112,1096 E 112,Cleveland,1910,10922087,41.5279,-81.6078,41.5279,-81.6078,NATIVE,POST,,Hornell,CLP10,Hornell,HsC,287314,OH035,"Hornell-Urban land complex, rolling",Closest and most widespread Hornell map unit near point.
+63,CLS6,CLP11,1644 ANSEL,1644 ANSEL,Cleveland,1900,10722030,41.5117,-81.6196,41.5117,-81.6196,FILL,PRE,,Elnora,CLP11,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+68,CLS6,CLP12,1644 ANSEL,1644 ANSEL,Cleveland,1900,10722030,41.5117,-81.6196,41.5117,-81.6196,NATIVE,PRE,,Elnora,CLP12,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+73,CLS7,CLP13,1464 E 94,1464 E 94,Cleveland,1910,10713023,41.5166,-81.6209,41.5166,-81.6209,FILL,POST,,Elnora,CLP13,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+77,CLS7,CLP14,1464 E 94,1464 E 94,Cleveland,1910,10713023,41.5166,-81.6209,41.5166,-81.6209,NATIVE,POST,,Elnora,CLP14,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+82,CLS8,CLP15,1384 ANSEL,1384 ANSEL,Cleveland,1916,10712165,41.5193,-81.6198,41.5193,-81.6198,FILL,PRE,,Elnora,CLP15,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+86,CLS8,CLP16,1384 ANSEL,1384 ANSEL,Cleveland,1916,10712165,41.5193,-81.6198,41.5193,-81.6198,NATIVE,PRE,,Elnora,CLP16,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+90,CLS9,CLP17,1315 E 93,1315 E 93,Cleveland,1910,10712094,41.5205,-81.6221,41.5205,-81.6221,FILL,PRE,,Elnora,CLP17,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+95,CLS9,CLP18,1315 E 93,1315 E 93,Cleveland,1910,10712094,41.5205,-81.6221,41.5205,-81.6221,NATIVE,PRE,,Elnora,CLP18,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+102,CLS10,CLP19,1322 E 93,1322 E 93,Cleveland,1912,10712092,41.5204,-81.6224,41.5204,-81.6224,FILL,PRE,,Elnora,CLP19,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+108,CLS10,CLP20,1322 E 93,1322 E 93,Cleveland,1912,10712092,41.5204,-81.6224,41.5204,-81.6224,NATIVE,PRE,,Elnora,CLP20,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+114,CLS11,CLP21,1400 E 88,1400 E 88,Cleveland,1900,10715139,41.5177,-81.6265,41.5177,-81.6265,FILL,PRE,,Elnora,CLP21,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+118,CLS11,CLP22,1400 E 88,1400 E 88,Cleveland,1900,10715139,41.5177,-81.6265,41.5177,-81.6265,NATIVE,PRE,,Elnora,CLP22,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+125,CLS12,CLP23,1020 WHEELOCK,1020 WHEELOCK,Cleveland,1910,10704007,41.5275,-81.6289,41.5275,-81.6289,FILL,POST,,Tioga,CLP23,Tioga,Tg,287267,OH035,"Tioga loam, frequently flooded",Tioga map unit that contains the point.
+130,CLS12,CLP24,1020 WHEELOCK,1020 WHEELOCK,Cleveland,1910,10704007,41.5275,-81.6289,41.5275,-81.6289,NATIVE,POST,,Tioga,CLP24,Tioga,Tg,287267,OH035,"Tioga loam, frequently flooded",Tioga map unit that contains the point.
+134,CLS13,CLP25,938 WHEELOCK,938 WHEELOCK,Cleveland,1920,10703002,41.5296,-81.6302,41.5296,-81.6302,FILL,PRE,,Elnora,CLP25,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+137,CLS13,CLP26,938 WHEELOCK,938 WHEELOCK,Cleveland,1920,10703002,41.5296,-81.6302,41.5296,-81.6302,NATIVE,PRE,,Elnora,CLP26,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+140,CLS14,CLP27,927 E 72,927 E 72,Cleveland,1910,10516079,41.5295,-81.6388,41.5295,-81.6388,FILL,PRE,,Elnora,CLP27,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+143,CLS14,CLP28,927 E 72,927 E 72,Cleveland,1910,10516079,41.5295,-81.6388,41.5295,-81.6388,NATIVE,PRE,,Elnora,CLP28,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+151,CLS15,CLP29,2700 GRAND,2700 GRAND,Cleveland,1890,12620018,41.4856,-81.6275,41.4856,-81.6275,FILL,POST,,Elnora,CLP29,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+156,CLS15,CLP30,2700 GRAND,2700 GRAND,Cleveland,1890,12620018,41.4856,-81.6275,41.4856,-81.6275,NATIVE,POST,,Elnora,CLP30,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+160,CLS16,CLP31,8009 RAWLINGS,8009 RAWLINGS,Cleveland,1900,12627112,41.4830,-81.6315,41.4830,-81.6315,FILL,PRE,,Mitiwanga,CLP31,Mitiwanga,UnB,287274,OH035,"Urban land-Mitiwanga complex, undulating",Mitiwanga map unit that contains the point.
+166,CLS16,CLP32,8009 RAWLINGS,8009 RAWLINGS,Cleveland,1900,12627112,41.4830,-81.6315,41.4830,-81.6315,NATIVE,PRE,,Mitiwanga,CLP32,Mitiwanga,UnB,287274,OH035,"Urban land-Mitiwanga complex, undulating",Mitiwanga map unit that contains the point.
+173,CLS17,CLP33,2802 E 79,2802 E 79,Cleveland,1900,12627012,41.4825,-81.6329,41.4825,-81.6329,FILL,POST,,Mitiwanga,CLP33,Mitiwanga,UnB,287274,OH035,"Urban land-Mitiwanga complex, undulating",Mitiwanga map unit that contains the point.
+178,CLS17,CLP34,2802 E 79,2802 E 79,Cleveland,1900,12627012,41.4825,-81.6329,41.4825,-81.6329,NATIVE,POST,,Mitiwanga,CLP34,Mitiwanga,UnB,287274,OH035,"Urban land-Mitiwanga complex, undulating",Mitiwanga map unit that contains the point.
+185,CLS18,CLP35,9080 HARRIS,9080 HARRIS,Cleveland,1900,12711154,41.4708,-81.6230,41.4708,-81.6230,FILL,PRE,,Mitiwanga,CLP35,Mitiwanga,UnB,287274,OH035,"Urban land-Mitiwanga complex, undulating",Mitiwanga map unit that contains the point.
+189,CLS18,CLP36,9080 HARRIS,9080 HARRIS,Cleveland,1900,12711154,41.4708,-81.6230,41.4708,-81.6230,NATIVE,PRE,,Mitiwanga,CLP36,Mitiwanga,UnB,287274,OH035,"Urban land-Mitiwanga complex, undulating",Mitiwanga map unit that contains the point.
+195,CLS19,CLP37,8806 MARSHALL,8806 MARSHALL,Cleveland,1920,12711084,41.4698,-81.6255,41.4698,-81.6255,FILL,POST,,Mitiwanga,CLP37,Mitiwanga,UnB,287274,OH035,"Urban land-Mitiwanga complex, undulating",Most common and largest area Mitiwanga map unit near point.
+197,CLS19,CLP38,8806 MARSHALL,8806 MARSHALL,Cleveland,1920,12711084,41.4698,-81.6255,41.4698,-81.6255,NATIVE,POST,,Mitiwanga,CLP38,Mitiwanga,UnB,287274,OH035,"Urban land-Mitiwanga complex, undulating",Most common and largest area Mitiwanga map unit near point.
+206,CLS20,CLP39,2943 E 55,2943 E 55,Cleveland,1900,12502008,41.4786,-81.6514,41.4786,-81.6514,FILL,PRE,,Chili,CLP39,Chili,CnA,287287,OH035,"Chili loam, 0 to 2 percent slopes",Largest Chili map unit near point and also matches slope.
+210,CLS20,CLP40,2943 E 55,2943 E 55,Cleveland,1900,12502008,41.4786,-81.6514,41.4786,-81.6514,NATIVE,PRE,,Chili,CLP40,Chili,CnA,287287,OH035,"Chili loam, 0 to 2 percent slopes",Largest Chili map unit near point and also matches slope.
+216,CLS21,CLP41,6305 CARPENTER,6305 CARPENTER,Cleveland,1920,12501063,41.4797,-81.6465,41.4797,-81.6465,FILL,POST,,Mahoning,CLP41,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Mahoning map unit that contains the point.
+222,CLS21,CLP42,6305 CARPENTER,6305 CARPENTER,Cleveland,1920,12501063,41.4797,-81.6465,41.4797,-81.6465,NATIVE,POST,,Mahoning,CLP42,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Mahoning map unit that contains the point.
+225,CLS22,CLP43,3040 E 65,3040 E 65,Cleveland,1910,12512012,41.4756,-81.6452,41.4756,-81.6452,FILL,POST,,Mahoning,CLP43,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Mahoning map unit that contains the point.
+231,CLS22,CLP44,3040 E 65,3040 E 65,Cleveland,1910,12512012,41.4756,-81.6452,41.4756,-81.6452,NATIVE,POST,,Mahoning,CLP44,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Mahoning map unit that contains the point.
+238,CLS23,CLP45,4055 E 91,4055 E 91,Cleveland,1900,13408002,41.4486,-81.6231,41.4486,-81.6232,FILL,PRE,,Mahoning,CLP45,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Mahoning map unit that contains the point.
+240,CLS23,CLP46,4055 E 91,4055 E 91,Cleveland,1900,13408002,41.4486,-81.6231,41.4486,-81.6232,NATIVE,PRE,,Mahoning,CLP46,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Mahoning map unit that contains the point.
+245,CLS24,CLP47,8613 CANNON,8613 CANNON,Cleveland,1900,13328087,41.4502,-81.6263,41.4502,-81.6263,FILL,POST,,Wadsworth,CLP47,Wadsworth,WaB,287277,OH035,"Wadsworth silt loam, 2 to 6 percent slopes",No nearby Wadsworth map units. Chose Wadsworth map unit from HUC with simliar description.
+250,CLS24,CLP48,8613 CANNON,8613 CANNON,Cleveland,1900,13328087,41.4502,-81.6263,41.4502,-81.6263,NATIVE,POST,,Wadsworth,CLP48,Wadsworth,WaB,287277,OH035,"Wadsworth silt loam, 2 to 6 percent slopes",No nearby Wadsworth map units. Chose Wadsworth map unit from HUC with simliar description.
+255,CLS25,CLP49,9218 ARMITAGE,9218 ARMITAGE,Cleveland,1900,13329066,41.4495,-81.6221,41.4495,-81.6221,FILL,POST,,Wadsworth,CLP49,Wadsworth,WaB,287277,OH035,"Wadsworth silt loam, 2 to 6 percent slopes",No nearby Wadsworth map units. Chose Wadsworth map unit from HUC with simliar description.
+260,CLS25,CLP50,9218 ARMITAGE,9218 ARMITAGE,Cleveland,1900,13329066,41.4495,-81.6221,41.4495,-81.6221,NATIVE,POST,,Mahoning,CLP50,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Mahoning map unit that contains the point.
+266,CLS26,CLP51,4128 E 82,4128 E 82,Cleveland,1890,13405117,41.4466,-81.6284,41.4466,-81.6285,FILL,POST,,Loudonville,CLP51,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+272,CLS26,CLP52,4128 E 82,4128 E 82,Cleveland,1890,13405117,41.4466,-81.6284,41.4466,-81.6285,NATIVE,POST,,Loudonville,CLP52,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+278,CLS27,CLP53,2524 W 19,2524 W 19,Cleveland,1870,407116,41.4781,-81.6976,41.4781,-81.6976,FILL,POST,,Elnora,CLP53,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+283,CLS27,CLP54,2524 W 19,2524 W 19,Cleveland,1870,407116,41.4781,-81.6976,41.4781,-81.6976,FILL,POST,No surface measurements.,Elnora,CLP54,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+284,CLS27,CLP55,2524 W 19,2524 W 19,Cleveland,1870,407116,41.4781,-81.6976,41.4781,-81.6976,NATIVE,POST,,Elnora,CLP55,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+290,CLS28,CLP56,W 20 & MOLTKE,W 20 & MOLTKE,Cleveland,1870,406070,41.4782,-81.6980,41.4783,-81.6980,FILL,POST,,Elnora,CLP56,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+293,CLS28,CLP57,W 20 & MOLTKE,W 20 & MOLTKE,Cleveland,1870,406070,41.4782,-81.6980,41.4783,-81.6980,NATIVE,POST,,Elnora,CLP57,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+298,CLS29,CLP58,2714 QUEEN,2714 QUEEN,Cleveland,1880,723064,41.4768,-81.7011,41.4768,-81.7011,FILL,PRE,,Elnora,CLP58,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+304,CLS29,CLP59,2714 QUEEN,2714 QUEEN,Cleveland,1880,723064,41.4768,-81.7011,41.4768,-81.7011,NATIVE,PRE,,Elnora,CLP59,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+316,CLS30,CLP60,4354 W 131,4354 W 131,Cleveland,1950,2311054,41.4358,-81.7815,41.4358,-81.7815,FILL,POST,,Mitiwanga,CLP60,Mitiwanga,UnB,287274,OH035,"Urban land-Mitiwanga complex, undulating",Most common and largest area Mitiwanga map unit near point.
+320,CLS30,CLP61,4354 W 131,4354 W 131,Cleveland,1950,2311054,41.4358,-81.7815,41.4358,-81.7815,NATIVE,POST,,Mitiwanga,CLP61,Mitiwanga,UnB,287274,OH035,"Urban land-Mitiwanga complex, undulating",Most common and largest area Mitiwanga map unit near point.
+327,CLS31,CLP62,3516 72,3516 72,Cleveland,1910,13302069,41.4628,-81.6378,41.4629,-81.6378,FILL,POST,,Elnora,CLP62,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+332,CLS31,CLP63,3516 72,3516 72,Cleveland,1910,13302069,41.4628,-81.6378,41.4629,-81.6378,NATIVE,POST,,Elnora,CLP63,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+343,CLS32,CLP64,3520 72,3520 72,Cleveland,1910,13302070,41.4627,-81.6378,41.4627,-81.6378,FILL,POST,,Elnora,CLP64,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+349,CLS32,CLP65,3520 72,3520 72,Cleveland,1910,13302070,41.4627,-81.6378,41.4627,-81.6378,NATIVE,POST,,Elnora,CLP65,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+358,CLS33,CLP66,3541 72,3541 72,Cleveland,1910,13302062,41.4621,-81.6371,41.4621,-81.6371,FILL,POST,,Elnora,CLP66,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+363,CLS33,CLP67,3541 72,3541 72,Cleveland,1910,13302062,41.4621,-81.6371,41.4621,-81.6371,NATIVE,POST,,Elnora,CLP67,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+370,CLS34,CLP68,3553 72,3553 72,Cleveland,1910,13302059,41.4618,-81.6371,41.4618,-81.6371,FILL,POST,,Elnora,CLP68,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+376,CLS34,CLP69,3553 72,3553 72,Cleveland,1910,13302059,41.4618,-81.6371,41.4618,-81.6371,NATIVE,POST,,Elnora,CLP69,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+382,CLS35,CLP70,3570 72,3570 72,Cleveland,1910,13302073,41.4614,-81.6378,41.4614,-81.6378,FILL,POST,,Elnora,CLP70,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+389,CLS35,CLP71,3570 72,3570 72,Cleveland,1910,13302073,41.4614,-81.6378,41.4614,-81.6378,NATIVE,POST,,Elnora,CLP71,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+401,CLS36,CLP72,3572 72,3572 72,Cleveland,1909,13302074,41.4612,-81.6378,41.4612,-81.6378,FILL,POST,,Elnora,CLP72,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+403,CLS36,CLP73,3572 72,3572 72,Cleveland,1909,13302074,41.4612,-81.6378,41.4612,-81.6378,NATIVE,POST,,Elnora,CLP73,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+417,CLS36,CLP74,3572 72,3572 72,Cleveland,1909,13302074,41.4612,-81.6378,41.4612,-81.6378,NATIVE,POST,,Elnora,CLP74,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+426,CLS37,CLP75,3584 72,3584 72,Cleveland,1900,13303070,41.4614,-81.6377,41.4609,-81.6378,FILL,POST,,Elnora,CLP75,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+429,CLS37,CLP76,3584 72,3584 72,Cleveland,1900,13303070,41.4614,-81.6377,41.4609,-81.6378,NATIVE,POST,,Elnora,CLP76,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+439,CLS38,CLP77,3587 72,3587 72,Cleveland,1910,13303058,41.4608,-81.6371,41.4608,-81.6371,FILL,POST,,Elnora,CLP77,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+444,CLS38,CLP78,3587 72,3587 72,Cleveland,1910,13303058,41.4608,-81.6371,41.4608,-81.6371,NATIVE,POST,,Elnora,CLP78,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+450,CLS39,CLP79,3593 72,3593 72,Cleveland,1910,13303059,41.4607,-81.6371,41.4607,-81.6371,FILL,POST,,Elnora,CLP79,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+454,CLS39,CLP80,3593 72,3593 72,Cleveland,1910,13303059,41.4607,-81.6371,41.4607,-81.6371,NATIVE,POST,,Elnora,CLP80,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+459,CLS40,CLP81,3594 72,3594 72,Cleveland,1900,13303068,41.4607,-81.6378,41.4607,-81.6378,FILL,POST,,Elnora,CLP81,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+464,CLS40,CLP82,3594 72,3594 72,Cleveland,1900,13303068,41.4607,-81.6378,41.4607,-81.6378,NATIVE,POST,,Elnora,CLP82,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+473,CLS41,CLP83,3598 72,3598 72,Cleveland,1910,13303067,41.4606,-81.6377,41.4606,-81.6377,FILL,POST,,Elnora,CLP83,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+480,CLS41,CLP84,3598 72,3598 72,Cleveland,1910,13303067,41.4606,-81.6377,41.4606,-81.6377,NATIVE,POST,,Elnora,CLP84,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+491,CLS42,CLP85,3601 72,3601 72,Cleveland,1910,13303061,41.4605,-81.6371,41.4605,-81.6371,FILL,POST,,Elnora,CLP85,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+497,CLS42,CLP86,3601 72,3601 72,Cleveland,1910,13303061,41.4605,-81.6371,41.4605,-81.6371,NATIVE,POST,,Elnora,CLP86,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+502,CLS43,CLP87,3602 72,3602 72,Cleveland,1910,13303066,41.4605,-81.6377,41.4605,-81.6377,FILL,POST,,Elnora,CLP87,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+506,CLS43,CLP88,3602 72,3602 72,Cleveland,1910,13303066,41.4605,-81.6377,41.4605,-81.6377,NATIVE,POST,,Elnora,CLP88,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+513,CLS44,CLP89,3556 76,3556 76,Cleveland,1912,13304082,41.4617,-81.6349,41.4617,-81.6349,FILL,POST,,Elnora,CLP89,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+523,CLS44,CLP90,3556 76,3556 76,Cleveland,1912,13304082,41.4617,-81.6349,41.4617,-81.6349,NATIVE,POST,,Elnora,CLP90,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+532,CLS45,CLP91,3558 76,3558 76,Cleveland,1910,13304083,41.4616,-81.6349,41.4616,-81.6349,FILL,POST,,Elnora,CLP91,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+541,CLS45,CLP92,3558 76,3558 76,Cleveland,1910,13304083,41.4616,-81.6349,41.4616,-81.6349,NATIVE,POST,,Elnora,CLP92,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+553,CLS46,CLP93,3565 76,3565 76,Cleveland,1900,13304065,41.4616,-81.6343,41.4616,-81.6343,FILL,POST,,Loudonville,CLP93,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+559,CLS46,CLP94,3565 76,3565 76,Cleveland,1900,13304065,41.4616,-81.6343,41.4616,-81.6343,NATIVE,POST,,Loudonville,CLP94,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+566,CLS47,CLP95,3577 76,3577 76,Cleveland,1904,13304061,41.4612,-81.6345,41.4612,-81.6347,FILL,POST,,Loudonville,CLP95,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+574,CLS47,CLP96,3577 76,3577 76,Cleveland,1904,13304061,41.4612,-81.6345,41.4612,-81.6347,NATIVE,POST,,Loudonville,CLP96,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+583,CLS48,CLP97,3597 76,3597 76,Cleveland,1900,13305088,41.4606,-81.6344,41.4606,-81.6344,FILL,POST,,Loudonville,CLP97,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+590,CLS48,CLP98,3597 76,3597 76,Cleveland,1900,13305088,41.4606,-81.6344,41.4606,-81.6344,NATIVE,POST,,Loudonville,CLP98,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+596,CLS49,CLP99,3598 76,3598 76,Cleveland,1912,13305111,41.4606,-81.6350,41.4606,-81.6350,FILL,POST,,Loudonville,CLP99,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+603,CLS49,CLP100,3598 76,3598 76,Cleveland,1912,13305111,41.4606,-81.6350,41.4606,-81.6350,NATIVE,POST,,Loudonville,CLP100,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+612,CLS50,CLP101,3606 76,3606 76,Cleveland,1912,13305109,41.4604,-81.6349,41.4604,-81.6349,FILL,POST,,Loudonville,CLP101,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+616,CLS50,CLP102,3606 76,3606 76,Cleveland,1912,13305109,41.4604,-81.6349,41.4604,-81.6349,NATIVE,POST,,Loudonville,CLP102,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+624,CLS51,CLP103,3622 76,3622 76,Cleveland,1900,13305106,41.4600,-81.6349,41.4601,-81.6349,FILL,PRE,,Loudonville,CLP103,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+630,CLS51,CLP104,3622 76,3622 76,Cleveland,1900,13305106,41.4600,-81.6349,41.4601,-81.6349,FILL,PRE,No surface measurements.,Loudonville,CLP104,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+631,CLS51,CLP105,3622 76,3622 76,Cleveland,1900,13305106,41.4600,-81.6349,41.4601,-81.6349,FILL,PRE,,Loudonville,CLP105,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+634,CLS51,CLP106,3622 76,3622 76,Cleveland,1900,13305106,41.4600,-81.6349,41.4601,-81.6349,FILL,PRE,No surface measurements.,Loudonville,CLP106,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+635,CLS51,CLP107,3622 76,3622 76,Cleveland,1900,13305106,41.4600,-81.6349,41.4601,-81.6349,NATIVE,PRE,,Loudonville,CLP107,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+644,CLS51,CLP108,3622 76,3622 76,Cleveland,1900,13305106,41.4600,-81.6349,41.4601,-81.6349,NATIVE,PRE,No surface measurements.,Loudonville,CLP108,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+646,CLS52,CLP109,3298 Brookpark Rd,3298 Brookpark Rd,Cleveland,1950,01126001A,41.4192,-81.7067,41.4194,-81.7064,FILL,POST,,Mahoning,CLP109,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Largest area and most frequent Mahoning map unit near point.
+648,CLS52,CLP110,3298 Brookpark Rd,3298 Brookpark Rd,Cleveland,1950,01126001A,41.4192,-81.7067,41.4194,-81.7064,NATIVE,POST,,Mahoning,CLP110,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Largest area and most frequent Mahoning map unit near point.
+651,CLS53,CLP111,12300 Euclid,Lakeview Cemertary,Cleveland,1869,12034001,41.5136,-81.5994,41.5136,-81.5994,FILL,PARK,,Elnora,CLP111,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+657,CLS54,CLP112,680 E 113,Glenville Recreation Area,Cleveland,1918,11003069,41.5376,-81.6059,41.5376,-81.6059,FILL,PARK,,Oshtemo,CLP112,Oshtemo,OtB,287260,OH035,"Oshtemo-Urban land complex, undulating",Oshtemo map unit that contains the point.
+662,CLS54,CLP113,680 E 113,Glenville Recreation Area,Cleveland,1918,11003069,41.5376,-81.6059,41.5376,-81.6059,FILL,PARK,,Oshtemo,CLP113,Oshtemo,OtB,287260,OH035,"Oshtemo-Urban land complex, undulating",Oshtemo map unit that contains the point.
+669,CLS55,CLP114,9901 Lamont,Orr Park,Cleveland,1900,11913113,41.5086,-81.6181,41.5086,-81.6181,NATIVE,PARK,,Elnora,CLP114,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+677,CLS56,CLP115,MLK & E 105,Rockefeller Park Lagoon,Cleveland,1897,10701001,41.5118,-81.6164,41.5118,-81.6165,NATIVE,PARK,,Tioga,CLP115,Tioga,Tg,287267,OH035,"Tioga loam, frequently flooded",Tioga map unit that contains the point.
+682,CLS56,CLP116,MLK & E 105,Rockefeller Park Lagoon,Cleveland,1897,10701001,41.5118,-81.6164,41.5118,-81.6165,NATIVE,PARK,,Tioga,CLP116,Tioga,Tg,287267,OH035,"Tioga loam, frequently flooded",Tioga map unit that contains the point.
+684,CLS57,CLP117,E 79 & Sowinski,Carrie Cain Playground,Cleveland,1900,10707141,41.5247,-81.6329,41.5247,-81.6329,NATIVE,PARK,,Elnora,CLP117,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+690,CLS57,CLP118,E 79 & Sowinski,Carrie Cain Playground,Cleveland,1900,10707141,41.5247,-81.6329,41.5247,-81.6329,NATIVE,PARK,,Elnora,CLP118,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+692,CLS58,CLP119,647 E 88,Sam Miller Park,Cleveland,1897,10802111,41.5374,-81.6277,41.5374,-81.6277,NATIVE,PARK,,Elnora,CLP119,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+696,CLS58,CLP120,647 E 88,Sam Miller Park,Cleveland,1897,10802111,41.5374,-81.6277,41.5374,-81.6277,NATIVE,PARK,,Elnora,CLP120,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level","Widespread, and only, Elnora map unit near point."
+701,CLS59,CLP121,E 64 & Waterman,Hyacinth Park,Cleveland,1929,12503023,41.4763,-81.6468,41.4764,-81.6468,NATIVE,PARK,,Mahoning,CLP121,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Mahoning map unit that contains the point.
+708,CLS59,CLP122,E 64 & Waterman,Hyacinth Park,Cleveland,1929,12503023,41.4763,-81.6468,41.4764,-81.6468,NATIVE,PARK,,Mahoning,CLP122,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Mahoning map unit that contains the point.
+710,CLS60,CLP123,W 11 & Castle,Tremont Valley Playfield,Cleveland,1890,829002,41.4739,-81.6857,41.4739,-81.6857,NATIVE,PARK,,Oshtemo,CLP123,Oshtemo,UoB,287275,OH035,"Urban land-Oshtemo complex, undulating.",Closest and most widespread Oshtemo map unit near point.
+715,CLS60,CLP124,W 11 & Castle,Tremont Valley Playfield,Cleveland,1890,829002,41.4739,-81.6857,41.4739,-81.6857,NATIVE,PARK,,Oshtemo,CLP124,Oshtemo,UoB,287275,OH035,"Urban land-Oshtemo complex, undulating.",Closest and most widespread Oshtemo map unit near point.
+717,CLS61,CLP125,W 14 & Starkweather,Lincoln Park,Cleveland,1900,413043,41.4776,-81.6903,41.4776,-81.6903,NATIVE,PARK,,Elnora,CLP125,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+723,CLS61,CLP126,W 14 & Starkweather,Lincoln Park,Cleveland,1900,413043,41.4776,-81.6903,41.4776,-81.6903,NATIVE,PARK,,Elnora,CLP126,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+728,CLS62,CLP127,W 19 & Smith,Abbey Park,Cleveland,1880,426007,41.4852,-81.6975,41.4852,-81.6975,NATIVE,PARK,,Elnora,CLP127,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+732,CLS62,CLP128,W 19 & Smith,Abbey Park,Cleveland,1880,426007,41.4852,-81.6975,41.4852,-81.6975,NATIVE,PARK,,Elnora,CLP128,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+734,CLS63,CLP129,25 & Ralph,Loew Park,Cleveland,1949,1117054,41.4241,-81.7018,41.4241,-81.7018,NATIVE,PARK,,Mahoning,CLP129,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Mahoning map unit that contains the point.
+740,CLS63,CLP130,25 & Ralph,Loew Park,Cleveland,1949,1117054,41.4241,-81.7018,41.4241,-81.7018,NATIVE,PARK,,Mahoning,CLP130,Mahoning,UmB,287273,OH035,"Urban land-Mahoning complex, 2 to 6 percent slopes",Mahoning map unit that contains the point.
+742,CLS64,CLP131,E 74 & Irma,Irma Park,Cleveland,1900,13410078,41.4447,-81.6368,41.4447,-81.6368,NATIVE,PARK,,Loudonville,CLP131,Loudonville,LuC,287247,OH035,"Loudonville-Urban land complex, rolling",Loudonville map unit that contains the point.
+749,CLS65,CLP132,E 72 (south of Shoreway),E 72 (south of Shoreway),Cleveland,1893,10535001,41.5117,-81.6196,41.5117,-81.6196,NATIVE,PARK,,Elnora,CLP132,Elnora,UeA,287272,OH035,"Urban land-Elnora complex, nearly level",Elnora map unit that contains the point.
+751,DS1,DP1,18446 Greenview,18446 Greenview,Detroit,,,42.4249,-83.2248,42.4253,-83.2252,DISTURBED,,,Parkhill,DP1,Parkhill,PkhuaA,3015155,MI163,"Parkhill-Urban land complex, 0 to 2 percent slopes",Nearest Parkhill map unit to point.
+756,DS1,DP2,18446 Greenview,18446 Greenview,Detroit,,,42.4249,-83.2248,42.4253,-83.2252,UNDISTURBED,,,Parkhill,DP2,Parkhill,PkhuaA,3015155,MI163,"Parkhill-Urban land complex, 0 to 2 percent slopes",Nearest Parkhill map unit to point.
+760,DS2,DP3,19115 Margaretta,19115 Margaretta,Detroit,,,42.4264,-83.2299,42.4266,-83.2299,DISTURBED,,,Brems,DP3,Brems,BrmuaB,3015124,MI163,"Brems-Urban land complex, 0 to 4 percent slopes",Closest Brems map unit to the point.
+767,DS2,DP4,19115 Margaretta,19115 Margaretta,Detroit,,,42.4264,-83.2299,42.4266,-83.2299,UNDISTURBED,,,Brems,DP4,Brems,BrmuaB,3015124,MI163,"Brems-Urban land complex, 0 to 4 percent slopes",Closest Brems map unit to the point.
+774,DS3,DP5,15126 Stout,15126 Stout,Detroit,,,42.3997,-83.2413,42.3991,-83.2415,DISTURBED,,,Kibbie,DP5,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+779,DS3,DP6,15126 Stout,15126 Stout,Detroit,,,42.3997,-83.2413,42.3991,-83.2415,UNDISTURBED,,,Kibbie,DP6,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+785,DS4,DP7,15133 Stout,15133 Stout,Detroit,,,42.3998,-83.2418,42.3992,-83.2416,DISTURBED,,,Kibbie,DP7,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+792,DS4,DP8,15133 Stout,15133 Stout,Detroit,,,42.3998,-83.2418,42.3992,-83.2416,UNDISTURBED,,,Colwood,DP8,Colwood,KibueB,3015169,MI163,"Kibbie-Urban land-Colwood complex, sandy substratum, 0 to 4 percent slopes",Nearest Colwood map unit near point.
+796,DS5,DP9,15199 Fielding,15199 Fielding,Detroit,,,42.3994,-83.2429,42.3997,-83.2428,DISTURBED,,,Kibbie,DP9,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+801,DS5,DP10,15199 Fielding,15199 Fielding,Detroit,,,42.3994,-83.2429,42.3997,-83.2428,UNDISTURBED,,,Kibbie,DP10,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+809,DS6,DP11,15051 Pierson,15051 Pierson,Detroit,,,42.3989,-83.2461,42.3984,-83.2460,DISTURBED,,,Kibbie,DP11,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+814,DS6,DP12,15051 Pierson,15051 Pierson,Detroit,,,42.3989,-83.2461,42.3984,-83.2460,UNDISTURBED,,,Kibbie,DP12,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+820,DS7,DP13,15046 Blackstone,15046 Blackstone,Detroit,,,42.3988,-83.2490,42.3983,-83.2492,DISTURBED,,,Brems,DP13,Brems,BrmucB,3015115,MI163,"Brems-Urban land complex, loamy substratum, 0 to 4 percent slopes",Brems map unit that contains the point.
+826,DS7,DP14,15046 Blackstone,15046 Blackstone,Detroit,,,42.3988,-83.2490,42.3983,-83.2492,UNDISTURBED,,,Brems,DP14,Brems,BrmucB,3015115,MI163,"Brems-Urban land complex, loamy substratum, 0 to 4 percent slopes",Brems map unit that contains the point.
+834,DS8,DP15,14195 Bentler,14195 Bentler,Detroit,,,42.3987,-83.2518,42.3895,-83.2517,DISTURBED,,,Kibbie,DP15,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+840,DS8,DP16,14195 Bentler,14195 Bentler,Detroit,,,42.3987,-83.2518,42.3895,-83.2517,UNDISTURBED,,,Colwood,DP16,Colwood,ColuaA,3015136,MI163,"Colwood-Urban land complex, 0 to 2 percent slopes",Nearby Colwood map unit with best match site description.
+847,DS9,DP17,14111 Chapel,14111 Chapel,Detroit,,,42.3885,-83.2530,42.3885,-83.2528,DISTURBED,,,Brems,DP17,Brems,BrmucB,3015115,MI163,"Brems-Urban land complex, loamy substratum, 0 to 4 percent slopes",Brems map unit that contains the point.
+857,DS9,DP18,14111 Chapel,14111 Chapel,Detroit,,,42.3885,-83.2530,42.3885,-83.2528,UNDISTURBED,,,Brems,DP18,Brems,BrmucB,3015115,MI163,"Brems-Urban land complex, loamy substratum, 0 to 4 percent slopes",Brems map unit that contains the point.
+869,DS10,DP19,14240 Chapel,14240 Chapel,Detroit,,,42.3902,-83.2526,42.3900,-83.2527,DISTURBED,,,Kibbie,DP19,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+875,DS10,DP20,14240 Chapel,14240 Chapel,Detroit,,,42.3902,-83.2526,42.3900,-83.2527,UNDISTURBED,,,Freesoil,DP20,Freesoil,FrsuaA,3015128,MI163,"Freesoil-Urban land complex, 0 to 2 percent slopes",Largest area map unit near point.
+886,DS11,DP21,14136 Burgess,14136 Burgess,Detroit,,,42.3892,-83.2537,42.3888,-83.2539,DISTURBED,,,Brems,DP21,Brems,BrmucB,3015115,MI163,"Brems-Urban land complex, loamy substratum, 0 to 4 percent slopes",Brems map unit that contains the point.
+898,DS11,DP22,14136 Burgess,14136 Burgess,Detroit,,,42.3892,-83.2537,42.3888,-83.2539,UNDISTURBED,,,Brems,DP22,Brems,BrmucB,3015115,MI163,"Brems-Urban land complex, loamy substratum, 0 to 4 percent slopes",Brems map unit that contains the point.
+909,DS12,DP23,14413 Plainview,14413 Plainview,Detroit,,,42.3927,-83.2365,42.3924,-83.2360,DISTURBED,,,Kibbie,DP23,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+913,DS12,DP24,14413 Plainview,14413 Plainview,Detroit,,,42.3927,-83.2365,42.3924,-83.2360,UNDISTURBED,,,Lamson,DP24,Lamson,La,187017,MI099,Lamson fine sandy loam,Most common - by far - Lamson map unit in HUC.
+922,DS13,DP25,19305 Lyndon,19305 Lyndon,Detroit,,,42.3934,-83.2312,42.3936,-83.2312,DISTURBED,,,Kibbie,DP25,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+928,DS13,DP26,19305 Lyndon,19305 Lyndon,Detroit,,,42.3934,-83.2312,42.3936,-83.2312,UNDISTURBED,,,Rapson,DP26,Rapson,RapufB,3015114,MI163,"Rapson-Urban land-Kibbie complex, dense substratum, 0 to 4 percent slopes",Nearest Rapson map unit near point.
+935,DS14,DP27,13604 Grandville,13604 Grandville,Detroit,,,42.3856,-83.2306,42.3847,-83.2307,DISTURBED,,,Kibbie,DP27,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+941,DS14,DP28,13604 Grandville,13604 Grandville,Detroit,,,42.3856,-83.2306,42.3847,-83.2307,UNDISTURBED,,,Kibbie,DP28,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+950,DS15,DP29,13534 Artesia,13534 Artesia,Detroit,,,42.3848,-83.2268,42.3844,-83.2270,DISTURBED,,,Kibbie,DP29,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+956,DS15,DP30,13534 Artesia,13534 Artesia,Detroit,,,42.3848,-83.2268,42.3844,-83.2270,UNDISTURBED,,,Kibbie,DP30,Kibbie,KibuaB,3015143,MI163,"Kibbie-Urban land complex, 0 to 4 percent slopes",Kibbie map unit that contains the point.
+964,DS16,DP31,14899 Westwood St,Stoepel Park No. 1 (Westwood St),Detroit,,,42.3953,-83.2367,42.3953,-83.2367,PARK,,,No data,DP31,No Data,No Data Detroit,No Data Detroit,,No Data Detroit,
+970,DS17,DP32,16401 W CHlCago St,Stoepel Park No. 2 (W CHlCago St),Detroit,,,42.3966,-83.2330,42.3966,-83.2330,PARK,,,Colwood,DP32,Colwood,KibueB,3015169,MI163,"Kibbie-Urban land-Colwood complex, sandy substratum, 0 to 4 percent slopes",Nearest Colwood map unit near point.
+977,DS18,DP33,8266 Wisner,8266 Wisner,Detroit,,,42.4133,-83.0177,42.4128,-83.0188,DISTURBED,,,Arkona,DP33,Arkona,60B,186683,MI145,"Arkona sand, 0 to 4 percent slopes",No Arkona map unit in HUC. Chose most widespread Arkona map unit in Michigan's Shiawassee HUC (04080203).
+984,DS18,DP34,8266 Wisner,8266 Wisner,Detroit,,,42.4133,-83.0177,42.4128,-83.0188,UNDISTURBED,,,Avoca,DP34,Avoca,AvoucB,3015164,MI163,"Avoca-Urban land-Parkhill complex, 0 to 4 percent slopes",Avoca map unit that contains the point.
+992,DS19,DP35,8259 Elgin,8259 Elgin,Detroit,,,42.4119,-83.0182,42.4121,-83.0190,DISTURBED,,,Shebeon,DP35,Shebeon,ShbubB,3015112,MI163,"Shebeon-Urban land-Avoca complex, 0 to 4 percent slopes",Most widespread Shebeon map unit near point.
+997,DS19,DP36,8259 Elgin,8259 Elgin,Detroit,,,42.4119,-83.0182,42.4121,-83.0190,UNDISTURBED,,,Shebeon,DP36,Shebeon,ShbubB,3015112,MI163,"Shebeon-Urban land-Avoca complex, 0 to 4 percent slopes",Most widespread Shebeon map unit near point.
+1006,DS20,DP37,8383 Kenney,8383 Kenney,Detroit,,,42.4112,-83.0169,42.4110,-83.0171,DISTURBED,,,Blount,DP37,Blount,BntuaB,3015132,MI163,"Blount-Urban land complex, 0 to 4 percent slopes",Most common and widesparead Blount map unit near point.
+1015,DS20,DP38,8383 Kenney,8383 Kenney,Detroit,,,42.4112,-83.0169,42.4110,-83.0171,UNDISTURBED,,,Blount,DP38,Blount,BntuaB,3015132,MI163,"Blount-Urban land complex, 0 to 4 percent slopes",Most common and widesparead Blount map unit near point.
+1025,DS21,DP39,8390 Lyford,8390 Lyford,Detroit,,,42.4094,-83.0170,42.4095,-83.0161,DISTURBED,,,Avoca,DP39,Avoca,AvoucB,3015164,MI163,"Avoca-Urban land-Parkhill complex, 0 to 4 percent slopes",Avoca map unit that contains the point.
+1031,DS21,DP40,8390 Lyford,8390 Lyford,Detroit,,,42.4094,-83.0170,42.4095,-83.0161,UNDISTURBED,,,Arkona,DP40,Arkona,60B,186683,MI145,"Arkona sand, 0 to 4 percent slopes",No Arkona map unit in HUC. Chose most widespread Arkona map unit in Michigan's Shiawassee HUC (04080203).
+1037,DS22,DP41,2103 Montclair,2103 Montclair,Detroit,,,42.3675,-82.9780,42.3673,-82.9777,DISTURBED,,,Arkona,DP41,Arkona,60B,186683,MI145,"Arkona sand, 0 to 4 percent slopes",No Arkona map unit in HUC. Chose most widespread Arkona map unit in Michigan's Shiawassee HUC (04080203).
+1043,DS22,DP42,2103 Montclair,2103 Montclair,Detroit,,,42.3675,-82.9780,42.3673,-82.9777,UNDISTURBED,,,Blount,DP42,Blount,ZfsucB,3015133,MI163,"Ziegenfuss-Urban land-Blount complex, 0 to 4 percent slopes",Most common and widesparead Blount map unit near point.
+1051,DS23,DP43,2159 Harding Street,2159 Harding Street,Detroit,,,42.3676,-82.9798,42.3671,-82.9792,DISTURBED,,,Shebeon,DP43,Shebeon,ShbubB,3015112,MI163,"Shebeon-Urban land-Avoca complex, 0 to 4 percent slopes",Shebeon map unit that containst the point.
+1057,DS23,DP44,2159 Harding Street,2159 Harding Street,Detroit,,,42.3676,-82.9798,42.3671,-82.9792,UNDISTURBED,,,Shebeon,DP44,Shebeon,ShbubB,3015112,MI163,"Shebeon-Urban land-Avoca complex, 0 to 4 percent slopes",Shebeon map unit that containst the point.
+1063,DS24,DP45,1529 St. Clair,1529 St. Clair,Detroit,,,42.3657,-82.9795,42.3640,-82.9785,DISTURBED,,,Shebeon,DP45,Shebeon,ShbuaB,3015156,MI163,"Shebeon-Urban land complex, 0 to 4 percent slopes",Shebeon map unit nearly adjacent to point.
+1068,DS24,DP46,1529 St. Clair,1529 St. Clair,Detroit,,,42.3657,-82.9795,42.3640,-82.9785,UNDISTURBED,,,Shebeon,DP46,Shebeon,ShbuaB,3015156,MI163,"Shebeon-Urban land complex, 0 to 4 percent slopes",Shebeon map unit nearly adjacent to point.
+1078,DS25,DP47,1293 McClellan,1293 McClellan,Detroit,,,42.3597,-82.9855,42.3596,-82.9852,DISTURBED,,,Avoca,DP47,Avoca,AvoucB,3015164,MI163,"Avoca-Urban land-Parkhill complex, 0 to 4 percent slopes",Avoca map unit that contains the point.
+1082,DS25,DP48,1293 McClellan,1293 McClellan,Detroit,,,42.3597,-82.9855,42.3596,-82.9852,UNDISTURBED,,,Avoca,DP48,Avoca,AvoucB,3015164,MI163,"Avoca-Urban land-Parkhill complex, 0 to 4 percent slopes",Avoca map unit that contains the point.
+1087,DS26,DP49,8333 Leander,8333 Leander,Detroit,,,42.4101,-83.0176,42.4099,-83.0177,DISTURBED,,,Avoca,DP49,Avoca,AvoucB,3015164,MI163,"Avoca-Urban land-Parkhill complex, 0 to 4 percent slopes",Avoca map unit that contains the point.
+1094,DS26,DP50,8333 Leander,8333 Leander,Detroit,,,42.4101,-83.0176,42.4099,-83.0177,UNDISTURBED,,,Metamora,DP50,Metamora,MeA,3015050,MI163,"Metamora fine sandy loam, 0 to 2 percent slopes",Second most common Metamora map unit and most common Metamora map unit near eastern shore.
+1104,DS27,DP51,1259 McClellan,1259 McClellan,Detroit,,,42.3595,-82.9854,42.3593,-82.9850,DISTURBED,,,Avoca,DP51,Avoca,AvoucB,3015164,MI163,"Avoca-Urban land-Parkhill complex, 0 to 4 percent slopes",Avoca map unit that contains the point.
+1110,DS27,DP52,1259 McClellan,1259 McClellan,Detroit,,,42.3595,-82.9854,42.3593,-82.9850,UNDISTURBED,,,Metamora,DP52,Metamora,MeA,3015050,MI163,"Metamora fine sandy loam, 0 to 2 percent slopes",Second most common Metamora map unit and most common Metamora map unit near eastern shore.
+1118,DS28,DP53,Biraga Playground,Biraga Playground,Detroit,,,42.3945,-83.0418,42.3945,-83.0418,,,,Avoca,DP53,Avoca,AvoucB,3015164,MI163,"Avoca-Urban land-Parkhill complex, 0 to 4 percent slopes",Avoca map unit that contains the point.
+1129,DS29,DP54,Messmer Playground,Messmer Playground,Detroit,,,42.3998,-82.9249,42.3997,-82.9249,,,,Blount,DP54,Blount,ZfsucB,3015133,MI163,"Ziegenfuss-Urban land-Blount complex, 0 to 4 percent slopes",Most common and widesparead Blount map unit near point.
+1138,DS30,DP55,Maheras-Gentry Park,Maheras-Gentry Park,Detroit,,,42.3561,-82.9494,42.3561,-82.9495,,,,Riverfront,DP55,Riverfront,RvfaaB,3015146,MI163,"Riverfront sandy loam, 0 to 4 percent slopes",Riverfront map unit that contains the point.
+1147,DS31,DP56,Robinwood Park,Robinwood Park,Detroit,,,42.4320,-83.0183,42.4320,-83.0183,,,,Zeigenfuss,DP56,Zeigenfuss,ZfsabA,3015107,MI163,"Ziegenfuss clay, 0 to 1 percent slopes",Ziegenfuss map unit that contains the point.
+1156,DS31,DP57,Robinwood Park,Robinwood Park,Detroit,,,42.4320,-83.0183,42.4320,-83.0183,,,,Shebeon,DP57,Shebeon,ShbubB,3015112,MI163,"Shebeon-Urban land-Avoca complex, 0 to 4 percent slopes",Most widespread Shebeon map unit near point.
+1162,DS32,DP58,21130 Fenkell,21130 Fenkell Topsoil Sample,Detroit,,,42.4007,-83.2491,42.4005,-83.2486,,,,No Data,DP58,No Data,No Data Detroit,No Data Detroit,,No Data Detroit,
+1163,DS33,DP59,13617 Westwood ,13617 Westwood Topsoil Sample,Detroit,,,42.3858,-83.2323,42.3847,-83.2320,,,,No Data,DP59,No Data,No Data Detroit,No Data Detroit,,No Data Detroit,
+1164,DS34,DP60,10125 Charlevoix ,10125 Charlevoix Topsoil Sample,Detroit,,,42.3689,-82.9871,42.3690,-82.9872,,,,No Data,DP60,No Data,No Data Detroit,No Data Detroit,,No Data Detroit,
+1165,NS1,NP1,209 16th St,209 16th St,New Orleans,,,30.0026,-90.1177,30.0026,-90.1177,Vacant Lot,,,Harahan,NP1,Harahan,Ha,569888,LA071,"Harahan clay, 0 to 1 percent slopes",Harahan map unit that contains the point.
+1173,NS2,NP2,414 40th St,414 40th St,New Orleans,,,30.0158,-90.1197,30.0158,-90.1197,Vacant Lot,,,Kenner,NP2,Kenner,Ke,569889,LA071,Kenner muck drained,Kenner map unit that contains the point.
+1179,NS3,NP3,1922 Allen St,1922 Allen St,New Orleans,,,29.9765,-90.0650,29.9765,-90.0650,Vacant Lot,,,Schriever,NP3,Schriever,Sk,569892,LA071,"Schriever clay, 0 to 1 percent slopes",Schriever map unit that contains the point.
+1186,NS4,NP4,3017 Benefit St,3017 Benefit St,New Orleans,,,29.9905,-90.0392,29.9905,-90.0392,Vacant Lot,,,Harahan,NP4,Harahan,Ha,569888,LA071,"Harahan clay, 0 to 1 percent slopes",Harahan map unit that contains the point.
+1194,NS5,NP5,Brechtel 2,Brechtel 2,New Orleans,,,29.9092,-90.0098,29.9092,-90.0098,Park,,,Westwego,NP5,Westwego,Ww,569894,LA071,"Westwego clay, 0 to 0.5 percent slopes",Westwego map unit that contains the point.
+1201,NS6,NP6,4912 Burgundy St,4912 Burgundy St,New Orleans,,,29.9606,-90.0245,29.9606,-90.0245,Vacant Lot,,,Cancienne,NP6,Cancienne,Co,569885,LA071,"Cancienne silty clay loam, 0 to 1 percent slopes",Cancienne map unit that contains the point.
+1208,NS7,NP7,1901 Caffin St,1901 Caffin St,New Orleans,,,29.9694,-90.0128,29.9694,-90.0128,Vacant Lot,,,Schriever,NP7,Schriever,Sk,569892,LA071,"Schriever clay, 0 to 1 percent slopes",Schriever map unit that contains the point.
+1214,NS8,NP8,117 Chalfant Pl,117 Chalfant Pl,New Orleans,,,29.9914,-90.0794,29.9914,-90.0794,Vacant Lot,,,Schriever,NP8,Schriever,Sk,569892,LA071,"Schriever clay, 0 to 1 percent slopes",Schriever map unit that contains the point.
+1219,NS9,NP9,4947 Charlene Dr,4947 Charlene Dr,New Orleans,,,30.0244,-89.9840,30.0244,-89.9840,Vacant Lot,,,Schriever,NP9,Schriever,Sk,569892,LA071,"Schriever clay, 0 to 1 percent slopes",Schriever map unit that contains the point.
+1227,NS10,NP10,2413 Gallier St,2413 Gallier St,New Orleans,,,29.9803,-90.0353,29.9803,-90.0353,Vacant Lot,,,Harahan,NP10,Harahan,Ha,569888,LA071,"Harahan clay, 0 to 1 percent slopes",Harahan map unit that contains the point.
+1235,NS11,NP11,1231 N Johnson St,1231 N Johnson St,New Orleans,,,29.9711,-90.0730,29.9711,-90.0730,Vacant Lot,,,Schriever,NP11,Schriever,Sk,569892,LA071,"Schriever clay, 0 to 1 percent slopes",Schriever map unit that contains the point.
+1238,NS12,NP12,Lafitte Greenway 1,Lafitte Greenway 1,New Orleans,,,29.9771,-90.0967,29.9771,-90.0967,Greenway,,,Schriever,NP12,Schriever,Sk,569892,LA071,"Schriever clay, 0 to 1 percent slopes",Schriever map unit that contains the point.
+1246,NS13,NP13,Lafitte Greenway 2,Lafitte Greenway,New Orleans,,,29.9704,-90.0872,29.9704,-90.0872,Greenway,,,Schriever,NP13,Schriever,Sk,569892,LA071,"Schriever clay, 0 to 1 percent slopes",Schriever map unit that contains the point.
+1255,NS14,NP14,3324 Leonidas St,3324 Leonidas St,New Orleans,,,29.9664,-90.1175,29.9664,-90.1175,Vacant Lot,,,Harahan,NP14,Harahan,Ha,569888,LA071,"Harahan clay, 0 to 1 percent slopes",Harahan map unit that contains the point.
+1261,NS15,NP15,7541 Michigan St,7541 Michigan St,New Orleans,,,30.0497,-89.9701,30.0497,-89.9701,Vacant Lot,,"Seies Extent Explorer includes soil series in database, but no information included.",Aquents,NP15,Aquents,An,569881,LA071,"Aquents, dredged",Aquents unit that contains the point.
+1270,NS16,NP16,5610 Painters St,5610 Painters St,New Orleans,,,30.0163,-90.0528,30.0163,-90.0528,Vacant Lot,,,Allemands,NP16,Allemands,Ae,569880,LA071,"Allemands muck, 0 to 0.2 percent slopes, drained",Allemands unit that contains the point.
+1277,NS17,NP17,3101 Pine St,3101 Pine St,New Orleans,,,29.9581,-90.1114,29.9581,-90.1114,Vacant Lot,,,Harahan,NP17,Harahan,Ha,569888,LA071,"Harahan clay, 0 to 1 percent slopes",Harahan map unit that contains the point.
+1284,NS18,NP18,411 Toledano St,411 Toledano St,New Orleans,,,29.9189,-90.0854,29.9189,-90.0854,Vacant Lot,,,Cancienne,NP18,Cancienne,Cm,569884,LA071,"Cancienne silt loam, 0 to 1 percent slopes",Nearest and largest Cancienne map unit near point.
+1290,NS19,NP19,7184 Virgillian,7184 Virgillian,New Orleans,,,30.0265,-90.0196,30.0265,-90.0196,Vacant Lot,,,Allemands,NP19,Allemands,Ae,569880,LA071,"Allemands muck, 0 to 0.2 percent slopes, drained",Allemands unit that contains the point.
+1297,NS20,NP20,4978 Wright,4978 Wright,New Orleans,,,30.0276,-89.9568,30.0276,-89.9568,Vacant Lot,,,Schriever,NP20,Schriever,Sk,569892,LA071,"Schriever clay, 0 to 1 percent slopes",Schriever map unit that contains the point.
+1517,PS1,PP1,"4607 East Piedmont Road, Phoenix, AZ 85044",4607 East Piedmont Rd,Phoenix,,,33.3608,-111.9801,33.3608,-111.9801,"Turf to Xeriscape, Phoenix residential",,,Tremant,PP1,Tremant,TrB,53525,AZ645,"Tremant gravelly loam, 1 to 3 percent slopes",Tremant map unit that contains the point.
+1523,PS2,PP2,"2015 East Bishop Drive, Tempe, AZ 85282",2015 East Bishop Dr,Phoenix,,,33.4007,-111.8996,33.4007,-111.8996,"Common Xeriscape, Tempe Residential",,,Laveen,PP2,Laveen,LeA,53512,AZ655,"Laveen clay loam, 0 to 1 percent slopes",Laveen map unit that contains the point.
+1530,PS3,PP3,"10221 North 77th Street, Scottsdale, AZ 85258",10221 North 77th St,Phoenix,,,33.5791,-111.9147,33.5791,-111.9147,"Landscaped Xeriscape, Scottsdale 1",,,Gilman,PP3,Gilman,55,53092,AZ645,Gilman loams,Gilman map unit that contains the point.
+1538,PS4,PP4,"10595 East Cactus Road, Scottsdale, AZ 85259",10595 East Cactus Rd,Phoenix,,,33.5968,-111.8527,33.5968,-111.8527,"Native Xeriscape, Scottsdale 2",,,Momoli,PP4,Momoli,90,53148,AZ645,"Momoli gravelly sandy loam, 1 to 5 percent slopes",Mormoli map unit that contains the point.
+1542,PS5,PP5,"7202 East Cactus Road, Scottsdale, AZ 85260",Cactus Park,Phoenix,,,33.5994,-111.9254,33.5994,-111.9254,Park Turfgrass (Bermuda),,,Gilman,PP5,Gilman,55,53092,AZ645,Gilman loams,Gilman map unit that contains the point.
+1551,PS5,PP6,"7202 East Cactus Road, Scottsdale, AZ 85260",Cactus Park,Phoenix,,,33.5994,-111.9247,33.5994,-111.9247,Park Turfgrass (Bermuda),,,Estrella,PP6,Estrella,50,53085,AZ645,Estrella loams,Estrella map unit that contains the point.
+1556,PS5,PP7,"7202 East Cactus Road, Scottsdale, AZ 85260",Cactus Park,Phoenix,,,33.5994,-111.9241,33.5994,-111.9241,Park Turfgrass (Bermuda),,,Estrella,PP7,Estrella,50,53085,AZ645,Estrella loams,Estrella map unit that contains the point.
+1563,PS6,PP8,"1105 North 68th Street, Scottsdale, AZ 85254",Mescal Park,Phoenix,,,33.5864,-111.9332,33.5864,-111.9332,Park Turfgrass (Bermuda),,,Estrella,PP8,Estrella,50,53085,AZ645,Estrella loams,Estrella map unit that contains the point.
+1569,PS6,PP9,"1105 North 68th Street, Scottsdale, AZ 85254",Mescal Park,Phoenix,,,33.5871,-111.9341,33.5871,-111.9341,Park Turfgrass (Bermuda),,,Estrella,PP9,Estrella,50,53085,AZ645,Estrella loams,Estrella map unit that contains the point.
+1576,PS7,PP10,"8400 East Thunderbird Road, Scottsdale, AZ 85260",Northsight Park 1,Phoenix,,,33.6140,-111.8995,33.6140,-111.8995,Park Turfgrass (Bermuda),,,Gilman,PP10,Gilman,55,53092,AZ645,Gilman loams,Gilman map unit that contains the point.
+1581,PS7,PP11,"8400 East Thunderbird Road, Scottsdale, AZ 85260",Northsight Park 2,Phoenix,,,33.6124,-111.8993,33.6124,-111.8993,Park Turfgrass (Bermuda),,,Gilman,PP11,Gilman,55,53092,AZ645,Gilman loams,Gilman map unit that contains the point.
+1588,PS7Biofilm,PP21,"8400 East Thunderbird Road, Scottsdale, AZ 85260",Northsight Park_biofilm,Phoenix,,,33.6116,-111.8992,33.6116,-111.8992,Biofilm,,,NA,PP21,No Data,No Data Phoe,No Data Phoe,,No Data Phoe,
+1589,PS9,PP12,"Luter Lane, Apache Junction, AZ 85120",Usery Park,Phoenix,,,33.4699,-111.6155,33.4699,-111.6155,Desert REF1,,,Tremant,PP12,Tremant,98,53187,AZ645,"Pinamt-Tremant complex, 1 to 10 percent slopes",Tremant map unit that contains the point.
+1596,PS10,PP13,"White Tank Mountain Road, Waddell, AZ 85355",White Tanks,Phoenix,,,33.6034,-112.4990,33.6034,-112.4990,Desert REF2,,,Ebon,PP13,Ebon,EPD,53328,AZ651,"Ebon-Pinamt complex, 0 to 10 percent slopes",Ebon map unit that contains the point.
+1599,CIS1,CIP1,2063 Queen City Ave,2063 Queen City Ave,Cincinnati,,205-0024-0072,39.1287,-84.5696,39.1287,-84.5696,NATIVE,,,Pate,CIP1,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1607,CIS1,CIP2,2063 Queen City Ave,2063 Queen City Ave,Cincinnati,,205-0024-0072,39.1287,-84.5696,39.1287,-84.5696,FILL,,,Pate,CIP2,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1609,CIS2,CIP3,1925 Queen City Ave,1925 Queen City Ave,Cincinnati,,203-0026-0129,39.1267,-84.5632,39.1267,-84.5632,NATIVE,,,Martinsville,CIP3,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1617,CIS2,CIP4,1925 Queen City Ave,1925 Queen City Ave,Cincinnati,,203-0026-0129,39.1267,-84.5632,39.1267,-84.5632,FILL,,,Martinsville,CIP4,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1623,CIS3,CIP5,1911 Queen City Ave,1911 Queen City Ave,Cincinnati,,203-0026-0133,39.1268,-84.5628,39.1268,-84.5628,NATIVE,,,Martinsville,CIP5,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1628,CIS3,CIP6,1911 Queen City Ave,1911 Queen City Ave,Cincinnati,,203-0026-0133,39.1268,-84.5628,39.1268,-84.5628,FILL,,,Martinsville,CIP6,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1635,CIS4,CIP7,1789 Queen City Ave,1789 Queen City Ave,Cincinnati,,203-0027-0065,39.1255,-84.5575,39.1255,-84.5575,FILL,,,Martinsville,CIP7,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1644,CIS4,CIP8,1789 Queen City Ave,1789 Queen City Ave,Cincinnati,,203-0027-0065,39.1255,-84.5575,39.1255,-84.5575,NATIVE,,,Martinsville,CIP8,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1646,CIS5,CIP9,1773 Queen City Ave,1773 Queen City Ave,Cincinnati,,203-0027-0057,39.1257,-84.5568,39.1257,-84.5568,NATIVE,,,Martinsville,CIP9,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1651,CIS5,CIP10,1773 Queen City Ave,1773 Queen City Ave,Cincinnati,,203-0027-0057,39.1257,-84.5568,39.1257,-84.5568,FILL,,,Martinsville,CIP10,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1663,CIS6,CIP11,1464 Harrison Ave,1464 Harrison Ave,Cincinnati,,169-0006-0050,39.1252,-84.5461,39.1252,-84.5461,FILL,,,Martinsville,CIP11,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1670,CIS6,CIP12,1464 Harrison Ave,1464 Harrison Ave,Cincinnati,,169-0006-0050,39.1252,-84.5461,39.1252,-84.5461,NATIVE,,,Martinsville,CIP12,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1673,CIS7,CIP13,1563 Harrison Ave,1563 Harrison Ave,Cincinnati,,170-0007-0043,39.1257,-84.5491,39.1257,-84.5491,FILL,,,Martinsville,CIP13,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1681,CIS7,CIP14,1563 Harrison Ave,1563 Harrison Ave,Cincinnati,,170-0007-0043,39.1257,-84.5491,39.1257,-84.5491,NATIVE,,,Martinsville,CIP14,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1684,CIS8,CIP15,2465 Beekman St,2465 Beekman St,Cincinnati,,202-0032-0027,39.1296,-84.5443,39.1296,-84.5443,NATIVE,,,Martinsville,CIP15,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1689,CIS8,CIP16,2465 Beekman St,2465 Beekman St,Cincinnati,,202-0032-0027,39.1296,-84.5443,39.1296,-84.5443,FILL,,,Martinsville,CIP16,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1697,CIS9,CIP17,2097 Queen City Ave,2097 Queen City Ave,Cincinnati,,205-0024-0017,39.1282,-84.5708,39.1282,-84.5708,NATIVE,,,Martinsville,CIP17,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1708,CIS9,CIP18,2097 Queen City Ave,2097 Queen City Ave,Cincinnati,,205-0024-0017,39.1282,-84.5708,39.1282,-84.5708,FILL,,,Martinsville,CIP18,Martinsville,UARXC,2652884,OH161,"Urban Land-Alfic Udarents-Martinsville complex, 0 to 12 percent slopes.",Most widespread and common Martinsville map unit near point.
+1711,CIS10,CIP19,1655 Ross Ave,1655 Ross Ave,Cincinnati,,204-0014-0186,39.1180,-84.5709,39.1180,-84.5709,NATIVE,,,Switzerland,CIP19,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Most widespread and common Switzerland map unit near point.
+1714,CIS10,CIP20,1655 Ross Ave,1655 Ross Ave,Cincinnati,,204-0014-0186,39.1180,-84.5709,39.1180,-84.5709,NATIVE,,,Switzerland,CIP20,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Most widespread and common Switzerland map unit near point.
+1715,CIS10,CIP21,1655 Ross Ave,1655 Ross Ave,Cincinnati,,204-0014-0186,39.1180,-84.5709,39.1180,-84.5709,FILL,,,Switzerland,CIP21,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Most widespread and common Switzerland map unit near point.
+1719,CIS11,CIP22,2457 Beekman St,2457 Beekman St,Cincinnati,,202-0032-0093,39.1293,-84.5442,39.1293,-84.5442,NATIVE,,,Pate,CIP22,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1721,CIS11,CIP23,2457 Beekman St,2457 Beekman St,Cincinnati,,202-0032-0093,39.1293,-84.5442,39.1293,-84.5442,FILL,,,Pate,CIP23,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1723,CIS12,CIP24,1515 Fairmount Ave,1515 Fairmount Ave,Cincinnati,,202-0032-0157,39.1292,-84.5450,39.1292,-84.5450,NATIVE,,,Pate,CIP24,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1728,CIS12,CIP25,1515 Fairmount Ave,1515 Fairmount Ave,Cincinnati,,202-0032-0157,39.1292,-84.5450,39.1292,-84.5450,FILL,,,Pate,CIP25,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1733,CIS13,CIP26,2195 Harrison Ave,2195 Harrison Ave,Cincinnati,,213-0001-0027,39.1337,-84.5734,39.1337,-84.5734,NATIVE,,,Ava,CIP26,Ava,UAAXC,2652867,OH061,"Urban Land-Alfic Udarents-Ava complex, 0 to 12 percent slopes.",Most widespread and common Ava map unit near point.
+1739,CIS13,CIP27,2195 Harrison Ave,2195 Harrison Ave,Cincinnati,,213-0001-0027,39.1337,-84.5734,39.1337,-84.5734,FILL,,,Ava,CIP27,Ava,UAAXC,2652867,OH061,"Urban Land-Alfic Udarents-Ava complex, 0 to 12 percent slopes.",Most widespread and common Ava map unit near point.
+1752,CIS14,CIP28,2488 Seegar Ave,2488 Seegar Ave,Cincinnati,,203-0029-0035,39.1292,-84.5543,39.1292,-84.5543,NATIVE,,,Eden,CIP28,Eden,UAEXF,2652877,OH061,"Urban Land-Alfic Udarents-Eden complex, 25 to 60 percent slopes.",Eden map unit that contains the points.
+1756,CIS14,CIP29,2488 Seegar Ave,2488 Seegar Ave,Cincinnati,,203-0029-0035,39.1292,-84.5543,39.1292,-84.5543,FILL,,,Eden,CIP29,Eden,UAEXF,2652877,OH061,"Urban Land-Alfic Udarents-Eden complex, 25 to 60 percent slopes.",Eden map unit that contains the points.
+1765,CIS15,CIP30,1561 Knox St,1561 Knox St,Cincinnati,,202-0032-0124,39.1288,-84.5474,39.1288,-84.5474,NATIVE,,,Eden,CIP30,Eden,UAEXF,2652877,OH061,"Urban Land-Alfic Udarents-Eden complex, 25 to 60 percent slopes.",Eden map unit that contains the points.
+1770,CIS15,CIP31,1561 Knox St,1561 Knox St,Cincinnati,,202-0032-0124,39.1288,-84.5474,39.1288,-84.5474,FILL,,,Eden,CIP31,Eden,UAEXF,2652877,OH061,"Urban Land-Alfic Udarents-Eden complex, 25 to 60 percent slopes.",Eden map unit that contains the points.
+1772,CIS16,CIP32,2611 Beekman St,2611 Beekman St,Cincinnati,,202-0033-0097,39.1327,-84.5466,39.1327,-84.5466,NATIVE,,,Pate,CIP32,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1780,CIS16,CIP33,2611 Beekman St,2611 Beekman St,Cincinnati,,202-0033-0097,39.1327,-84.5466,39.1327,-84.5466,FILL,,,Pate,CIP33,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1788,CIS17,CIP34,2176 Selim Ave,2176 Selim Ave,Cincinnati,,169-0005-0003,39.1226,-84.5512,39.1226,-84.5512,NATIVE,,,Pate,CIP34,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1794,CIS17,CIP35,2176 Selim Ave,2176 Selim Ave,Cincinnati,,169-0005-0003,39.1226,-84.5512,39.1226,-84.5512,FILL,,,Pate,CIP35,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1802,CIS18,CIP36,1653 Tremont St,1653 Tremont St,Cincinnati,,203-0030-0094,39.1275,-84.5521,39.1275,-84.5521,NATIVE,,,Pate,CIP36,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1807,CIS18,CIP37,1653 Tremont St,1653 Tremont St,Cincinnati,,203-0030-0094,39.1275,-84.5521,39.1275,-84.5521,FILL,,,Pate,CIP37,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1809,CIS19,CIP38,3115 W. Liberty St,3115 W. Liberty St,Cincinnati,,173-0001-0215,39.1160,-84.5618,39.1160,-84.5618,NATIVE,,,Switzerland,CIP38,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Switzerland map unit that contains the point.
+1818,CIS19,CIP39,3115 W. Liberty St,3115 W. Liberty St,Cincinnati,,173-0001-0215,39.1160,-84.5618,39.1160,-84.5618,FILL,,,Switzerland,CIP39,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Switzerland map unit that contains the point.
+1820,CIS20,CIP40,1122 Mansion Ave,1122 Mansion Ave,Cincinnati,,174-0009-0040,39.1128,-84.5659,39.1128,-84.5659,NATIVE,,,Switzerland,CIP40,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Switzerland map unit that contains the point.
+1826,CIS20,CIP41,1122 Mansion Ave,1122 Mansion Ave,Cincinnati,,174-0009-0040,39.1128,-84.5659,39.1128,-84.5659,FILL,,,Switzerland,CIP41,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Switzerland map unit that contains the point.
+1831,CIS21,CIP42,2208 Quebec Rd,2208 Quebec Rd,Cincinnati,,204-0019-0050,39.1218,-84.5652,39.1218,-84.5652,NATIVE,,,Pate,CIP42,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1837,CIS21,CIP43,2208 Quebec Rd,2208 Quebec Rd,Cincinnati,,204-0019-0050,39.1218,-84.5652,39.1218,-84.5652,FILL,,,Pate,CIP43,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1843,CIS22,CIP44,1798 Esmonde St,1798 Esmonde St,Cincinnati,,205-0021-0057,39.1248,-84.5583,39.1248,-84.5583,NATIVE,,,Pate,CIP44,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1849,CIS22,CIP45,1798 Esmonde St,1798 Esmonde St,Cincinnati,,205-0021-0057,39.1248,-84.5583,39.1248,-84.5583,FILL,,,Pate,CIP45,Pate,UATXD,2652891,OH161,"Urban land-Alfic Udarents-Pate complex, 12 to 25 percent slopes",Pate map unit that contains the point.
+1856,CIS23,CIP46,1520 Beech Ave,1520 Beech Ave,Cincinnati,,204-0017-0078,39.1215,-84.5763,39.1215,-84.5763,NATIVE,,,Switzerland,CIP46,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Switzerland map unit that contains the point.
+1861,CIS23,CIP47,1520 Beech Ave,1520 Beech Ave,Cincinnati,,204-0017-0078,39.1215,-84.5763,39.1215,-84.5763,FILL,,,Switzerland,CIP47,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Switzerland map unit that contains the point.
+1863,CIS24,CIP48,3628 Laclede Ave,3628 Laclede Ave,Cincinnati,,174-0008-0177,39.1121,-84.5716,39.1121,-84.5716,NATIVE,,,Switzerland,CIP48,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Switzerland map unit that contains the point.
+1869,CIS24,CIP49,3628 Laclede Ave,3628 Laclede Ave,Cincinnati,,174-0008-0177,39.1121,-84.5716,39.1121,-84.5716,FILL,,,Switzerland,CIP49,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Switzerland map unit that contains the point.
+1876,CIS25,CIP50,3600 Mayfield Ave,Mayfield Park,Cincinnati,,,39.1163,-84.5721,39.1163,-84.5721,NATIVE,,,Switzerland,CIP50,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Switzerland map unit that contains the point.
+1881,CIS25,CIP51,3600 Mayfield Ave,Mayfield Park,Cincinnati,,,39.1163,-84.5721,39.1163,-84.5721,FILL,,,Switzerland,CIP51,Switzerland,UASXC,2652896,OH161,"Urban Land-Alfic Udarents-Switzerland complex, 0 to 12 percent slopes",Switzerland map unit that contains the point.
+1883,CIS26,CIP52,3600 Mayfield Ave,Mayfield Park,Cincinnati,,,39.1162,-84.5712,39.1162,-84.5712,NATIVE,,,Ava,CIP52,Ava,UAAXC,2652867,OH061,"Urban Land-Alfic Udarents-Ava complex, 0 to 12 percent slopes.",Most widespread and common Ava map unit near point.
+1887,CIS26,CIP53,3600 Mayfield Ave,Mayfield Park,Cincinnati,,,39.1162,-84.5712,39.1162,-84.5712,FILL,,,Ava,CIP53,Ava,UAAXC,2652867,OH061,"Urban Land-Alfic Udarents-Ava complex, 0 to 12 percent slopes.",Most widespread and common Ava map unit near point.
+1889,CIS27,CIP54,3600 Mayfield Ave,Mayfield Park,Cincinnati,,,39.1158,-84.5716,39.1158,-84.5716,NATIVE,,,Ava,CIP54,Ava,UAAXC,2652867,OH061,"Urban Land-Alfic Udarents-Ava complex, 0 to 12 percent slopes.",Most widespread and common Ava map unit near point.
+1891,CIS27,CIP55,3600 Mayfield Ave,Mayfield Park,Cincinnati,,,39.1158,-84.5716,39.1158,-84.5716,FILL,,,Ava,CIP55,Ava,UAAXC,2652867,OH061,"Urban Land-Alfic Udarents-Ava complex, 0 to 12 percent slopes.",Most widespread and common Ava map unit near point.
+1893,CIS28,CIP56,3201 Glenway Ave,Glenway Park,Cincinnati,,,39.1121,-84.5633,39.1121,-84.5633,NATIVE,,,Ava,CIP56,Ava,UAAXC,2652867,OH061,"Urban Land-Alfic Udarents-Ava complex, 0 to 12 percent slopes.",Most widespread and common Ava map unit near point.
+1898,CIS28,CIP57,3201 Glenway Ave,Glenway Park,Cincinnati,,,39.1121,-84.5633,39.1121,-84.5633,NATIVE,,,Ava,CIP57,Ava,UAAXC,2652867,OH061,"Urban Land-Alfic Udarents-Ava complex, 0 to 12 percent slopes.",Most widespread and common Ava map unit near point.
+1905,CIS28,CIP58,3201 Glenway Ave,Glenway Park,Cincinnati,,,39.1121,-84.5633,39.1121,-84.5633,FILL,,,Ava,CIP58,Ava,UAAXC,2652867,OH061,"Urban Land-Alfic Udarents-Ava complex, 0 to 12 percent slopes.",Most widespread and common Ava map unit near point.
+1907,CIS29,CIP59,3201 Glenway Ave,Glenway Park,Cincinnati,,,39.1125,-84.5633,39.1125,-84.5633,NATIVE,,,Ava,CIP59,Ava,UAAXC,2652867,OH061,"Urban Land-Alfic Udarents-Ava complex, 0 to 12 percent slopes.",Most widespread and common Ava map unit near point.
+1909,CIS29,CIP60,3201 Glenway Ave,Glenway Park,Cincinnati,,,39.1125,-84.5633,39.1125,-84.5633,FILL,,,Ava,CIP60,Ava,UAAXC,2652867,OH061,"Urban Land-Alfic Udarents-Ava complex, 0 to 12 percent slopes.",Most widespread and common Ava map unit near point.
+1911,CIS30,CIP61,4450 Rapid Run Rd,Rapid Run Park,Cincinnati,,,39.1167,-84.5886,39.1167,-84.5886,NATIVE,,,Eden,CIP61,Eden,EcE,169385,OH161,"Eden silty clay loam, 25 to 40 percent slopes.",Eden map unit which contains the point.
+1916,CIS30,CIP62,4450 Rapid Run Rd,Rapid Run Park,Cincinnati,,,39.1167,-84.5886,39.1167,-84.5886,FILL,,,Eden,CIP62,Eden,EcE,169385,OH161,"Eden silty clay loam, 25 to 40 percent slopes.",Eden map unit which contains the point.
+1918,CIS31,CIP63,4450 Rapid Run Rd,Rapid Run Park,Cincinnati,,,39.1178,-84.5895,39.1178,-84.5895,NATIVE,,,Eden,CIP63,Eden,EcE,169385,OH161,"Eden silty clay loam, 25 to 40 percent slopes.",Most widespread and largest area Eden map unit near point.
+1923,CIS31,CIP64,4450 Rapid Run Rd,Rapid Run Park,Cincinnati,,,39.1178,-84.5895,39.1178,-84.5895,FILL,,,Eden,CIP64,Eden,EcE,169385,OH161,"Eden silty clay loam, 25 to 40 percent slopes.",Most widespread and largest area Eden map unit near point.
+1925,CIS32,CIP65,4450 Rapid Run Rd,Rapid Run Park,Cincinnati,,,39.1164,-84.5912,39.1164,-84.5912,NATIVE,,,Eden,CIP65,Eden,EcE,169385,OH161,"Eden silty clay loam, 25 to 40 percent slopes.",Most widespread and largest area Eden map unit near point.
+1926,CIS32,CIP66,4450 Rapid Run Rd,Rapid Run Park,Cincinnati,,,39.1164,-84.5912,39.1164,-84.5912,FILL,,,Eden,CIP66,Eden,EcE,169385,OH161,"Eden silty clay loam, 25 to 40 percent slopes.",Most widespread and largest area Eden map unit near point.
+1928,CIS33,CIP67,4450 Rapid Run Rd,Rapid Run Park,Cincinnati,,,39.1174,-84.5872,39.1174,-84.5872,NATIVE,,,Eden,CIP67,Eden,UAEXD,2652876,OH161,"Urban Land-Alfic Udarents-Eden complex, 12 to 25 percent slopes.",Eden map unit that contains the points.
+1930,CIS33,CIP68,4450 Rapid Run Rd,Rapid Run Park,Cincinnati,,,39.1174,-84.5872,39.1174,-84.5872,FILL,,,Eden,CIP68,Eden,UAEXD,2652876,OH161,"Urban Land-Alfic Udarents-Eden complex, 12 to 25 percent slopes.",Eden map unit that contains the points.
+1932,TS1,TP1,1134 S. 60th St,Alling Park,Tacoma,,,47.2021,-122.4512,47.2021,-122.4512,Park,,,Spanaway,TP1,Spanaway,41A,74706,WA653,Spanaway gravelly sandy loam,"Nearest, most wide-spread Spanaway map unit to point."
+1938,TS2,TP2,1134 S. 60th St,Alling Park,Tacoma,,,47.2036,-122.4522,47.2036,-122.4522,Park,,,Kapowsin,TP2,Kapowsin,19B,74665,WA653,"Kapowsin gravelly ashy loam, 0 to 6 percent slopes",Nearest and most common Kapowsin map unit with low slope.
+1944,TS3,TP3,1635 E. 59th St,Cloverdale Park,Tacoma,,,47.2037,-122.4064,47.2037,-122.4064,Park,,,Alderwood,TP3,Alderwood,1B,74670,WA653,"Alderwood gravelly sandy loam, 0 to 8 percent slopes","Of top three most widespread and common Alderwood map units, this low slope one best matched location."
+1951,TS4,TP4,1635 E. 59th St,Cloverdale Park,Tacoma,,,47.2041,-122.4067,47.2041,-122.4067,Park,,,Alderwood,TP4,Alderwood,1B,74670,WA653,"Alderwood gravelly sandy loam, 0 to 8 percent slopes","Of top three most widespread and common Alderwood map units, this low slope one best matched location."
+1959,TS5,TP5,1201 S Puget Sound Ave,Franklin Park,Tacoma,,,47.2465,-122.4807,47.2465,-122.4807,Park,,,Alderwood,TP5,Alderwood,1B,74670,WA653,"Alderwood gravelly sandy loam, 0 to 8 percent slopes","Of top three most widespread and common Alderwood map units, this low slope one best matched location."
+1966,TS6,TP6,801 N Mason Ave,Jefferson Park,Tacoma,,,47.2568,-122.4939,47.2568,-122.4939,Park,,,Kapowsin,TP6,Kapowsin,19B,74665,WA653,"Kapowsin gravelly ashy loam, 0 to 6 percent slopes",Nearest and most common Kapowsin map unit with low slope.
+1972,TS7,TP7,801 N Mason Ave,Jefferson Park,Tacoma,,,47.2569,-122.4906,47.2569,-122.4906,Park,,,Alderwood,TP7,Alderwood,1B,74670,WA653,"Alderwood gravelly sandy loam, 0 to 8 percent slopes","Of top three most widespread and common Alderwood map units, this low slope one best matched location."
+1979,TS8,TS8,S Tyler St,Landfill,Tacoma,,,47.2184,-122.4958,47.2184,-122.4958,Vacant Land,,,Spanaway,TS8,Spanaway,41A,74706,WA653,Spanaway gravelly sandy loam,"Nearest, most wide-spread Spanaway map unit to point."
+1984,TS9,TP9,4330 S. 66th St,Manitou Park,Tacoma,,,47.1965,-122.4967,47.1965,-122.4967,Park,,,Spanaway,TP9,Spanaway,41A,74706,WA653,Spanaway gravelly sandy loam,"Nearest, most wide-spread Spanaway map unit to point."
+1990,TS10,TP10,907 Upper Park St,McKinley Park,Tacoma,,,47.2175,-122.4189,47.2175,-122.4189,Park,,,Everett,TP10,Everett,13B,74652,WA653,"Everett very gravelly sandy loam, 0 to 8 percent slopes",Most common Everett map unit near point that has low slope.
+1995,TS11,TP11,907 Upper Park St,McKinley Park,Tacoma,,,47.2182,-122.4198,47.2182,-122.4198,Park,,,Kapowsin,TP11,Kapowsin,19B,74665,WA653,"Kapowsin gravelly ashy loam, 0 to 6 percent slopes",Nearest and most common Kapowsin map unit with low slope.
+2000,TS12,TP12,900 MLK Jr. Way,Peoples Park,Tacoma,,,47.2533,-122.4530,47.2533,-122.4530,Park,,,Alderwood,TP12,Alderwood,1B,74670,WA653,"Alderwood gravelly sandy loam, 0 to 8 percent slopes","Of top three most widespread and common Alderwood map units, this low slope one best matched location."
+2009,TS13,TP13,N Proctor St,Proctor,Tacoma,,,47.2776,-122.4885,47.2776,-122.4885,Vacant Land,,,Everett,TP13,Everett,13C,74653,WA653,"Everett very gravelly sandy loam, 8 to 15 percent slopes",Most common Everett map unit near point with higher slopes.
+2013,TS14,TP14,3100 N Proctor St,Puget Creek Natural Area,Tacoma,,,47.2760,-122.4886,47.2760,-122.4886,Park,,,Alderwood,TP14,Alderwood,1C,74671,WA653,"Alderwood gravelly sandy loam, 8 to 15 percent slopes","Most widespread and common Alderwood map unit and of the top three, this higher slope one matches location."
+2019,TS15,TP15,3100 N Proctor St,Puget Creek Natural Area,Tacoma,,,47.2765,-122.4886,47.2765,-122.4886,Park,,,Alderwood,TP15,Alderwood,1C,74671,WA653,"Alderwood gravelly sandy loam, 8 to 15 percent slopes","Most widespread and common Alderwood map unit and of the top three, this higher slope one matches location."
+2025,TS16,TP16,Swan Creek,Swan Creek,Tacoma,,,47.2139,-122.4014,47.2139,-122.4014,Vacant Land,,,Everett,TP16,Everett,13B,74652,WA653,"Everett very gravelly sandy loam, 0 to 8 percent slopes",Most common Everett map unit near point that has low slope.
+2029,TS17,TP17,6100 N. 37th St,Vassault Park,Tacoma,,,47.2812,-122.5207,47.2812,-122.5207,Park,,,Alderwood,TP17,Alderwood,1B,74670,WA653,"Alderwood gravelly sandy loam, 0 to 8 percent slopes","Of top three most widespread and common Alderwood map units, this low slope one best matched location."
+2034,SANS1,SANP1,Calle 14,Calle 14,San Juan,,,18.4316,-66.0542,18.4316,-66.0542,VACANT LAND,,,Saladar,SANP1,Saladar,Sm,326711,PR686,Saladar muck,Only nearby Saladar map unit.
+2043,SANS2,SANP2,Calle William,Calle William,San Juan,,,18.4318,-66.0505,18.4318,-66.0505,VACANT LAND,PARK,,Saladar,SANP2,Saladar,Sm,326711,PR686,Saladar muck,Only nearby Saladar map unit.
+2050,SANS3,SANP3,Calle del Pilar,Calle del Pilar,San Juan,,,18.4322,-66.0443,18.4322,-66.0443,VACANT LOT,RECENT DEMO,,Pinones,SANP3,Pinones,Pn,326929,PR689,Pinones silty clay,Only nearby Pinones map unit.
+2061,SANS4,SANP4,Calle Principal,Calle Principal,San Juan,,,18.4308,-66.0481,18.4308,-66.0481,AUTO YARD,RECENT DEMO,,Martin Pena,SANP4,Martin Pena,Mp,326688,PR686,Martin Pena muck,Only nearby Martin Pena map unit.
+2072,SANS5,SANP5,Calle Francia,Plaza Israel,San Juan,,,18.4275,-66.0415,18.4275,-66.0415,PARK,PARK,,Pinones,SANP5,Pinones,Pn,326929,PR689,Pinones silty clay,Only nearby Pinones map unit.
+2079,SANS6,SANP6,Calle Paraguay,Calle Paraguay,San Juan,,,18.4250,-66.0439,18.4250,-66.0439,VACANT LOT,RECENT DEMO,,Vigia,SANP6,Vigia,Vg,326498,PR682,Vigia muck,Only nearby Vigia map unit near point.
+2087,SANS7,SANP7,Calle C,Calle C,San Juan,,,18.4285,-66.0488,18.4285,-66.0488,VACANT LOT ,RECENT DEMO,,Vigia,SANP7,Vigia,Vg,326498,PR682,Vigia muck,Only nearby Vigia map unit near point.
+2095,SANS8,SANP8,Calle San Jose,Calle San Jose,San Juan,,,18.4332,-66.0573,18.4332,-66.0573,VACANT LOT,RECENT DEMO,,Saladar,SANP8,Saladar,Sm,326711,PR686,Saladar muck,Only nearby Saladar map unit.
+2102,SANS9,SANP9,PR 672,Atenas Pineapple Farm 1,San Juan,,,18.4229,-66.4564,18.4229,-66.4564,FARM,PINEAPPLE FIELD,,Bayamon,SANP9,Bayamon,ByB,326399,PR682,"Bayamon clay, 2 to 5 percent slopes",Bayamon map unit that contains the point.
+2110,SANS9,SANP10,PR 672,Atenas Pineapple Farm Test Pit,San Juan,,,18.4230,-66.4562,18.4230,-66.4562,FARM,FRESHLY PLOWED FIELD,,Bayamon,SANP10,Bayamon,ByB,326399,PR682,"Bayamon clay, 2 to 5 percent slopes",Bayamon map unit that contains the point.
+2117,SANS9,SANP11,PR 672,Atenas Pineapple- sandy,San Juan,,,18.4220,-66.4542,18.4220,-66.4542,FARM,PINEAPPLE FIELD,,Bayamon,SANP11,Bayamon,ByB,326399,PR682,"Bayamon clay, 2 to 5 percent slopes",Bayamon map unit that contains the point.
+2120,SANS10,SANP12,Avenida Iturrigui,Roberto Clemente Park/wetland 1,San Juan,,,18.4224,-65.9916,18.4224,-65.9916,WILDLIFE RECREATION AREA,RECENTLY CONSTRUCTED,,Bajura,SANP12,Bajura,Bc,326861,PR689,"Bajura clay, frequently flooded",Closest and most widespread Bajura map unit.
+2128,SANS10,SANP13,Avenida Iturrigui,Roberto Clemente Park/wetland 2,San Juan,,,18.4226,-65.9918,18.4226,-65.9918,WILDLIFE RECREATION AREA,RECENTLY CONSTRUCTED,,Bajura,SANP13,Bajura,Bc,326861,PR689,"Bajura clay, frequently flooded",Closest and most widespread Bajura map unit.
+2138,SANS11,SANP14,PR 1,Jardin Botanico Norte 1,San Juan,,,18.3939,-66.0594,18.3939,-66.0594,BOTANICAL GARDEN,LAWN IN ELECTRIC ROW,,Vega Alta,SANP14,Vega Alta,Uv,326722,PR686,Urban land-Vega Alta complex,Nearest and most widespread Vega Alta map unit near point.
+2150,SANS12,SANP15,PR 1,Jardin Botanico Norte 2,San Juan,,,18.3948,-66.0608,18.3948,-66.0608,BOTANICAL GARDEN,PASSIVE LAWN AREA,,Bajura,SANP15,Bajura,Ba,326642,PR686,Bajura clay,Only nearby Bajura map unit.
+2166,SANS13,SANP16,Calle Emory,Buen Consejo,San Juan,,,18.3925,-66.0429,18.3925,-66.0429,PARK,PASSIVE LAWN AREA,,Rio Piedras,SANP16,Rio Piedras,RpD2,326706,PR686,"Rio Piedras clay, 12 to 20 percent slopes, eroded",Most widespread and common Rio Piedras map unit near point.
+2177,SANS14,SANP17,Expreso Trujillo Alto,Sabana Llama,San Juan,,,18.3876,-66.0275,18.3876,-66.0275,ARBORETUM,NURSERY PLANT LANDING AREA,,Rio Piedras,SANP17,Rio Piedras,RpD2,326706,PR686,"Rio Piedras clay, 12 to 20 percent slopes, eroded",Rio Piedras map unit that contains the point.
+2188,SANS15,SANP18,Calle Padre Colon,Capetillo,San Juan,,,18.3993,-66.0425,18.3993,-66.0425,URBAN PARK,OVERGROWN AREA,,Bajura,SANP18,Bajura,Ba,326642,PR686,Bajura clay,Only nearby Bajura map unit.
+2198,SANS16,SANP19,Calle Ortega Y Gasset,El Senorial,San Juan,,,18.3598,-66.0602,18.3598,-66.0602,PASSIVE AREA,SCHOOL,,Vega Alta,SANP19,Vega Alta,Uv,326722,PR686,Urban land-Vega Alta complex,Vega Alta map unit that contains the point.
+2202,SANS16,SANP20,Calle Ortega Y Gasset,El Senorial,San Juan,,,18.3598,-66.0602,18.3598,-66.0602,PASSIVE AREA,SCHOOL,,Vega Alta,SANP20,Vega Alta,Uv,326722,PR686,Urban land-Vega Alta complex,Vega Alta map unit that contains the point.
+2206,SANS17,SANP21,Calle Peru,Victor Pares Collazo,San Juan,,,18.4063,-66.0602,18.4063,-66.0602,PASSIVE AREA,SCHOOL,,Bajura,SANP21,Bajura,Ba,326642,PR686,Bajura clay,Only nearby Bajura map unit.
+2223,SANS18,SANP22,Calle 17 S.O. (Southwest),Luis Munoz Souffront,San Juan,,,18.3972,-66.0917,18.3972,-66.0917,FIELD,SCHOOL,,Bajura,SANP22,Bajura,Ba,326642,PR686,Bajura clay,Only nearby Bajura map unit.
+2230,SANS19,SANP23,Calle Ceciliana,Jose M Rivera Solis,San Juan,,,18.3589,-66.0457,18.3589,-66.0457,FIELD,SCHOOL,,Vega Alta,SANP23,Vega Alta,Uv,326722,PR686,Urban land-Vega Alta complex,Vega Alta map unit that contains the point.
+2238,SANS20,SANP24,PR 842,Rafael Quinones Vidal,San Juan,,,18.3345,-66.0681,18.3345,-66.0681,FIELD,SCHOOL,,No data,SANP24,No Data,No Data San Juan,No Data San Juan,,No Data San Juan,
+2247,SANS21,SANP25,Avenida Jesus T Pinero,Parque Luis Munoz Marin,San Juan,,,18.4093,-66.0795,18.4093,-66.0795,FIELD,PARK,,Bajura,SANP25,Bajura,Ba,326642,PR686,Bajura clay,Only nearby Bajura map unit.
+2251,SANS21,SANP26,Avenida Jesus T Pinero,Parque Luis Munoz Marin,San Juan,,,18.4093,-66.0795,18.4093,-66.0795,FIELD,PARK,,Bajura,SANP26,Bajura,Ba,326642,PR686,Bajura clay,Only nearby Bajura map unit.
+2254,ATS1,ATP1,2420 Hog Mountain Rd,Athens Research Farm,Atlanta,,,33.8721,-83.4291,33.8721,-83.4291,Agricultural Field,,,Pacolet,ATP1,Pacolet,PgC3,124218,GA067,"Pacolet sandy clay loam, 6 to 10 percent slopes, severely eroded","Most common and nearest map unit to point.  Also, of top two most common, this is the lower slope of the two point is more ridge than side slope."
+2264,ATS2,ATP2,779 Atwood Street,Atwood Front,Atlanta,,,33.7342,-84.4303,33.7342,-84.4303,Residential Yard,,,Rion,ATP2,Rion,UrE,1672421,GA121,"Urban land-Rion complex, 10 to 25 percent slopes.",Most widespread and commonly occuring Rion map unit near point.
+2278,ATS2,ATP3,779 Atwood Street,Atwood Rear,Atlanta,,,33.7342,-84.4303,33.7342,-84.4303,Mature Tree Yard,,,Rion,ATP3,Rion,UrE,1672421,GA121,"Urban land-Rion complex, 10 to 25 percent slopes.",Most widespread and commonly occuring Rion map unit near point.
+2284,ATS3,ATP4,370 James P. Brawley Dr,370 Brawley,Atlanta,,,33.7648,-84.4129,33.7648,-84.4129,Vacant Lot,,,Hard Labor,ATP4,Hard Labor,UdC,1672368,GA121,"Urban land-Appling-Hard Labor complex, 2 to 10 percent slopes.",Most common Hard Labor complex occuring near point.
+2297,ATS4,ATP5,386 Elm Street NW,386 Elm,Atlanta,,,33.7652,-84.4090,33.7652,-84.4090,Vacant Lot,,,Cartecay,ATP5,Cartecay,CaA,1654028,GA121,"Cartecay-Toccoa complex, 0 to 2 percent slopes, occasionally flooded",Most widespread and commonly occuring Cartecay near point.
+2306,ATS5,ATP6,979 Frank Street SW,979 Frank - front,Atlanta,,,33.7474,-84.4194,33.7474,-84.4194,Vacant Lot,,,Rion,ATP6,Rion,UrE,1672421,GA121,"Urban land-Rion complex, 10 to 25 percent slopes.",Most widespread and commonly occuring Rion map unit near point.
+2316,ATS5,ATP7,979 Frank Street SW,979 Frank,Atlanta,,,33.7474,-84.4194,33.7474,-84.4194,Vacant Lot,,,Chewacla,ATP7,Chewacla,Cfs,126234,GA097,"Chewacla silt loam, 0 to 2 percent slopes, frequently flooded",Most commonly occuring Chewacla map in HUC and near point.
+2327,ATS6,ATP8,717 Joseph E. Boone Blvd,Griffin - Disturbed,Atlanta,,,33.7637,-84.4109,33.7637,-84.4109,Vacant Lot,,,Hard Labor,ATP8,Hard Labor,UdC,1672368,GA121,"Urban land-Appling-Hard Labor complex, 2 to 10 percent slopes.",Most common Hard Labor complex occuring near point.
+2340,ATS7,ATP9,664 Magnolia Street NW,664 Magnolia,Atlanta,,,33.7580,-84.4095,33.7580,-84.4095,Vacant Lot,,,Toccoa,ATP9,Toccoa,CaA,1654028,GA121,"Cartecay-Toccoa complex, 0 to 2 percent slopes, occasionally flooded.",Most common Toccoa unit occuring near point.
+2350,ATS8,ATP10,744 North Ave NW,744 North,Atlanta,,,33.7700,-84.4117,33.7700,-84.4117,Vacant Lot,,,Cecil,ATP10,Cecil,UfC2,1654037,GA121,"Urban land-Cecil complex, 2 to 10 percent slopes, moderately eroded.",Most widespread and commonly occuring Cecil map unit near point.
+2360,ATS9,ATP11,750 North Ave NW,750 North,Atlanta,,,33.7700,-84.4119,33.7700,-84.4119,Vacant Lot,,,Cecil,ATP11,Cecil,UfC2,1654037,GA121,"Urban land-Cecil complex, 2 to 10 percent slopes, moderately eroded.",Most widespread and commonly occuring Cecil map unit near point.
+2370,ATS10,ATP12,530 Oliver Street,Lindsay Street Park,Atlanta,,,33.7692,-84.4156,33.7692,-84.4156,Vacant Lot,,,Roanoke,ATP12,Roanoke,Ron,124219,GA067,Roanoke silt loam.,Only Roanoke map unit near point.
+2380,ATS11,ATP13,423 Sunset Street,423 Sunset center,Atlanta,,,33.7662,-84.4097,33.7662,-84.4097,Vacant Lot,,,Rion,ATP13,Rion,UrE,1672421,GA121,"Urban land-Rion complex, 10 to 25 percent slopes.",Most widespread and commonly occuring Rion map unit near point.
+2386,ATS11,ATP14,423 Sunset Street,423 Sunset,Atlanta,,,33.7662,-84.4097,33.7662,-84.4097,Vacant Lot,,,Cartecay,ATP14,Cartecay,CaA,1654028,GA121,"Cartecay-Toccoa complex, 0 to 2 percent slopes, occasionally flooded",Most widespread and commonly occuring Cartecay near point.
+2398,ATS12,ATP15,82 Sunset Street NW,82 Sunset,Atlanta,,,33.7569,-84.4105,33.7569,-84.4105,Vacant Lot,,,Toccoa,ATP15,Toccoa,CaA,1654028,GA121,"Cartecay-Toccoa complex, 0 to 2 percent slopes, occasionally flooded.",Most common Toccoa unit occuring near point.
+2408,PORS1,PORP1,Franklin Tower,Franklin Tower,Portland,,,43.6620,-70.2567,43.6620,-70.2567,Passive Lawn,,,Hinckley,PORP1,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2414,PORS1,PORP2,Franklin Tower,Franklin Tower,Portland,,,43.6620,-70.2567,43.6620,-70.2567,Passive Lawn,,,Hinckley,PORP2,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2415,PORS1,PORP3,Franklin Tower,Franklin Tower,Portland,,,43.6620,-70.2567,43.6620,-70.2567,Passive Lawn,,,Hinckley,PORP3,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2416,PORS2,PORP4,Mayo Street,Mayo Street,Portland,,,43.6653,-70.2554,43.6653,-70.2554,Passive Lawn,,,Deerfield,PORP4,Deerfield,DeB,315679,ME005,"Deerfield loamy sand, 3 to 8 percent slopes",Most common and widespread Deerfield map unit near point.
+2423,PORS2,PORP5,Mayo Street,Mayo Street,Portland,,,43.6653,-70.2554,43.6653,-70.2554,Passive Lawn,,,Deerfield,PORP5,Deerfield,DeB,315679,ME005,"Deerfield loamy sand, 3 to 8 percent slopes",Most common and widespread Deerfield map unit near point.
+2424,PORS3,PORP6,Cutter Street,East Prom,Portland,,,43.6693,-70.2430,43.6693,-70.2430,Park,,,Hinckley,PORP6,Hinckley,HlC,315695,ME005,"Hinckley loamy sand, 8 to 15 percent slopes",Hinckley map unit that contains the point.
+2431,PORS3,PORP7,Cutter Street,East Prom,Portland,,,43.6693,-70.2430,43.6693,-70.2430,Park,,,Hinckley,PORP7,Hinckley,HlC,315695,ME005,"Hinckley loamy sand, 8 to 15 percent slopes",Hinckley map unit that contains the point.
+2432,PORS3,PORP8,Cutter Street,East Prom,Portland,,,43.6693,-70.2430,43.6693,-70.2430,Park,,,Hinckley,PORP8,Hinckley,HlC,315695,ME005,"Hinckley loamy sand, 8 to 15 percent slopes",Hinckley map unit that contains the point.
+2433,PORS3,PORP9,Cutter Street,East Prom,Portland,,,43.6693,-70.2430,43.6693,-70.2430,Park,,,Hinckley,PORP9,Hinckley,HlC,315695,ME005,"Hinckley loamy sand, 8 to 15 percent slopes",Hinckley map unit that contains the point.
+2434,PORS3,PORP10,Cutter Street,East Prom,Portland,,,43.6693,-70.2430,43.6693,-70.2430,Park,,,Hinckley,PORP10,Hinckley,HlC,315695,ME005,"Hinckley loamy sand, 8 to 15 percent slopes",Hinckley map unit that contains the point.
+2435,PORS3,PORP11,Cutter Street,East Prom,Portland,,,43.6693,-70.2430,43.6693,-70.2430,Park,,,Hinckley,PORP11,Hinckley,HlC,315695,ME005,"Hinckley loamy sand, 8 to 15 percent slopes",Hinckley map unit that contains the point.
+2436,PORS4,PORP12,East End School,East End School,Portland,,,43.6722,-70.2548,43.6722,-70.2548,School Field,,,No data,PORP12,No Data,No Data Port,No Data Port,,No Data Port,
+2442,PORS4,PORP13,East End School,East End School,Portland,,,43.6722,-70.2548,43.6722,-70.2548,School Field,,,No data,PORP13,No Data,No Data Port,No Data Port,,No Data Port,
+2443,PORS4,PORP14,East End School,East End School,Portland,,,43.6722,-70.2548,43.6722,-70.2548,School Field,,,No data,PORP14,No Data,No Data Port,No Data Port,,No Data Port,
+2444,PORS4,PORP15,East End School,East End School,Portland,,,43.6722,-70.2548,43.6722,-70.2548,School Field,,,No data,PORP15,No Data,No Data Port,No Data Port,,No Data Port,
+2445,PORS4,PORP16,East End School,East End School,Portland,,,43.6722,-70.2548,43.6722,-70.2548,School Field,,,No data,PORP16,No Data,No Data Port,No Data Port,,No Data Port,
+2446,PORS4,PORP17,East End School,East End School,Portland,,,43.6722,-70.2548,43.6722,-70.2548,School Field,,,No data,PORP17,No Data,No Data Port,No Data Port,,No Data Port,
+2447,PORS5,PORP18,King Middle School,King Middle School,Portland,,,43.6578,-70.2752,43.6578,-70.2752,School Passive Area,,,Belgrade,PORP18,Belgrade,BgB,315666,ME005,"Belgrade very fine sandy loam, 0 to 8 percent slopes",Only Belgrade map unit near point.
+2453,PORS5,PORP19,King Middle School,King Middle School,Portland,,,43.6578,-70.2752,43.6578,-70.2752,School Passive Area,,,Belgrade,PORP19,Belgrade,BgB,315666,ME005,"Belgrade very fine sandy loam, 0 to 8 percent slopes",Only Belgrade map unit near point.
+2454,PORS5,PORP20,King Middle School,King Middle School,Portland,,,43.6578,-70.2752,43.6578,-70.2752,School Passive Area,,,Belgrade,PORP20,Belgrade,BgB,315666,ME005,"Belgrade very fine sandy loam, 0 to 8 percent slopes",Only Belgrade map unit near point.
+2455,PORS5,PORP21,King Middle School,King Middle School,Portland,,,43.6578,-70.2752,43.6578,-70.2752,School Passive Area,,,Belgrade,PORP21,Belgrade,BgB,315666,ME005,"Belgrade very fine sandy loam, 0 to 8 percent slopes",Only Belgrade map unit near point.
+2456,PORS5,PORP22,King Middle School,King Middle School,Portland,,,43.6578,-70.2752,43.6578,-70.2752,School Passive Area,,,Belgrade,PORP22,Belgrade,BgB,315666,ME005,"Belgrade very fine sandy loam, 0 to 8 percent slopes",Only Belgrade map unit near point.
+2457,PORS6,PORP23,Fessenden Park,Fessenden Park,Portland,,,43.6620,-70.2795,43.6620,-70.2795,Park,,,Hinckley,PORP23,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2465,PORS7,PORP24,Jerry Pedro Field,Jerry Pedro Field,Portland,,,43.6641,-70.2712,43.6641,-70.2712,Passive Lawn,,,Lamoine,PORP24,Lamoine,BuB,315669,ME005,"Lamoine silt loam, 3 to 8 percent slopes",Lamoine map unit that contains the point.
+2473,PORS7,PORP25,Jerry Pedro Field,Jerry Pedro Field,Portland,,,43.6641,-70.2712,43.6641,-70.2712,Passive Lawn,,,Lamoine,PORP25,Lamoine,BuB,315669,ME005,"Lamoine silt loam, 3 to 8 percent slopes",Lamoine map unit that contains the point.
+2474,PORS7,PORP26,Jerry Pedro Field,Jerry Pedro Field,Portland,,,43.6641,-70.2712,43.6641,-70.2712,Passive Lawn,,,Lamoine,PORP26,Lamoine,BuB,315669,ME005,"Lamoine silt loam, 3 to 8 percent slopes",Lamoine map unit that contains the point.
+2475,PORS7,PORP27,Jerry Pedro Field,Jerry Pedro Field,Portland,,,43.6641,-70.2712,43.6641,-70.2712,Passive Lawn,,,Lamoine,PORP27,Lamoine,BuB,315669,ME005,"Lamoine silt loam, 3 to 8 percent slopes",Lamoine map unit that contains the point.
+2476,PORS8,PORP28,Deering Oaks,Deering Oaks,Portland,,,43.6602,-70.2692,43.6602,-70.2692,Gravel Lot,,,Belgrade,PORP28,Belgrade,BgB,315666,ME005,"Belgrade very fine sandy loam, 0 to 8 percent slopes",Only Belgrade map unit near point.
+2484,PORS8,PORP29,Deering Oaks,Deering Oaks,Portland,,,43.6602,-70.2692,43.6602,-70.2692,Gravel Lot,,,Belgrade,PORP29,Belgrade,BgB,315666,ME005,"Belgrade very fine sandy loam, 0 to 8 percent slopes",Only Belgrade map unit near point.
+2485,PORS9,PORP30,134 Lancaster,134 Lancaster,Portland,,,43.6612,-70.2603,43.6612,-70.2603,Passive Lawn,,,Au Gres,PORP30,Au Gres,Au,315665,ME005,Au Gres loamy sand,Au Gres map unit that contains the point.
+2491,PORS9,PORP31,134 Lancaster,134 Lancaster,Portland,,,43.6612,-70.2603,43.6612,-70.2603,Passive Lawn,,,Au Gres,PORP31,Au Gres,Au,315665,ME005,Au Gres loamy sand,Au Gres map unit that contains the point.
+2492,PORS9,PORP32,134 Lancaster,134 Lancaster,Portland,,,43.6612,-70.2603,43.6612,-70.2603,Passive Lawn,,,Au Gres,PORP32,Au Gres,Au,315665,ME005,Au Gres loamy sand,Au Gres map unit that contains the point.
+2493,PORS9,PORP33,134 Lancaster,134 Lancaster,Portland,,,43.6612,-70.2603,43.6612,-70.2603,Passive Lawn,,,Au Gres,PORP33,Au Gres,Au,315665,ME005,Au Gres loamy sand,Au Gres map unit that contains the point.
+2494,PORS10,PORP34,High/Spring Streets,High/Spring Streets,Portland,,,43.6529,-70.2616,43.6529,-70.2616,Passive Lawn,,,Hinckley,PORP34,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2499,PORS10,PORP35,High/Spring Streets,High/Spring Streets,Portland,,,43.6529,-70.2616,43.6529,-70.2616,Passive Lawn,,,Hinckley,PORP35,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2500,PORS10,PORP36,High/Spring Streets,High/Spring Streets,Portland,,,43.6529,-70.2616,43.6529,-70.2616,Passive Lawn,,,Hinckley,PORP36,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2501,PORS10,PORP37,High/Spring Streets,High/Spring Streets,Portland,,,43.6529,-70.2616,43.6529,-70.2616,Passive Lawn,,,Hinckley,PORP37,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2502,PORS10,PORP38,High/Spring Streets,High/Spring Streets,Portland,,,43.6529,-70.2616,43.6529,-70.2616,Passive Lawn,,,Hinckley,PORP38,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2503,PORS11,PORP39,Harbor View Park,Harbor View Park,Portland,,,43.6483,-70.2605,43.6483,-70.2605,Park,,All field measurements taken during rain event.,Hinckley,PORP39,Hinckley,HlC,315695,ME005,"Hinckley loamy sand, 8 to 15 percent slopes",Hinckley map unit that contains the point.
+2511,PORS11,PORP40,Harbor View Park,Harbor View Park,Portland,,,43.6483,-70.2605,43.6483,-70.2605,Park,,,Hinckley,PORP40,Hinckley,HlC,315695,ME005,"Hinckley loamy sand, 8 to 15 percent slopes",Hinckley map unit that contains the point.
+2512,PORS12,PORP41,87 State Street,87 State Street,Portland,,,43.6509,-70.2628,43.6509,-70.2628,Passive Lawn,,,Hinckley,PORP41,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2518,PORS12,PORP42,87 State Street,87 State Street,Portland,,,43.6509,-70.2628,43.6509,-70.2628,Passive Lawn,,,Hinckley,PORP42,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2519,PORS13,PORP43,Western Promenade,Western Promenade,Portland,,,43.6446,-70.2751,43.6446,-70.2751,Park,,,Hinckley,PORP43,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2527,PORS13,PORP44,Western Promenade,Western Promenade,Portland,,,43.6446,-70.2751,43.6446,-70.2751,Park,,,Hinckley,PORP44,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2528,PORS14,PORP45,Presumpscot Elementary,Presumpscot Elementary,Portland,,,43.6847,-70.2601,43.6847,-70.2601,School,,,Lamoine,PORP45,Lamoine,BuB,315669,ME005,"Lamoine silt loam, 3 to 8 percent slopes",Lamoine map unit that contains the point.
+2534,PORS14,PORP46,Presumpscot Elementary,Presumpscot Elementary,Portland,,,43.6847,-70.2601,43.6847,-70.2601,School,,,Lamoine,PORP46,Lamoine,BuB,315669,ME005,"Lamoine silt loam, 3 to 8 percent slopes",Lamoine map unit that contains the point.
+2535,PORS14,PORP47,Presumpscot Elementary,Presumpscot Elementary,Portland,,,43.6847,-70.2601,43.6847,-70.2601,School,,,Lamoine,PORP47,Lamoine,BuB,315669,ME005,"Lamoine silt loam, 3 to 8 percent slopes",Lamoine map unit that contains the point.
+2536,PORS14,PORP48,Presumpscot Elementary,Presumpscot Elementary,Portland,,,43.6847,-70.2601,43.6847,-70.2601,School,,,Lamoine,PORP48,Lamoine,BuB,315669,ME005,"Lamoine silt loam, 3 to 8 percent slopes",Lamoine map unit that contains the point.
+2537,PORS15,PORP49,Riverton School,Riverton School,Portland,,,43.6954,-70.3110,43.6954,-70.3110,School,,,Deerfield,PORP49,Deerfield,DeB,315679,ME005,"Deerfield loamy sand, 3 to 8 percent slopes",Most common and widespread Deerfield map unit near point.
+2544,PORS15,PORP50,Riverton School,Riverton School,Portland,,,43.6954,-70.3110,43.6954,-70.3110,School,,,Deerfield,PORP50,Deerfield,DeB,315679,ME005,"Deerfield loamy sand, 3 to 8 percent slopes",Most common and widespread Deerfield map unit near point.
+2545,PORS15,PORP51,Riverton School,Riverton School,Portland,,,43.6954,-70.3110,43.6954,-70.3110,School,,,Deerfield,PORP51,Deerfield,DeB,315679,ME005,"Deerfield loamy sand, 3 to 8 percent slopes",Most common and widespread Deerfield map unit near point.
+2546,PORS15,PORP52,Riverton School,Riverton School,Portland,,,43.6954,-70.3110,43.6954,-70.3110,School,,,Deerfield,PORP52,Deerfield,DeB,315679,ME005,"Deerfield loamy sand, 3 to 8 percent slopes",Most common and widespread Deerfield map unit near point.
+2547,PORS15,PORP53,Riverton School,Riverton School,Portland,,,43.6954,-70.3110,43.6954,-70.3110,School,,,Deerfield,PORP53,Deerfield,DeB,315679,ME005,"Deerfield loamy sand, 3 to 8 percent slopes",Most common and widespread Deerfield map unit near point.
+2548,PORS15,PORP54,Riverton School,Riverton School,Portland,,,43.6954,-70.3110,43.6954,-70.3110,School,,,Deerfield,PORP54,Deerfield,DeB,315679,ME005,"Deerfield loamy sand, 3 to 8 percent slopes",Most common and widespread Deerfield map unit near point.
+2549,PORS15,PORP55,Riverton School,Riverton School,Portland,,,43.6954,-70.3110,43.6954,-70.3110,School,,,Deerfield,PORP55,Deerfield,DeB,315679,ME005,"Deerfield loamy sand, 3 to 8 percent slopes",Most common and widespread Deerfield map unit near point.
+2550,PORS15,PORP56,Riverton School,Riverton School,Portland,,,43.6954,-70.3110,43.6954,-70.3110,School,,,Deerfield,PORP56,Deerfield,DeB,315679,ME005,"Deerfield loamy sand, 3 to 8 percent slopes",Most common and widespread Deerfield map unit near point.
+2551,PORS16,PORP57,PATHS,PATHS,Portland,,,43.6967,-70.2949,43.6967,-70.2949,School,,,Hollis,PORP57,Hollis,HrB,315700,ME005,"Hollis fine sandy loam, 3 to 8 percent slopes",Hollis map unit that contains the point.
+2559,PORS17,PORP58,Evergreen Cemetary,Evergreen Cemetary,Portland,,,43.6785,-70.2945,43.6785,-70.2945,Road Shoulder,,,Windsor,PORP58,Windsor,WmB,315745,ME005,"Windsor loamy sand, 0 to 8 percent slopes",Windsor map unit that contains the point.
+2565,PORS17,PORP59,Evergreen Cemetary,Evergreen Cemetary,Portland,,,43.6785,-70.2945,43.6785,-70.2945,Road Shoulder,,,Windsor,PORP59,Windsor,WmB,315745,ME005,"Windsor loamy sand, 0 to 8 percent slopes",Windsor map unit that contains the point.
+2566,PORS18,PORP60,Deering High School,Deering High School,Portland,,,43.6735,-70.2983,43.6735,-70.2983,School,,,Scantic,PORP60,Scantic,Sn,315733,ME005,"Scantic silt loam, 0 to 3 percent slopes",Scantic map unit that contains the point.
+2573,PORS18,PORP61,Deering High School,Deering High School,Portland,,,43.6735,-70.2983,43.6735,-70.2983,School,,,Scantic,PORP61,Scantic,Sn,315733,ME005,"Scantic silt loam, 0 to 3 percent slopes",Scantic map unit that contains the point.
+2574,PORS18,PORP62,Deering High School,Deering High School,Portland,,,43.6735,-70.2983,43.6735,-70.2983,School,,,Scantic,PORP62,Scantic,Sn,315733,ME005,"Scantic silt loam, 0 to 3 percent slopes",Scantic map unit that contains the point.
+2575,PORS19,PORP63,Sagamore Village,Sagamore Village,Portland,,,43.6762,-70.3198,43.6762,-70.3198,Passive Lawn,,,Swanton,PORP63,Swanton,Sz,315739,ME005,Swanton fine sandy loam,Swanton map unit that contains the point.
+2582,PORS19,PORP64,Sagamore Village,Sagamore Village,Portland,,,43.6762,-70.3198,43.6762,-70.3198,Passive Lawn,,,Swanton,PORP64,Swanton,Sz,315739,ME005,Swanton fine sandy loam,Swanton map unit that contains the point.
+2583,PORS19,PORP65,Sagamore Village,Sagamore Village,Portland,,,43.6762,-70.3198,43.6762,-70.3198,Passive Lawn,,,Swanton,PORP65,Swanton,Sz,315739,ME005,Swanton fine sandy loam,Swanton map unit that contains the point.
+2584,PORS20,PORP66,Wayneflete,Wayneflete,Portland,,,43.6457,-70.2696,43.6457,-70.2696,School Field,,,Hinckley,PORP66,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2592,PORS20,PORP67,Wayneflete,Wayneflete,Portland,,,43.6457,-70.2696,43.6457,-70.2696,School Field,,,Hinckley,PORP67,Hinckley,HlB,315694,ME005,"Hinckley loamy sand, 3 to 8 percent slopes",Hinckley map unit that contains the point.
+2596,CAS1,CAP1,Front Street,Front Street,Camden,,,39.9494,-75.1259,39.9494,-75.1259,Garden,,,Buddtown,CAP1,Buddtown,WefB,777779,NJ007,"Westphalia-Buddtown-Urban land complex, 0 to 5 percent slopes",Buddtown majority area map unit in HUC. Matches low slopes of nearby map units.
+2604,CAS2,CAP2,29th Street,29th Street,Camden,,,39.9595,-75.0926,39.9595,-75.0926,Rain Garden,,,Freehold,CAP2,Freehold,FrpB,710862,NJ007,"Freehold-Downer-Urban land complex, 0 to 5 percent slopes",Largest and most common Freehold map unit near point.
+2612,CAS3,CAP3,St Anthony's,St Anthony's,Camden,,,39.9572,-75.0909,39.9572,-75.0909,Rain Garden,,,Freehold,CAP3,Freehold,FrpB,710862,NJ007,"Freehold-Downer-Urban land complex, 0 to 5 percent slopes",Largest and most common Freehold map unit near point.
+2623,CAS4,CAP4,Pyne Poynt,Pyne Poynt,Camden,,,39.9545,-75.1140,39.9545,-75.1140,School Lawn,,,Howell,CAP4,Howell,HowB,710872,NJ007,"Howell-Urban land complex, 0 to 5 percent slopes.",Only Howell map unit near point.
+2635,CAS5,CAP5,Aquarium,Aquarium,Camden,,,39.9461,-75.1306,39.9461,-75.1306,Landscape Lawn,,,UNK,CAP5,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2646,CAS5,CAP6,Aquarium,Aquarium,Camden,,,39.9461,-75.1306,39.9461,-75.1306,Bare Rain Garden,,,UNK,CAP6,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2650,CAS6,CAP7,Cooper Sprouts,Cooper Sprouts,Camden,,,39.9369,-75.1155,39.9369,-75.1155,Community Garden,,,UNK,CAP7,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2660,CAS7,CAP8,Ferry Library,Ferry Library ,Camden,,,39.9195,-75.1108,39.9195,-75.1108,Passive Lawn,,,Howell,CAP8,Howell,HowB,710872,NJ007,"Howell-Urban land complex, 0 to 5 percent slopes.",Only Howell map unit near point.
+2671,CAS8,CAP9,Beckett Street Garden,Beckett Street Garden,Camden,,,39.9373,-75.1245,39.9373,-75.1245,Urban Garden,,,Howell,CAP9,Howell,HowB,710872,NJ007,"Howell-Urban land complex, 0 to 5 percent slopes.",Only Howell map unit near point.
+2685,CAS9,CAP10,Ferry Avenue MUA,Ferry Avenue MUA,Camden,,,39.9241,-75.1218,39.9241,-75.1218,Rain Garden,,,Buddtown,CAP10,Buddtown,WefB,777779,NJ007,"Westphalia-Buddtown-Urban land complex, 0 to 5 percent slopes",Buddtown majority area map unit in HUC. Matches low slopes of nearby map units.
+2698,CAS10,CAP11,Neighborhood Center,Neighborhood Center,Camden,,,39.9300,-75.1251,39.9300,-75.1251,Passive Lawn,,,UNK,CAP11,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2708,CAS11,CAP12,Liney Ditch Camel,Liney Ditch Camel,Camden,,,39.9220,-75.1224,39.9220,-75.1224,Park,,,UNK,CAP12,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2719,CAS12,CAP13,Liney Ditch Garden,Liney Ditch Garden,Camden,,,39.9226,-75.1221,39.9226,-75.1221,Park,,,UNK,CAP13,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2728,CAS13,CAP14,Farnham Park,Farnham Park,Camden,,,39.9335,-75.0963,39.9335,-75.0963,Park,,,Buddtown,CAP14,Buddtown,WefB,777779,NJ007,"Westphalia-Buddtown-Urban land complex, 0 to 5 percent slopes",Buddtown majority area map unit in HUC. Matches low slopes of nearby map units.
+2736,CAS13,CAP15,Farnham Park,Farnham Park,Camden,,,39.9335,-75.0963,39.9335,-75.0963,Rain Garden,,,Buddtown,CAP15,Buddtown,WefB,777779,NJ007,"Westphalia-Buddtown-Urban land complex, 0 to 5 percent slopes",Buddtown majority area map unit in HUC. Matches low slopes of nearby map units.
+2740,CAS14,CAP16,Urban Promise School,Urban Promise School,Camden,,,39.9481,-75.0722,39.9481,-75.0722,Passive Lawn,,,Buddtown,CAP16,Buddtown,WefB,777779,NJ007,"Westphalia-Buddtown-Urban land complex, 0 to 5 percent slopes",Buddtown majority area map unit in HUC. Matches low slopes of nearby map units.
+2754,CAS15,CAP17,Urban Promise Rain Garden,Urban Promise Rain Garden,Camden,,,39.9481,-75.0722,39.9481,-75.0722,Rain Garden,,,Buddtown,CAP17,Buddtown,WefB,777779,NJ007,"Westphalia-Buddtown-Urban land complex, 0 to 5 percent slopes",Buddtown majority area map unit in HUC. Matches low slopes of nearby map units.
+2755,CAS16,CAP18,Octavius Catto School,Octavius Catto School,Camden,,,39.9482,-75.0809,39.9482,-75.0809,Passive Lawn,,,UNK,CAP18,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2765,CAS17,CAP19,Octavius Catto Rain Garden,Octavius Catto Rain Garden,Camden,,,39.9482,-75.0809,39.9482,-75.0809,Rain Garden,,,UNK,CAP19,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2766,CAS18,CAP20,Baird CSO,Baird CSO,Camden,,,39.9380,-75.0947,39.9380,-75.0947,Passive Lawn,,,UNK,CAP20,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2774,CAS19,CAP21,Baird CSO Rain Garden,Baird CSO Rain Garden,Camden,,,39.9380,-75.0947,39.9380,-75.0947,Rain Garden,,,Buddtown,CAP21,Buddtown,WefB,777779,NJ007,"Westphalia-Buddtown-Urban land complex, 0 to 5 percent slopes",Buddtown majority area map unit in HUC. Matches low slopes of nearby map units.
+2775,CAS20,CAP22,Thorndyke CSO,Thorndyke CSO,Camden,,,39.9370,-75.0904,39.9370,-75.0904,Passive Lawn,,,UNK,CAP22,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2784,CAS21,CAP23,Thorndyke CSO Rain Garden 2,Thorndyke CSO Rain Garden 2,Camden,,,39.9370,-75.0904,39.9370,-75.0904,Rain Garden,,,UNK,CAP23,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2785,CAS22,CAP24,Saddlers Woods,Saddlers Woods,Camden,,,39.9013,-75.0587,39.9013,-75.0587,Woods,,,UNK,CAP24,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2795,CAS23,CAP25,Brimm School,Brimm School,Camden,,,39.9241,-75.0955,39.9241,-75.0955,Gravel Parking Lot,,,UNK,CAP25,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2806,CAS24,CAP26,Haddon,Haddon,Camden,,,39.9237,-75.0914,39.9237,-75.0914,Construction Area,,,UNK,CAP26,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2818,CAS25,CAP27,Yorkship Elementary,Yorkship Elementary,Camden,,,39.9046,-75.1044,39.9046,-75.1044,Gravel Parking Lot,,,UNK,CAP27,UNK,No Data Cam,No Data Cam,,No Data Cam,
+2830,CAS26,CAP28,Medford WMA,Medford WMA,Camden,,,39.9275,-74.8409,39.9275,-74.8409,Woods,,,Buddtown,CAP28,Buddtown,WefB,777779,NJ007,"Westphalia-Buddtown-Urban land complex, 0 to 5 percent slopes",Buddtown majority area map unit in HUC. Matches low slopes of nearby map units.
+2839,OS1,OP1,3121 Bedford Ave,Adams 1,Omaha,,,41.2851,-95.9653,41.2851,-95.9653,,,Adams 1,Judson,OP1,Judson,7234,1710950,NE055,"Judson silty clay loam, 2 to 6 percent slopes",Judson map unit that contains the point.
+2846,OS1,OP2,3121 Bedford Ave,Adams 2,Omaha,,,41.2859,-95.9651,41.2859,-95.9651,,,Adams 2,Judson,OP2,Judson,7234,1710950,NE055,"Judson silty clay loam, 2 to 6 percent slopes",Judson map unit that contains the point.
+2852,OS2,OP3,3434 Cuming St,Bemis 1,Omaha,,,41.2684,-95.9620,41.2684,-95.9620,,,Bemis 1,Pohocco,OP3,Pohocco,9720,1710983,NE055,"Urban land-Udorthents-Pohocco complex, 0 to 16 percent slopes",Pohocco map unit that contains the point.
+2858,OS2,OP4,3434 Cuming St,Bemis 2,Omaha,,,41.2686,-95.9654,41.2686,-95.9654,,,Bemis 2,Pohocco,OP4,Pohocco,9720,1710983,NE055,"Urban land-Udorthents-Pohocco complex, 0 to 16 percent slopes",Pohocco map unit that contains the point.
+2864,OS2,OP5,3434 Cuming St,Bemis 3,Omaha,,,41.2691,-95.9664,41.2691,-95.9664,,,Bemis 3,Pohocco,OP5,Pohocco,9720,1710983,NE055,"Urban land-Udorthents-Pohocco complex, 0 to 16 percent slopes",Pohocco map unit that contains the point.
+2867,OS3,OP6,550 Turner Blvd,550 Turner Blvd,Omaha,,,41.2564,-95.9588,41.2564,-95.9588,,,,Pohocco,OP6,Pohocco,9720,1710983,NE055,"Urban land-Udorthents-Pohocco complex, 0 to 16 percent slopes",Nearest and most widespread Pohocco map unit near point.
+2873,OS4,OP7,4405 Fontenelle Blvd,Fontonelle 1,Omaha,,,41.2944,-95.9829,41.2944,-95.9829,,,Fontonelle 1,Judson,OP7,Judson,7234,1710950,NE055,"Judson silty clay loam, 2 to 6 percent slopes",Judson map unit that contains the point.
+2878,OS4,OP8,4405 Fontenelle Blvd,Fontonelle 2,Omaha,,,41.2944,-95.9838,41.2944,-95.9838,,,Fontonelle 2,Judson,OP8,Judson,7234,1710950,NE055,"Judson silty clay loam, 2 to 6 percent slopes",Judson map unit that contains the point.
+2885,OS5,OP9,2936 N 52nd St,Gallagher1,Omaha,,,41.2884,-95.9965,41.2884,-95.9965,,,Gallagher1,Contrary,OP9,Contrary,8153,1710967,NE055,"Contrary-Marshall silty clay loams, 6 to 11 percent slopes",Contrary map unit that contains the point.
+2890,OS5,OP10,2936 N 52nd St,Gallagher 2,Omaha,,,41.2854,-95.9968,41.2854,-95.9968,,,Gallagher 2,Marshall,OP10,Marshall,8035,1710955,NE055,"Marshall-Contrary silty clay loams, 2 to 7 percent slopes",Marshall map unit that contains the point.
+2899,OS6,OP11,3201 Woolworth Ave,Hanscom 1,Omaha,,,41.2407,-95.9585,41.2407,-95.9585,,,Hanscom 1,Contrary,OP11,Contrary,8157,1710969,NE055,"Contrary-Monona-Ida complex, 6 to 17 percent slopes",Contary map unit that contains the point.
+2908,OS6,OP12,3201 Woolworth Ave,Hanscom 2,Omaha,,,41.2407,-95.9590,41.2407,-95.9590,,,Hanscom 2,Contrary,OP12,Contrary,8157,1710969,NE055,"Contrary-Monona-Ida complex, 6 to 17 percent slopes",Contary map unit that contains the point.
+2914,OS6,OP13,3201 Woolworth Ave,Hanscom 3,Omaha,,,41.2432,-95.9577,41.2432,-95.9577,,,Hanscom 3,Contrary,OP13,Contrary,8157,1710969,NE055,"Contrary-Monona-Ida complex, 6 to 17 percent slopes",Contary map unit that contains the point.
+2920,OS6,OP14,3201 Woolworth Ave,Hanscom 4,Omaha,,,41.2449,-95.9591,41.2449,-95.9591,,,Hanscom 4,Contrary,OP14,Contrary,8157,1710969,NE055,"Contrary-Monona-Ida complex, 6 to 17 percent slopes",Contary map unit that contains the point.
+2928,OS7,OP15,4220 Q St NE,Hitchcock 1,Omaha,,,41.2075,-95.9776,41.2075,-95.9776,,,Hitchcock 1,Contrary,OP15,Contrary,8153,1710967,NE055,"Contrary-Marshall silty clay loams, 6 to 11 percent slopes",Contary map unit that contains the point.
+2935,OS7,OP16,4220 Q St NE,Hitchcock 2,Omaha,,,41.2086,-95.9772,41.2086,-95.9772,,,Hitchcock 2,Contrary,OP16,Contrary,8153,1710967,NE055,"Contrary-Marshall silty clay loams, 6 to 11 percent slopes",Contary map unit that contains the point.
+2945,OS8,OP17,3425 Leavenworth St,3425 Leavenworth St,Omaha,,,41.2521,-95.9631,41.2521,-95.9631,,,,Pohocco,OP17,Pohocco,9720,1710983,NE055,"Urban land-Udorthents-Pohocco complex, 0 to 16 percent slopes",Pohocco map unit that contains the point.
+2952,OS9,OP18,Paxton Blvd,Paxton 1,Omaha,,,41.2966,-95.9643,41.2966,-95.9643,,,Paxton 1,Judson,OP18,Judson,9718,1710979,NE055,"Urban land-Udorthents-Judson complex, 0 to 11 percent slopes",Judson map unit that contains the point.
+2956,OS9,OP19,Paxton Blvd,Paxton 2,Omaha,,,41.2961,-95.9642,41.2961,-95.9642,,,Paxton 2,Judson,OP19,Judson,9718,1710979,NE055,"Urban land-Udorthents-Judson complex, 0 to 11 percent slopes",Judson map unit that contains the point.
+2962,OS9,OP20,Paxton Blvd,Paxton 3,Omaha,,,41.2960,-95.9653,41.2960,-95.9653,,,Paxton 3,Judson,OP20,Judson,9718,1710979,NE055,"Urban land-Udorthents-Judson complex, 0 to 11 percent slopes",Judson map unit that contains the point.
+2970,OS10,OP21,20th and Pierce,20th and Pierce 1,Omaha,,,41.2477,-95.9419,41.2477,-95.9419,,,20th and Pierce 1,Pohocco,OP21,Pohocco,9720,1710983,NE055,"Urban land-Udorthents-Pohocco complex, 0 to 16 percent slopes",Pohocco map unit that contains the point.
+2974,OS10,OP22,20th and Pierce,20th and Pierce 2,Omaha,,,41.2481,-95.9416,41.2481,-95.9416,,,20th and Pierce 2,Pohocco,OP22,Pohocco,9720,1710983,NE055,"Urban land-Udorthents-Pohocco complex, 0 to 16 percent slopes",Pohocco map unit that contains the point.
+2977,OS11,OP23,Pine and 50th,Pine and 50th 1,Omaha,,,41.2435,-95.9904,41.2435,-95.9904,,,Pine and 50th 1,Pohocco,OP23,Pohocco,9720,1710983,NE055,"Urban land-Udorthents-Pohocco complex, 0 to 16 percent slopes",Pohocco map unit that contains the point.
+2987,OS11,OP24,Pine and 50th,Pine and 50th 2,Omaha,,,41.2437,-95.9908,41.2437,-95.9908,,,Pine and 50th 2,Pohocco,OP24,Pohocco,9720,1710983,NE055,"Urban land-Udorthents-Pohocco complex, 0 to 16 percent slopes",Pohocco map unit that contains the point.
+2995,OS12,OP25,4020 Hoctor Blvd,4020 Hoctor Blvd,Omaha,,,41.2219,-95.9419,41.2219,-95.9419,,,,Pohocco,OP25,Pohocco,8140,1710964,NE055,"Pohocco-Judson silt loams, 11 to 40 percent slopes",Pohocco map unit that contains the point.
+3003,OS13,OP26,Spring Lake Dr,Spring Lake Park 1,Omaha,,,41.2184,-95.9365,41.2184,-95.9365,,,Spring Lake Park 1,Monona,OP26,Monona,8100,1710958,NE055,"Monona-Pohocco-Ida silt loams, 17 to 33 percent slopes",Monona map unit that contains the point.
+3007,OS13,OP27,Spring Lake Dr,Spring Lake Park 2,Omaha,,,41.2185,-95.9364,41.2185,-95.9364,,,Spring Lake Park 2,Monona,OP27,Monona,8100,1710958,NE055,"Monona-Pohocco-Ida silt loams, 17 to 33 percent slopes",Monona map unit that contains the point.
+3010,OS13,OP28,Spring Lake Dr,Spring Lake Park 3,Omaha,,,41.2185,-95.9362,41.2185,-95.9362,,,Spring Lake Park 3,Monona,OP28,Monona,8100,1710958,NE055,"Monona-Pohocco-Ida silt loams, 17 to 33 percent slopes",Monona map unit that contains the point.
+3013,OS13,OP29,Spring Lake Dr,Spring Lake Park 4,Omaha,,,41.2186,-95.9361,41.2186,-95.9361,,,Spring Lake Park 4,Monona,OP29,Monona,8100,1710958,NE055,"Monona-Pohocco-Ida silt loams, 17 to 33 percent slopes",Monona map unit that contains the point.
+3016,OS14,OP30,Turner Blvd,Turner 1,Omaha,,,41.2488,-95.9626,41.2488,-95.9626,,,Turner 1,Pohocco,OP30,Pohocco,9720,1710983,NE055,"Urban land-Udorthents-Pohocco complex, 0 to 16 percent slopes",Pohocco map unit that contains the point.
+3021,OS14,OP31,Turner Blvd,Turner 2,Omaha,,,41.2494,-95.9625,41.2494,-95.9625,,,Turner 2,Pohocco,OP31,Pohocco,9720,1710983,NE055,"Urban land-Udorthents-Pohocco complex, 0 to 16 percent slopes",Pohocco map unit that contains the point.
+3027,OS15,OP32,3104 Jefferson St,Upland 1,Omaha,,,41.1972,-95.9581,41.1972,-95.9581,,,Upland 1,Marshall,OP32,Marshall,9719,1710981,NE055,"Urban land-Udorthents-Marshall complex, 0 to 9 percent slopes",Marshall map unit that contains the point.
+3032,OS15,OP33,3104 Jefferson St,Upland 2,Omaha,,,41.1964,-95.9582,41.1964,-95.9582,,,Upland 2,Marshall,OP33,Marshall,9719,1710981,NE055,"Urban land-Udorthents-Marshall complex, 0 to 9 percent slopes",Marshall map unit that contains the point.
+3036,OS16,OP34,6831 Q St,Sewer Department Offices,Omaha,,,41.2055,-96.0179,41.2055,-96.0179,,,,Kennebec,OP34,Kennebec,7050,1710952,NE055,"Kennebec silt loam, occasionally flooded",Most widespread Kennebec map unit near point.
+3042,OS17,OP35,5863 N 66 St,Orchard Park 1,Omaha,,,41.3137,-96.0130,41.3137,-96.0130,,,Orchard Park 1,Judson,OP35,Judson,9718,1710979,NE055,"Urban land-Udorthents-Judson complex, 0 to 11 percent slopes",Judson map unit that contains the point.
+3047,OS17,OP36,5863 N 66 St,Orchard Park 2,Omaha,,,41.3137,-96.0130,41.3137,-96.0130,,,Orchard Park 2,Judson,OP36,Judson,9718,1710979,NE055,"Urban land-Udorthents-Judson complex, 0 to 11 percent slopes",Judson map unit that contains the point.
+3051,RMIS1,RMIP1,Laura 7,Laura 7,Marshall Islands,,,7.1557,171.0359,7.1557,171.0359,,,,Ngedebus,RMIP1,,,,,,
+3058,RMIS2,RMIP2,Delap Park,Delap Park,Marshall Islands,,,7.0891,171.3791,7.0891,171.3791,,,,Ngedebus,RMIP2,,,,,,
+3060,RMIS3,RMIP3,Peace Park,Peace Park,Marshall Islands,,,7.0543,171.2375,7.0543,171.2375,,,,Majuro,RMIP3,,,,,,
+3063,RMIS4,RMIP4,Airport Park,Airport Park,Marshall Islands,,,7.0614,171.2597,7.0614,171.2597,,,,Majuro,RMIP4,,,,,,
+3064,RMIS5,RMIP5,CMI Arrak,CMI Arrak,Marshall Islands,,,7.1240,171.0509,7.1240,171.0509,"Surface, Road; Subsurface, Lagoon",,,Ngedebus,RMIP5,,,,,,
+3066,RMIS6,RMIP6,CMI Bball,CMI Bball,Marshall Islands,,,7.1023,171.3778,7.1023,171.3778,,,,Ngedebus,RMIP6,,,,,,
+3068,RMIS7,RMIP7,CMI Dorm,CMI Dorm,Marshall Islands,,,7.1035,171.3781,7.1035,171.3781,,,,Ngedebus,RMIP7,,,,,,
+3071,RMIS8,RMIP8,Laura 1,Laura 1,Marshall Islands,,,7.1445,171.0364,7.1445,171.0364,,,,Ngedebus,RMIP8,,,,,,
+3074,RMIS9,RMIP9,Airport Runway,Airport Runway,Marshall Islands,,,7.0622,171.2606,7.0622,171.2606,,,,Majuro,RMIP9,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,,,,,,

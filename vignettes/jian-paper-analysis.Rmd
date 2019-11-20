@@ -14,6 +14,9 @@ This vignette goes through the basic steps of the Jian et al. paper analysis, de
 # Load packages
 
 ```{r load packages}
+library(ggmap)
+library(maps)
+library(mapdata)
 library(dplyr)
 library(forcats)
 library(tidyr)
@@ -40,6 +43,55 @@ knitr::opts_chunk$set(results = 'hide', message = TRUE, include = TRUE,
                       cache = F)
 ```
 
+## plot sites spatial distribution
+```{r}
+# prepare data
+site <- read.csv("All_SSURGO_and_Point.csv")
+kfsdata <- read.csv("All_SSURGO_and_Surface_HC.csv")
+left_join(site %>% select(SampleSite_ID,SamplePoint_ID, Longitude, Latitude),
+          kfsdata %>% select(SampleSite_ID,SamplePoint_ID, Unsaturated_K2cm_cmhr) %>% 
+            filter(!is.na(Unsaturated_K2cm_cmhr))) %>% 
+  filter(!is.na(Unsaturated_K2cm_cmhr)) -> kfs_site
+
+kfs_site %>% select(Latitude, Longitude) %>% 
+  filter(Longitude < 0) %>% 
+  unique() -> kfs_site_agg
+
+```
+
+
+```{r load-urban-data}
+histdata <- read.csv(here::here("extdata/UrbanSoilK_V3.csv")) %>%
+  as_tibble() %>%
+  mutate(Top_Type = factor(Top_Type, soil_type_levels())) %>%
+  normalize_soil_pct_data(add_rock = FALSE)
+```
+
+
+```{r}
+# plot
+theme_set(theme_bw())
+
+map_data("world") %>% select(region) %>% unique()
+
+USA <- map_data("state")
+PuertoRico <- map_data("world", region = c("Puerto Rico"), exact = FALSE)
+
+northAmer <- bind_rows(USA, PuertoRico)
+northAmer <- northAmer %>% filter(long < 0)
+northAmer %>% filter(!(subregion %in% c("Hawaii","Alaska"))) -> northAmer
+
+ggplot(data = northAmer) + 
+  geom_polygon(aes(x = long, y = lat, group=group), fill = "gray", color = "white") +
+  geom_point(aes(x = Longitude, y = Latitude), shape = 3, color = "blue", size = 2
+             , data = kfs_site_agg) +
+  geom_point(aes(x = Longitude, y = Latitude), shape = 1, col = "red", data = histdata) +
+  labs(x = "Longitude", y = "Latitude")
+
+ ggsave("Figure1-1 Sites.jpg", width = 8, height = 5, units = "in")
+  
+```
+
 
 Load the _full_ set of fitted models.
 Because it is large (>100MB), this file is not distributed with the package.
@@ -60,12 +112,6 @@ Model predictions for Urban data.
 First, load the data.
 Note that the urban soil data does not report rock percentage.
 
-```{r load-urban-data}
-histdata <- read.csv(here::here("extdata/UrbanSoilK_V3.csv")) %>%
-  as_tibble() %>%
-  mutate(Top_Type = factor(Top_Type, soil_type_levels())) %>%
-  normalize_soil_pct_data(add_rock = FALSE)
-```
 
 
 ```{r predict}
@@ -124,13 +170,13 @@ pred_fits <- pred %>%
   select(sample, model_type, observed = Unsaturated_K2cm_cmhr, predicted) %>%
   group_by(sample, model_type) %>%
   summarize(fit = list(lm(observed ~ predicted))) %>%
-  ungroup() %>%
-  mutate(
-    coefficients = map(fit, coefficients),
-    slope = map_dbl(coefficients, 2),
-    intercept = map_dbl(coefficients, 1),
-    r2 = map_dbl(fit, ~summary(.)[["adj.r.squared"]])
-  )
+  ungroup() 
+  # mutate(
+  #   coefficients = map(fit, coefficients),
+  #   slope = map_dbl(coefficients, 2),
+  #   intercept = map_dbl(coefficients, 1),
+  #   r2 = map_dbl(fit, ~summary(.)[["adj.r.squared"]])
+  # )
 ```
 
 Use the linear model fits from above to generate a range of predictions of the observed data.
@@ -224,9 +270,29 @@ fig_urbandata_cap <- paste0(
 )
 
 
-histdata %>%
+plot_grid(p1)
+
+ggsave("Figure2.jpg", width = 4, height = 6, dpi = 300, units = "in")
+ggsave("Figure2.pdf", width = 4, height = 6, dpi = 300, units = "in")
+```
+
+
+How well does it do?
+
+```{r fig-urbandata, fig.cap = fig_urbandata_cap, fig.width=4, fig.height=6}
+facet_title = c("Neural network (no rock)" = "(a) ANN-no-structure"
+                ,"RandomForest (no rock, no type)" = "(b) RF-no-structure"
+                ,"RandomForest (no rock, with type)" = "(c) RF-with-structure"
+                ,"ROSSETA" = "(d) ROSETTA"
+                )
+
+bind_rows(
+  histdata %>% select(`mean` = Ksat_Rosseta, Ksat) %>% mutate(q050 = Ksat, q950 = Ksat, model_type = "ROSSETA"),
+  histdata %>%
   left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay",
                                  "Top_Type")) %>%
+  select(mean, q050, q950, Ksat, model_type) ) %>% 
+
   ggplot() +
   aes(x = mean, xmin = q050, xmax = q950, y = Ksat) +
   geom_errorbarh(color = "grey50", size = 0.5) +
@@ -239,20 +305,17 @@ histdata %>%
   labs(x = expression("Predicted K"[fs] ~ (cm ~ hr^-1)),
        y = expression("Observed K"[fs] ~ (cm ~ hr^-1))) +
   theme_cowplot() +
-  coord_cartesian(xlim = c(0, 35)) -> p2
+  coord_cartesian(xlim = c(0, 75)) -> p2
 
-plot_grid(p1)
-
-ggsave("Figure2.jpg", width = 4, height = 6, dpi = 300, units = "in")
-```
-
-
-How well does it do?
-
-```{r fig-urbandata, fig.cap = fig_urbandata_cap, fig.width=4, fig.height=6}
 print(p2)
 ggsave("Figure3.jpg", width = 4, height = 6, dpi = 300, units = "in")
+ggsave("Figure3.pdf", width = 4, height = 6, dpi = 300, units = "in")
 ```
+
+```{r}
+histdata %>% ggplot(aes(x = Ksat_Rosseta, y = Ksat)) + geom_point()
+```
+
 
 
 ```{r model test}
