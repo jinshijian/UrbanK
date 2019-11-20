@@ -1,4 +1,4 @@
-,Texture_mod,Percent_Sand,Percent_Silt,Percent_Clay,Check,TextureSource,BulkDensity,Ksat,Ksat_RF,Ksat_ANN,Ksat_Rosseta,Note.1,Note.2,Note3,Unit,Citation,Longitude,Latitude,Top_Type,Comments,Comments2,Ksat_RF2,RF3
+,Texture_mod,Percent_Sand,Percent_Silt,Percent_Clay,Check,TextureSource,BulkDensity,Ksat,Ksat_RF,Ksat_ANN,Ksat_Rosseta,Note.1,Note.2,Note3,Unit,Citation,Latitude,Longitude,Top_Type,Comments,Comments2,Ksat_RF2,RF3
 1,sand,89.3,10.6,0.1,100,Reported,1.48,18.7,3.3,4.79,340.18,Compacted,Natural wooded lot F,Constant head double ring infiltrometer ,cm/hr,Gregory (2006),27.66,-81.52,single grain,Single grain,,5.31,4
 2,sand,96.2,1.8,2,100,Reported,1.52,16,9.63,7.75,872,Compacted,Planted forest lot G,Constant head double ring infiltrometer ,cm/hr,Gregory (2006),27.66,-81.52,single grain,Single grain,,7.36,4
 3,sand,96.2,1.8,2,100,Reported,1.47,18.8,9.63,7.75,872,Compacted,Planted forest lot H,Constant head double ring infiltrometer ,cm/hr,Gregory (2006),27.66,-81.52,single grain,Single grain,,7.36,4
