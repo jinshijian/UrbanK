@@ -12,24 +12,26 @@ soil_types <- function(col = NULL, stringsAsFactors = FALSE) {
     Type = c(
       "fine granular structure", "single grain", "medium granular structure",
       "thin and medium plate-like structure", "massive", "medium subangular blocky",
-      "medium and fine granular", "coarse granular blocky", "fine subangular blocky",
-      "fine and medium granular structure", "medium platy structure",
-      "fine and medium subangular blocky", "fine and medium prismatic structure",
-      "medium granular and strong", "medium angular blocky", "fine angular structure",
-      "medium prismatic parting to moderate medium subangular blocky",
-      "medium prismatic structure parting to moderate medium subangular blocky",
+      "medium and fine granular", "coarse granular", "fine subangular blocky",
+      "fine and medium granular structure", "medium platy structure", "fine and medium subangular blocky",
+      "fine and medium prismatic structure", "medium granular and strong coarse angular blocky", "medium angular blocky",
+      "fine angular structure", "medium prismatic parting to moderate medium subangular blocky", "medium prismatic structure parting to moderate medium subangular blocky",
       "coarse prismatic", "medium prismatic", "angular blocky",
-      "very coarse prismatic structure", "very fine granular structure",
-      "coarse subangular blocky" , "fine subangular and angular blocky",
-      "very fine and fine subangular blocky", "medium and coarse subangular blocky",
-      "subangular blocky", "fine granular structure and weak very fine subangular blocky"
-    ),
+      "very coarse prismatic structure", "very fine granular structure", "coarse subangular blocky" ,
+      "fine subangular and angular blocky", "very fine and fine subangular blocky", "medium and coarse subangular blocky",
+      "subangular blocky", "fine granular structure and weak very fine subangular blocky"    ),
+    
     Top_Type = c(
-      "granular", "single grain", "granular", "platy", "massive",
-      "blocky", "granular", "blocky", "blocky", "granular", "platy",
-      "blocky", "prismatic", "granular", "blocky", "blocky", "blocky",
-      "blocky", "prismatic", "prismatic", "blocky", "prismatic", "granular",
-      "blocky", "blocky", "blocky", "blocky", "blocky", "granular"      
+      "granular", "single grain", "granular",
+      "platy", "massive", "subangular",
+      "granular", "granular", "subangular",
+      "granular", "platy", "subangular",
+      "prismatic", "angular", "angular",
+      "angular", "prismatic", "prismatic",
+      "prismatic", "prismatic", "angular",
+      "prismatic", "granular",  "subangular",
+      "subangular", "subangular", "subangular",
+      "subangular", "granular"      
     ),
     stringsAsFactors = stringsAsFactors
   )

@@ -57,6 +57,8 @@ kfs_site %>% select(Latitude, Longitude) %>%
   filter(Longitude < 0) %>% 
   unique() -> kfs_site_agg
 
+kfs_site_agg %>% ggplot(aes(x = Longitude, y = Latitude)) + geom_point()
+
 ```
 
 

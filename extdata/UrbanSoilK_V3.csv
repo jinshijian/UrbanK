@@ -12,10 +12,10 @@
 14,clayLoam,24,47,29,100,Reported,NA,2.3,0.91,0.38,12.42,H,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,blocky,Subangular blocky,Guessing,0.68,NA
 15,siltLoam,27,51,22,100,Reported,NA,2.7,0.43,0.4,14.56,I,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,blocky,Subangular blocky,Guessing,0.31,NA
 16,loam,42,33,25,100,Reported,NA,2.9,0.35,0.5,7.21,J,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,blocky,Subangular blocky,Guessing,0.53,NA
-17,loam,32,43,25,100,Reported,NA,4.9,0.44,0.42,12.58,K,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,blocky,Subangular blocky,Guessing,0.47,NA
-18,clayLoam,32,39,29,100,Reported,NA,5.1,0.6,0.41,9.68,L,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,blocky,Subangular blocky,Guessing,0.35,NA
-19,siltLoam,18,60,22,100,Reported,NA,8.5,0.48,0.38,13.65,M,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,blocky,Subangular blocky,Guessing,0.36,NA
-20,siltLoam,22,57,21,100,Reported,NA,9.8,0.53,0.39,14.57,N,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,blocky,Subangular blocky,Guessing,0.4,NA
-21,clayLoam,30,41,29,100,Reported,NA,10,0.59,0.4,11.35,O,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,blocky,Subangular blocky,Guessing,0.34,NA
+17,loam,32,43,25,100,Reported,NA,4.9,0.44,0.42,12.58,K,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,G,Granular,Guessing,0.47,NA
+18,clayLoam,32,39,29,100,Reported,NA,5.1,0.6,0.41,9.68,L,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,G,Granular,Guessing,0.35,NA
+19,siltLoam,18,60,22,100,Reported,NA,8.5,0.48,0.38,13.65,M,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,G,Granular,Guessing,0.36,NA
+20,siltLoam,22,57,21,100,Reported,NA,9.8,0.53,0.39,14.57,N,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,G,Granular,Guessing,0.4,NA
+21,clayLoam,30,41,29,100,Reported,NA,10,0.59,0.4,11.35,O,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,G,Subangular blocky,Guessing,0.34,NA
 22,sand,94,3,3,100,USDA soil texture triangle,NA,3,9.63,6.9,629.24,Compacted,Table 3-3,Double ring method (120mins),cm/hr,Pitt (1999),43.11,-88.5,single grain,Single grain,Guessing,7.36,NA
 23,clay,15,15,70,100,USDA soil texture triangle,NA,0.7,2,0.35,16.32,Compacted,Table 3-3,Double ring method (120mins),cm/hr,Pitt (1999),43.11,-88.5,blocky,Subangular blocky,Guessing,1.56,NA

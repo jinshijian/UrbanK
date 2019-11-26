@@ -264,10 +264,11 @@ rf_sscs <- function(sdata) {
 
 rf2_visual <- function (model) {
   p1 <- qplot(1:100,model$mse ) + geom_line() + theme_bw() +
-    xlab ("Number of trees (n)") + ylab("MSE") +
+    xlab ("Number of trees (n)") + ylab("  MSE ") +
     theme(axis.text.x = element_text(face = "bold", size = 12),
           axis.text.y = element_text(face = "bold", size = 12),
-          axis.title = element_text(face = "bold", size = 12)
+          axis.title = element_text(face = "bold", size = 12),
+          axis.title.y = element_text(angle = 0, vjust = 0.5)
     ) 
   # annotate("text", x = 8, y = 7.15, label = "( a )", size = 6)
   
@@ -291,10 +292,12 @@ rf2_visual <- function (model) {
     ) + scale_y_continuous(labels = c(" ", " ", " ", " ") ) 
     # annotate("text", x = 650, y = 3.75, label = "( c )", size = 6)
   
-  panel_b <- plot_grid(p2, p3, ncol = 2)
+  panel_b <- plot_grid(p2, p3, ncol = 2, labels = c("b", "c"), hjust = c(-9.5, -4), vjust = 2.75)
   
   # print(panel_b)
-  print(plot_grid(p1, panel_b, nrow = 2 ))
+  print(plot_grid(p1, panel_b, nrow = 2, labels = c("a", "")
+                  , hjust = -10, vjust = 2.75 )
+        )
   invisible(list(p1,p2,p3, panel_b))
 }
 

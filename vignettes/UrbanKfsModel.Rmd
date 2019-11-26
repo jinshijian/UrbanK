@@ -24,6 +24,7 @@ knitr::opts_chunk$set(results = 'hide', message = TRUE, include = TRUE, echo = F
 library(cowplot)
 library(grid)
 library(gridExtra)
+# install.packages("soiltexture")
 # library( soiltexture )
 library("ggpubr")
 library(ggplot2)
@@ -124,8 +125,8 @@ test <- scaled[-index,]
 
 ann_Ksat <- ann_ssc(train)
 
-train$p.ann_Ksat <- compute(ann_Ksat, train[,c('Percent_Sand' , 'Percent_Silt' , 'Percent_Clay')])$net.result
-test$p.ann_Ksat <- compute(ann_Ksat, test[,c('Percent_Sand' , 'Percent_Silt' , 'Percent_Clay')])$net.result
+train$p.ann_Ksat <- neuralnet::compute(ann_Ksat, train[,c('Percent_Sand' , 'Percent_Silt' , 'Percent_Clay')])$net.result
+test$p.ann_Ksat <- neuralnet::compute(ann_Ksat, test[,c('Percent_Sand' , 'Percent_Silt' , 'Percent_Clay')])$net.result
   
 # scale back the value
 train$kfs <- train$Unsaturated_K2cm_cmhr * (max(data$Unsaturated_K2cm_cmhr)-min(data$Unsaturated_K2cm_cmhr)) + min(data$Unsaturated_K2cm_cmhr)
@@ -168,6 +169,7 @@ cor(test_RF$kfs_m, test_RF$Unsaturated_K2cm_cmhr, method = c("spearman"))
 
 
 ```{r RF2 model with soil structure}
+set.seed(20191120)
 rf2 <- rf_sscs(data_structure)
 # train dataset
 train_RF2 <- train_RF
@@ -187,24 +189,32 @@ cor(test_RF2$kfs_m, test_RF2$Unsaturated_K2cm_cmhr, method = c("spearman"))
 
 ```{r Figure 3}
 importance(rf2, type = 1)
+getwd()
+
+pdf("Figure A2.pdf", height = 6, width = 8)
 rf2_visual(model = rf2)
+dev.off()
+
+tiff(paste("Figure A2.tiff"), width = 8, height = 6, pointsize = 1/300, units = 'in', res = 300)
+rf2_visual(model = rf2)
+dev.off()
 ```
 
 
 
 ```{r Figure 4, fig.height=8, fig.width=7}
 # plot measured kfs and predicted kfs by ANN
-colnames(train_RF)[7] <- 'kfs'
-colnames(train_RF2)[7] <- 'kfs'
-colnames(test_RF)[7] <- 'kfs'
-colnames(test_RF2)[7] <- 'kfs'
-colnames(test_rosetta)[c(8,11)] <- c('kfs', 'kfs_m')
-model_evaluation2()
+# colnames(train_RF)[7] <- 'kfs'
+# colnames(train_RF2)[7] <- 'kfs'
+# colnames(test_RF)[7] <- 'kfs'
+# colnames(test_RF2)[7] <- 'kfs'
+# colnames(test_rosetta)[c(8,11)] <- c('kfs', 'kfs_m')
+# model_evaluation2()
 ```
 
 
 ```{r Figure 5}
-model_evaluation3 ()
+# model_evaluation3 ()
 
 ```
 
