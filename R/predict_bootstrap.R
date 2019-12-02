@@ -32,6 +32,14 @@ predict_bootstrap <- function(data, fitted_models = fitted_models) {
     stop("Missing the following columns: ",
          paste(missing_cols, collapse = ", "))
   }
+  
+  data_test <- data %>%
+    dplyr::mutate(total = Percent_Sand + Percent_Silt + Percent_Clay,
+                  invalid = total >= 101 | total <= 99)
+  
+  if (any(data_test$invalid)) {
+    stop(sum(data_test$invalid), " rows don't add up to 100.")
+  }
 
   data_sub <- data %>%
     # Percent Rock is optional...
@@ -46,7 +54,7 @@ predict_bootstrap <- function(data, fitted_models = fitted_models) {
   }
   out <- fitted_models %>%
     dplyr::mutate(
-      data = list(data_sub),
+      data = list(data_sub %>% dplyr::inner_join(data)),
       predicted = purrr::map(model_fit, predict, newdata = data_sub)
     )
   class(out) <- c("urbankfs_prediction", class(out))
@@ -65,6 +73,7 @@ summary.urbankfs_prediction <- function(object, quantiles = c(0.05, 0.5, 0.95), 
   names(qfuns) <- sprintf("q%03.f", quantiles * 1000)
   object %>%
     tidyr::unnest(data, predicted) %>%
+    dplyr::select_if(purrr::negate(is.list)) %>%
     dplyr::group_by_at(dplyr::vars(-sample, -predicted)) %>%
     dplyr::summarize_at(dplyr::vars(predicted), rlang::list2(
       mean = mean,
