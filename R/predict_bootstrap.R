@@ -32,6 +32,14 @@ predict_bootstrap <- function(data, fitted_models = fitted_models) {
     stop("Missing the following columns: ",
          paste(missing_cols, collapse = ", "))
   }
+  
+  data_test <- data %>%
+    dplyr::mutate(total = Percent_Sand + Percent_Silt + Percent_Clay,
+                  invalid = total >= 101 | total <= 99)
+  
+  if (any(data_test$invalid)) {
+    stop(sum(data_test$invalid), " rows don't add up to 100.")
+  }
 
   data_sub <- data %>%
     # Percent Rock is optional...
@@ -42,12 +50,13 @@ predict_bootstrap <- function(data, fitted_models = fitted_models) {
     warning("Found ", sum(n_na), " NA values in `Top_Type` after coercing to factor. ",
             "Only soil types in `soil_type_levels()` are supported (see also `soil_types()`). ",
             "Dropping NA levels.")
-    data_sub <- dplyr::filter(data_sub, !is.na(Top_Type))
+    data_sub <- dplyr::filter(data_sub, !n_na)
   }
   out <- fitted_models %>%
     dplyr::mutate(
       data = list(data_sub),
-      predicted = purrr::map(model_fit, predict, newdata = data_sub)
+      predicted = purrr::map(model_fit, predict, newdata = data_sub),
+      row_id = list(seq_len(nrow(data_sub)))
     )
   class(out) <- c("urbankfs_prediction", class(out))
   out
@@ -64,7 +73,8 @@ summary.urbankfs_prediction <- function(object, quantiles = c(0.05, 0.5, 0.95), 
   qfuns <- purrr::map(quantiles, ~purrr::partial(quantile, probs = .x))
   names(qfuns) <- sprintf("q%03.f", quantiles * 1000)
   object %>%
-    tidyr::unnest(data, predicted) %>%
+    tidyr::unnest(c(row_id, data, predicted)) %>%
+    dplyr::select_if(purrr::negate(is.list)) %>%
     dplyr::group_by_at(dplyr::vars(-sample, -predicted)) %>%
     dplyr::summarize_at(dplyr::vars(predicted), rlang::list2(
       mean = mean,

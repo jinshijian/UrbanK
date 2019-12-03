@@ -30,6 +30,6 @@ test_that("Greater than 100% works correctly", {
 
 # test scenario 2 - "single grain", "massive", "blocky", "granular", "prismatic".
 # whenever other soil structure type inputed, an error "our model currently does not including this sturcture type, please using RF-no-structure model"
-data_structure %>% select(Top_Type) %>% unique()
+# data_structure %>% select(Top_Type) %>% unique()
 
 

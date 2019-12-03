@@ -44,7 +44,9 @@ fun_list <- list(
 )
 
 fun_df <- enframe(fun_list, "model", "fun")
-data_funs <- crossing(data_list, fun_df) %>%
+data_funs <- data_list %>%
+  select(-train, -test) %>%
+  crossing(fun_df) %>%
   select(sample = .id, train_data = train_df, test_data = test_df,
          model_type = model, fit_fun = fun)
 
