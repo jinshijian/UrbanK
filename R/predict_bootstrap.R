@@ -50,12 +50,13 @@ predict_bootstrap <- function(data, fitted_models = fitted_models) {
     warning("Found ", sum(n_na), " NA values in `Top_Type` after coercing to factor. ",
             "Only soil types in `soil_type_levels()` are supported (see also `soil_types()`). ",
             "Dropping NA levels.")
-    data_sub <- dplyr::filter(data_sub, !is.na(Top_Type))
+    data_sub <- dplyr::filter(data_sub, !n_na)
   }
   out <- fitted_models %>%
     dplyr::mutate(
-      data = list(data_sub %>% dplyr::inner_join(data)),
-      predicted = purrr::map(model_fit, predict, newdata = data_sub)
+      data = list(data_sub),
+      predicted = purrr::map(model_fit, predict, newdata = data_sub),
+      row_id = list(seq_len(nrow(data_sub)))
     )
   class(out) <- c("urbankfs_prediction", class(out))
   out
@@ -72,7 +73,7 @@ summary.urbankfs_prediction <- function(object, quantiles = c(0.05, 0.5, 0.95), 
   qfuns <- purrr::map(quantiles, ~purrr::partial(quantile, probs = .x))
   names(qfuns) <- sprintf("q%03.f", quantiles * 1000)
   object %>%
-    tidyr::unnest(data, predicted) %>%
+    tidyr::unnest(c(row_id, data, predicted)) %>%
     dplyr::select_if(purrr::negate(is.list)) %>%
     dplyr::group_by_at(dplyr::vars(-sample, -predicted)) %>%
     dplyr::summarize_at(dplyr::vars(predicted), rlang::list2(
