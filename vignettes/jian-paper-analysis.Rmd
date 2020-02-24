@@ -137,7 +137,9 @@ pred <- fitted_models %>%
     # Subset the data so that it first the needs of the model
     data_prep = pmap(list(data, use_rock, top_type), prepare_data),
     # Actually run the predictions
-    predicted = map2(model_fit, data_prep, predict),
+    predicted_log = map2(model_fit, data_prep, predict),
+    # Un-log the predictions
+    predicted = map(predicted_log, exp),
     # Make the model_type labels plot-ready
     model_type = fct_recode(model_type, !!!pretty_model_types())
   )
@@ -153,6 +155,7 @@ fitted_models_norock <- fitted_models %>%
   left_join(model_rock_type, "model_type") %>%
   filter(!use_rock)
 
+# NOTE: The `predicted` column here is `log(Kfs)`!
 hist_predict <- predict_bootstrap(histdata, fitted_models_norock)
 
 hist_summary <- summary(hist_predict)
@@ -187,10 +190,11 @@ Fit a linear model, `observed ~ predicted`, for each bootstrapped sample, and ex
 ```{r fit-line-to-pred}
 pred_fits <- pred %>%
   filter(data_type == "test_data") %>%
-  unnest(data_prep, predicted) %>%
-  select(sample, model_type, observed = Unsaturated_K2cm_cmhr, predicted) %>%
+  unnest(c(data_prep,  predicted_log)) %>%
+  mutate(observed_log = log(Unsaturated_K2cm_cmhr)) %>%
+  select(sample, model_type, observed_log, predicted_log) %>%
   group_by(sample, model_type) %>%
-  summarize(fit = list(lm(observed ~ predicted))) %>%
+  summarize(fit = list(lm(observed_log ~ predicted_log))) %>%
   ungroup() 
   # mutate(
   #   coefficients = map(fit, coefficients),
@@ -230,9 +234,10 @@ These will be drawn as points with horizontal error bars.
 ```{r summarize-point-predictions}
 pred_summary <- pred %>%
   filter(data_type == "test_data") %>%
-  unnest(data_prep, predicted) %>%
-  group_by(model_type, observed = Unsaturated_K2cm_cmhr) %>%
-  summarize_at(vars(predicted), list(
+  unnest(c(data_prep, predicted_log)) %>%
+  mutate(observed_log = log(Unsaturated_K2cm_cmhr)) %>%
+  group_by(model_type, observed_log) %>%
+  summarize_at(vars(predicted_log), list(
     mean = mean,
     sd = sd,
     lo = ~quantile(., 0.1),
@@ -255,14 +260,14 @@ facet_title = c("Neural network (no rock)" = "(a) ANN-no-structure"
                    )
 
 pred_summary %>% filter(model_type %in% c("Neural network (no rock)", "RandomForest (no rock, no type)", "RandomForest (no rock, with type)")) %>% 
-  ggplot(aes(x = mean, y = observed)) +  geom_point(size = 0.5) +
+  ggplot(aes(x = mean, y = observed_log)) +  geom_point(size = 0.5) +
   facet_wrap(model_type~., ncol = 1
              , labeller = as_labeller(facet_title)
              ) +
-  
-  geom_errorbarh(aes(y = observed, xmin = lo, xmax = hi, x = NULL),
+  geom_errorbarh(aes(y = observed_log, xmin = lo, xmax = hi, x = NULL),
                  color = "gray40",
-                 size = 0.5) +
+                 size = 0.5,
+                 alpha = 0.2) +
   # geom_ribbon(
   #   data = pred_lm %>% filter(model_type %in% c("Neural network (no rock)", "RandomForest (no rock, no type)", "RandomForest (no rock, with type)")),
   #   aes(ymin = lo, ymax = hi, y = NULL),
@@ -273,10 +278,8 @@ pred_summary %>% filter(model_type %in% c("Neural network (no rock)", "RandomFor
   geom_smooth(method = "lm", color = "blue", se = T, fill="lightblue", alpha = 0.5, lwd = 0.5) +
   # geom_line(aes(y = observed), data = pred_lm %>% 
   #             filter(model_type %in% c("Neural network (no rock)", "RandomForest (no rock, no type)", "RandomForest (no rock, with type)")) ) +
-  
-  
-  labs(x = expression('Predicted K'[fs] ~ (cm ~ hr^{-1})),
-       y = expression('Observed K'[fs] ~ (cm ~ hr^{-1}))) +
+  labs(x = expression(Predicted ~ log(K[fs]) ~ (log(cm ~ hr^{-1}))),
+       y = expression(Observed ~ log(K[fs]) ~ (log(cm ~ hr^{-1})))) +
   theme_cowplot() -> p1
 
 
@@ -301,32 +304,40 @@ plot_grid(p1)
 How well does it do?
 
 ```{r fig-urbandata, fig.cap = fig_urbandata_cap, fig.width=4, fig.height=6}
-facet_title = c("Neural network (no rock)" = "(a) ANN-no-structure"
-                ,"RandomForest (no rock, no type)" = "(b) RF-no-structure"
-                ,"RandomForest (no rock, with type)" = "(c) RF-with-structure"
-                ,"ROSSETA" = "(d) ROSETTA"
-                )
+facet_title = c("(a) ANN-no-structure" = "Neural network (no rock)",
+                "(b) RF-no-structure" = "RandomForest (no rock, no type)",
+                "(c) RF-with-structure" = "RandomForest (no rock, with type)",
+                "(d) ROSETTA" = "ROSSETA")
 
 bind_rows(
-  histdata %>% select(`mean` = Ksat_Rosseta, Ksat) %>% mutate(q050 = Ksat, q950 = Ksat, model_type = "ROSSETA"),
   histdata %>%
-  left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay",
-                                 "Top_Type")) %>%
-  select(mean, q050, q950, Ksat, model_type) ) %>% 
-
+    transmute(
+      mean = log(Ksat_Rosseta),
+      log_Ksat = log(Ksat),
+      q050 = log_Ksat,
+      q950 = log_Ksat,
+      model_type = "ROSSETA"
+    ) %>%
+    filter_if(is.numeric, all_vars(is.finite(.))),
+  histdata %>%
+    left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay",
+                                   "Top_Type")) %>%
+    mutate(log_Ksat = log(Ksat)) %>%
+    select(mean, log_Ksat, q050, q950, model_type)
+) %>%
+  mutate(model_type = fct_recode(model_type, !!!facet_title)) %>%
   ggplot() +
-  aes(x = mean, xmin = q050, xmax = q950, y = Ksat) +
+  aes(x = mean, xmin = q050, xmax = q950, y = log_Ksat) +
   geom_errorbarh(color = "grey50", size = 0.5) +
   geom_point(size = 0.7) +
   geom_smooth(method = "lm", color = "blue", alpha = 0.5, lwd = 0.5, fill = "lightblue") +
   geom_abline(linetype = "dashed") +
   facet_wrap(model_type~., ncol = 1
-             , labeller = as_labeller(facet_title) 
+           , labeller = as_labeller(facet_title) 
              ) +
-  labs(x = expression("Predicted K"[fs] ~ (cm ~ hr^-1)),
-       y = expression("Observed K"[fs] ~ (cm ~ hr^-1))) +
-  theme_cowplot() +
-  coord_cartesian(xlim = c(0, 75)) -> p2
+  labs(x = expression(Predicted ~ log(K[fs]) ~ (log(cm ~ hr^-1))),
+       y = expression(Observed ~ log(K[fs]) ~ (log(cm ~ hr^-1)))) +
+  theme_cowplot() -> p2
 
 print(p2)
 # ggsave("Figure3.jpg", width = 4, height = 6, dpi = 300, units = "in")
