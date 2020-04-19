@@ -6,18 +6,14 @@ output:
     df_print: paged
 ---
 
-
 # Introduction
-
 This vignette goes through the basic steps of the Jian et al. paper analysis, demonstrating some of the features of the `urbankfs` R package along the way.
 
 # Load packages
-
 ```{r load packages}
 library(ggmap)
 library(maps)
 library(mapdata)
-library(dplyr)
 library(forcats)
 library(tidyr)
 library(modelr)
@@ -25,40 +21,23 @@ library(purrr)
 library(ggplot2)
 library(cowplot)
 library(urbankfs)
+library(readxl)
 # install.packages("here")
 # install.packages("randomForest")
 library(devtools)
 requireNamespace("here", quietly = TRUE)
 # devtools::install(here::here())
 requireNamespace("randomForest", quietly = TRUE)
-
+library(dplyr)
+library(ncdf4)
 ```
 
 # Setup  
-
 ```{r setup}
 knitr::opts_chunk$set(results = 'hide', message = TRUE, include = TRUE,
                       echo = FALSE, warning = FALSE,
                       # fig.height = 4, fig.width = 8, 
                       cache = F)
-```
-
-## plot sites spatial distribution
-```{r}
-# prepare data
-site <- read.csv(here::here("vignettes", "All_SSURGO_and_Point.csv"))
-kfsdata <- read.csv(here::here("vignettes", "All_SSURGO_and_Surface_HC.csv"))
-left_join(site %>% select(SampleSite_ID,SamplePoint_ID, Longitude, Latitude),
-          kfsdata %>% select(SampleSite_ID,SamplePoint_ID, Unsaturated_K2cm_cmhr) %>% 
-            filter(!is.na(Unsaturated_K2cm_cmhr))) %>% 
-  filter(!is.na(Unsaturated_K2cm_cmhr)) -> kfs_site
-
-kfs_site %>% select(Latitude, Longitude) %>% 
-  filter(Longitude < 0) %>% 
-  unique() -> kfs_site_agg
-
-kfs_site_agg %>% ggplot(aes(x = Longitude, y = Latitude)) + geom_point()
-
 ```
 
 
@@ -72,11 +51,90 @@ histdata$Top_Type <- as.character(histdata$Top_Type)
 histdata$Top_Type <- ifelse(is.na(histdata$Top_Type), "SG", histdata$Top_Type)
 ```
 
+## plot sites spatial distribution
+```{r}
+# prepare data
+site <- read.csv("All_SSURGO_and_Point.csv")
+kfsdata <- read.csv("All_SSURGO_and_Surface_HC.csv")
+left_join(site %>% select(SampleSite_ID,SamplePoint_ID, Longitude, Latitude),
+          kfsdata %>% select(SampleSite_ID,SamplePoint_ID, Unsaturated_K2cm_cmhr) %>% 
+            filter(!is.na(Unsaturated_K2cm_cmhr))) %>% 
+  filter(!is.na(Unsaturated_K2cm_cmhr)) -> kfs_site
+
+kfs_site %>% select(Latitude, Longitude) %>% 
+  filter(Longitude < 0) %>% 
+  unique() -> kfs_site_agg
+```
+
+
+## get latitude and longitude
+```{r}
+SSURG_all <- read_excel("../extdata/All_SSURGO_and_Observed_All.xlsx", sheet = 3)
+SSURG_all <- SSURG_all
+left_join(
+  data_orig, 
+  SSURG_all %>% select(SampleLayer_ID, SampleSite_ID, SamplePoint_ID), by = c("SampleLayer_ID")
+) -> data_orig2
+
+left_join(
+  data_orig2,
+  site %>% select(SampleSite_ID, SamplePoint_ID, Latitude, Longitude),
+  by = c("SampleSite_ID", "SamplePoint_ID")
+) -> data_orig2
+
+data_orig2 %>% 
+  select(Unsaturated_K2cm_cmhr, Percent_Sand, Type
+         # , BulkDensity_gcm3
+         , Latitude, Longitude
+         ) %>% 
+  na.omit()
+
+data_orig2 %>% 
+  select(Latitude, Longitude) %>% 
+  na.omit()
+```
+
+
+## get BD from HWSD if BD is null
+### load HWSD BD data
+```{r}
+HWSD_bd <- nc_open("../extdata/HWSD_BULK_DEN.nc4")
+```
+
+### create function
+```{r}
+# get soil BD from HWSD
+# data_orig3 <- get_bd(HWSD_bd, data_orig2)
+data_orig3$BulkDensity_gcm3 <- ifelse(is.na(data_orig3$BulkDensity_gcm3), data_orig3$hwsd_bd, data_orig3$BulkDensity_gcm3)
+# write.csv(data_orig3, "../extdata/AllCities_Victoria_RDS.csv", row.names = FALSE)
+data_orig3 %>% 
+  select(Unsaturated_K2cm_cmhr, Percent_Sand, Type
+         # , BulkDensity_gcm3
+         , Latitude, Longitude
+         ) %>% 
+  na.omit()
+
+data_orig3 %>% 
+  select(Sort, Unsaturated_K2cm_cmhr, Percent_Sand, Type
+         , BulkDensity_gcm3, hwsd_bd
+         , Latitude, Longitude
+         ) %>% 
+  filter(!is.na(Unsaturated_K2cm_cmhr) & !is.na(Percent_Sand) & !is.na(Type)) %>% 
+  filter(is.na(BulkDensity_gcm3))
+
+```
+
+```{r}
+data_orig3 %>% select(BulkDensity_gcm3, hwsd_bd) %>% 
+  na.omit() %>% 
+  ggplot(aes(hwsd_bd, BulkDensity_gcm3)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+```
 
 ```{r}
 # plot
 theme_set(theme_bw())
-
 map_data("world") %>% select(region) %>% unique()
 
 USA <- map_data("state")
@@ -96,7 +154,6 @@ ggplot(data = northAmer) +
  # ggsave("Figure1-1 Sites.jpg", width = 8, height = 5, units = "in")
   
 ```
-
 
 Load the _full_ set of fitted models.
 Because it is large (>100MB), this file is not distributed with the package.
@@ -118,7 +175,6 @@ First, load the data.
 Note that the urban soil data does not report rock percentage.
 
 
-
 ```{r predict}
 model_rock_type <- tribble(
   ~model_type, ~use_rock, ~top_type,
@@ -135,14 +191,16 @@ pred <- fitted_models %>%
   left_join(model_rock_type, by = "model_type") %>%
   mutate(
     # Subset the data so that it first the needs of the model
-    data_prep = pmap(list(data, use_rock, top_type), prepare_data),
+    data_prep = pmap(list(data, use_rock, top_type), prepare_data), #1
     # Actually run the predictions
-    predicted_log = map2(model_fit, data_prep, predict),
+    predicted_log = map2(model_fit, data_prep, predict), #2
     # Un-log the predictions
-    predicted = map(predicted_log, exp),
+    predicted = purrr::map(predicted_log, exp), #3
     # Make the model_type labels plot-ready
-    model_type = fct_recode(model_type, !!!pretty_model_types())
+    model_type = fct_recode(model_type, !!!pretty_model_types()) #4
   )
+
+# head(pred)
 ```
 
 
@@ -159,9 +217,6 @@ fitted_models_norock <- fitted_models %>%
 hist_predict <- predict_bootstrap(histdata, fitted_models_norock)
 
 hist_summary <- summary(hist_predict)
-# hist_summary
-
-
 
 # hist_summary <- hist_predict %>%
 #   unnest(data, predicted) %>%
@@ -174,8 +229,65 @@ hist_summary <- summary(hist_predict)
 #     n = length
 #   ))
 
+hist_summary
 ```
 
+
+
+How well does it do?
+
+```{r fig-urbandata, fig.cap = fig_urbandata_cap, fig.width=4, fig.height=6}
+facet_title = c("(a) ANN-no-structure" = "Neural network (no rock)",
+                "(b) RF-no-structure" = "RandomForest (no rock, no type)",
+                "(c) RF-with-structure" = "RandomForest (no rock, with type)",
+                "(d) ROSETTA" = "ROSSETA")
+
+bind_rows(
+  histdata %>%
+    transmute(
+      mean = log(Ksat_Rosseta),
+      log_Ksat = log(Ksat),
+      q050 = log_Ksat,
+      q950 = log_Ksat,
+      model_type = "ROSSETA"
+    ) %>%
+    filter_if(is.numeric, all_vars(is.finite(.))),
+  histdata %>%
+    left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay",
+                                   "Top_Type")) %>%
+    mutate(log_Ksat = log(Ksat)) %>%
+    select(mean, log_Ksat, q050, q950, model_type)
+) %>%
+  mutate(model_type = fct_recode(model_type, !!!facet_title)) %>%
+  ggplot() +
+  aes(x = mean, xmin = q050, xmax = q950, y = log_Ksat) +
+  geom_errorbarh(color = "grey50", size = 0.5) +
+  geom_point(size = 0.7) +
+  geom_smooth(method = "lm", color = "blue", alpha = 0.5, lwd = 0.5, fill = "lightblue") +
+  geom_abline(linetype = "dashed") +
+  facet_wrap(model_type~., ncol = 1
+           , labeller = as_labeller(facet_title) 
+             ) +
+  labs(x = expression(Predicted ~ log (K[fs], cm ~ hr^{-1})),
+       y = expression(Observed ~ log (K[fs], cm ~ hr^{-1}))) +
+  theme_cowplot() -> p2
+
+print(p2)
+ggsave("Figure3.jpg", width = 4, height = 6, dpi = 300, units = "in")
+# ggsave("Figure3.pdf", width = 4, height = 6, dpi = 300, units = "in")
+```
+
+```{r table-1-summary}
+# summary for Table 1
+# ANS: This object doesn't exist in this Rmd document
+## min(data_structure$Ksat_cmhr)
+histdata %>%
+  left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay",
+                                 "Top_Type")) %>% 
+  select(Percent_Sand, Percent_Silt, Percent_Clay, Ksat, Ksat_Rosseta, mean, model_type) %>% 
+  mutate(Ksat_predict = exp(mean))
+# %>% spread(model_type,mean)
+```
 
 # Test and training data predictions
 
@@ -184,18 +296,18 @@ Generate neural network and random forest predictions for the training and test 
 `urbankfs` defines a custom `predict` method for its neural network fits that is a thin wrapper around `neuralnet::compute` and which also undoes the scaling that happens during fitting.
 
 
-
 Fit a linear model, `observed ~ predicted`, for each bootstrapped sample, and extract the coefficients and R^2^.
 
 ```{r fit-line-to-pred}
-pred_fits <- pred %>%
-  filter(data_type == "test_data") %>%
-  unnest(c(data_prep,  predicted_log)) %>%
-  mutate(observed_log = log(Unsaturated_K2cm_cmhr)) %>%
-  select(sample, model_type, observed_log, predicted_log) %>%
-  group_by(sample, model_type) %>%
-  summarize(fit = list(lm(observed_log ~ predicted_log))) %>%
-  ungroup() 
+# pred_fits <- pred %>%
+#   filter(data_type == "test_data") %>%
+#   unnest(c(data_prep,  predicted_log)) %>%
+#   mutate(observed_log = log(Unsaturated_K2cm_cmhr)) %>%
+#   select(sample, model_type, observed_log, predicted_log) %>%
+#   # filter(is.infinite(observed_log) & is.infinite(predicted_log)) %>% na.omit() %>% 
+#   group_by(sample, model_type) %>%
+#   summarize(fit = list(lm(observed_log ~ predicted_log))) %>%
+#   ungroup() 
   # mutate(
   #   coefficients = map(fit, coefficients),
   #   slope = map_dbl(coefficients, 2),
@@ -248,7 +360,7 @@ pred_summary <- pred %>%
 
 Draw the observed vs. predicted scatter plot, with true 1:1 line (dashed) and the bootstrapped linear regression (blue shaded region).
 
-```{r fig-regression, fig.cap = fig_regression_cap, fig.width=4, fig.height=6}
+```{r fig-regression, fig.cap = fig_regression_cap, fig.width=8, fig.height=6}
 fig_regression_cap <- paste0(
   "Observed vs. predicted regression for neural network and random forest models. ",
   "Dashed line is the 1:1 fit, and blue shaded region is the observed ~ predicted regression."
@@ -259,6 +371,7 @@ facet_title = c("Neural network (no rock)" = "(a) ANN-no-structure"
                    ,"RandomForest (no rock, with type)" = "(c) RF-with-structure"
                    )
 
+# plot results without rock
 pred_summary %>% filter(model_type %in% c("Neural network (no rock)", "RandomForest (no rock, no type)", "RandomForest (no rock, with type)")) %>% 
   ggplot(aes(x = mean, y = observed_log)) +  geom_point(size = 0.5) +
   facet_wrap(model_type~., ncol = 1
@@ -278,8 +391,8 @@ pred_summary %>% filter(model_type %in% c("Neural network (no rock)", "RandomFor
   geom_smooth(method = "lm", color = "blue", se = T, fill="lightblue", alpha = 0.5, lwd = 0.5) +
   # geom_line(aes(y = observed), data = pred_lm %>% 
   #             filter(model_type %in% c("Neural network (no rock)", "RandomForest (no rock, no type)", "RandomForest (no rock, with type)")) ) +
-  labs(x = expression(Predicted ~ log(K[fs]) ~ (log(cm ~ hr^{-1}))),
-       y = expression(Observed ~ log(K[fs]) ~ (log(cm ~ hr^{-1})))) +
+  labs(x = expression(Predicted ~ log (K[fs], cm ~ hr^{-1})),
+       y = expression(Observed ~ log (K[fs], cm ~ hr^{-1}))) +
   theme_cowplot() -> p1
 
 
@@ -294,20 +407,125 @@ fig_urbandata_cap <- paste0(
 )
 
 
-plot_grid(p1)
+# plot with rock
 
-# ggsave("Figure2.jpg", width = 4, height = 6, dpi = 300, units = "in")
-# ggsave("Figure2.pdf", width = 4, height = 6, dpi = 300, units = "in")
+# evaluation dataset (n=20)
+facet_title_wr = c("Neural network (with rock)" = "(d) ANN-no-structure-with-rock"
+                   ,"RandomForest (with rock, no type)" = "(e) RF-no-structure-with-rock"
+                   ,"RandomForest (with rock, with type)" = "(f) RF-with-structure-with-rock"
+                   )
+
+pred_summary %>% filter(model_type %in% c("Neural network (with rock)", "RandomForest (with rock, no type)", "RandomForest (with rock, with type)")) %>% 
+  ggplot(aes(x = mean, y = observed_log)) +  geom_point(size = 0.5) +
+  facet_wrap(model_type~., ncol = 1
+             , labeller = as_labeller(facet_title_wr)
+             ) +
+  geom_errorbarh(aes(y = observed_log, xmin = lo, xmax = hi, x = NULL),
+                 color = "gray40",
+                 size = 0.5,
+                 alpha = 0.2) +
+  # geom_ribbon(
+  #   data = pred_lm %>% filter(model_type %in% c("Neural network (no rock)", "RandomForest (no rock, no type)", "RandomForest (no rock, with type)")),
+  #   aes(ymin = lo, ymax = hi, y = NULL),
+  #   alpha = 0.5,
+  #   fill = "lightblue"
+  # ) +
+  geom_abline(linetype = "dashed") +
+  geom_smooth(method = "lm", color = "blue", se = T, fill="lightblue", alpha = 0.5, lwd = 0.5) +
+  # geom_line(aes(y = observed), data = pred_lm %>% 
+  #             filter(model_type %in% c("Neural network (no rock)", "RandomForest (no rock, no type)", "RandomForest (no rock, with type)")) ) +
+  labs(x = expression(Predicted ~ log (K[fs], cm ~ hr^{-1})),
+       y = expression(Observed ~ log (K[fs], cm ~ hr^{-1}))) +
+  theme_cowplot() -> p2
+
+plot_grid(p1, p2, ncol = 2)
+ggsave("Figure2.jpg", width = 8, height = 6, dpi = 300, units = "in")
+# ggsave("Figure2.pdf", width = 8, height = 6, dpi = 300, units = "in")
 ```
 
 
-How well does it do?
 
-```{r fig-urbandata, fig.cap = fig_urbandata_cap, fig.width=4, fig.height=6}
-facet_title = c("(a) ANN-no-structure" = "Neural network (no rock)",
-                "(b) RF-no-structure" = "RandomForest (no rock, no type)",
-                "(c) RF-with-structure" = "RandomForest (no rock, with type)",
-                "(d) ROSETTA" = "ROSSETA")
+```{r table-2-summary}
+# summary for Table 2
+# pred_summary$mean <- ifelse(pred_summary$mean < 0, 0.001, pred_summary$mean)
+pred_summary %>% mutate(S_M = observed_log - mean) -> pred_summary
+pred_summary %>% filter(is.finite(S_M)) -> pred_summary
+pred_summary %>% select(model_type) %>% unique
+var_modelType <- c("Neural network (no rock)", "RandomForest (no rock, no type)", "RandomForest (no rock, with type)",
+                   "Neural network (with rock)", "RandomForest (with rock, no type)", "RandomForest (with rock, with type)")
+
+evaluation <- function () {
+  results <- data.frame()
+  for (i in 1:length(var_modelType)) {
+    pred_summary %>% filter(model_type == var_modelType[i]) -> subdata
+    SLR <- lm(observed_log ~ mean, data = subdata)
+    inter <- summary(SLR)$coefficients[1,1] %>% round(3)
+    slope <- summary(SLR)$coefficients[2,1] %>% round(3)
+    r2 <- summary(SLR)$adj.r.squared %>% round(3)
+    # other model evaluation matric
+    E <- (sum(subdata$S_M) / length(subdata$S_M)) %>% round(3)
+    d <-  (1- sum(subdata$S_M^2)/sum((abs(subdata$mean-mean(subdata$observed_log))+abs(subdata$observed_log-mean(subdata$observed_log)))^2)) %>% round(3)
+    # EF <- 1- sum(subdata$S_M^2)/sum((subdata$observed_log-mean(subdata$observed_log))^2)
+    RMSE <- (sum(subdata$S_M^2)/length(subdata$S_M))^0.5 %>% round(3)
+    p <- t.test(subdata$S_M)$p.value %>% round(3)
+    
+    results <- rbind(results, data.frame(var_modelType[i], inter, slope, r2, E, RMSE, d, p) )
+  }
+  return(results)
+}
+
+# getwd()
+results <- evaluation()
+write.csv(results, "results.csv", row.names = F)
+results
+```
+
+
+```{r test}
+i = 3
+pred_summary %>% filter(model_type == var_modelType[i]) -> subdata
+SLR <- lm(observed_log ~ mean, data = subdata)
+subdata %>% ggplot(aes(x = mean, y = observed_log)) + geom_point() + geom_smooth(method = "lm") +
+  geom_abline(h = 0, v = 0)
+
+histdata %>% ggplot(aes(x = Ksat_Rosseta, y = Ksat)) + geom_point()
+
+pred_summary %>% filter(model_type %in% c("Neural network (no rock)")) %>% 
+  ggplot() +
+  aes(x = predicted_log, y = mean) +
+  geom_point(aes(y = observed_log, x = mean),
+             size = 0.5)
+
+subdata <- pred_summary %>% filter(model_type %in% c("Neural network (no rock)")) 
+```
+
+
+Histogram of correlation coefficients for the training and testing data.
+
+```{r fig-correlation, fig.cap = fig_correlation_cap}
+# fig_correlation_cap <- paste0(
+#   "Histogram of correlation coefficients for the training and testing data."
+# )
+# pred %>%
+#   unnest(data_prep, predicted) %>%
+#   mutate(data_type = fct_inorder(data_type) %>% fct_recode(
+#     "Training" = "train_data",
+#     "Testing" = "test_data"
+#   )) %>%
+#   group_by(model_type, sample, data_type) %>%
+#   summarize(corr = cor(predicted, Unsaturated_K2cm_cmhr, method = "spearman")) %>%
+#   ggplot() +
+#   aes(x = corr) +
+#   geom_density() +
+#   facet_grid(vars(model_type), vars(data_type)) +
+#   labs(x = "Correlation between prediction and data") +
+#   theme_cowplot()
+```
+
+
+
+```{r table-3-summary}
+# summary for Table 3
 
 bind_rows(
   histdata %>%
@@ -324,152 +542,31 @@ bind_rows(
                                    "Top_Type")) %>%
     mutate(log_Ksat = log(Ksat)) %>%
     select(mean, log_Ksat, q050, q950, model_type)
-) %>%
-  mutate(model_type = fct_recode(model_type, !!!facet_title)) %>%
-  ggplot() +
-  aes(x = mean, xmin = q050, xmax = q950, y = log_Ksat) +
-  geom_errorbarh(color = "grey50", size = 0.5) +
-  geom_point(size = 0.7) +
-  geom_smooth(method = "lm", color = "blue", alpha = 0.5, lwd = 0.5, fill = "lightblue") +
-  geom_abline(linetype = "dashed") +
-  facet_wrap(model_type~., ncol = 1
-           , labeller = as_labeller(facet_title) 
-             ) +
-  labs(x = expression(Predicted ~ log(K[fs]) ~ (log(cm ~ hr^-1))),
-       y = expression(Observed ~ log(K[fs]) ~ (log(cm ~ hr^-1)))) +
-  theme_cowplot() -> p2
+) -> hist_sum
 
-print(p2)
-# ggsave("Figure3.jpg", width = 4, height = 6, dpi = 300, units = "in")
-# ggsave("Figure3.pdf", width = 4, height = 6, dpi = 300, units = "in")
-```
+# histdata %>%
+#   left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay",
+#                                  "Top_Type")) %>% select(Percent_Sand, Percent_Silt, Percent_Clay, Ksat, Ksat_Rosseta, mean, model_type) -> hist_sum
 
-```{r}
-histdata %>% ggplot(aes(x = Ksat_Rosseta, y = Ksat)) + geom_point()
-```
-
-
-
-```{r model test}
-pred_summary %>% filter(model_type %in% c("Neural network (no rock)")) %>% 
-  ggplot() +
-  aes(x = predicted, y = mean) +
-  geom_point(aes(y = observed, x = mean),
-             size = 0.5)
-
-subdata <- pred_summary %>% filter(model_type %in% c("Neural network (no rock)")) 
-
-```
-
-
-
-Histogram of correlation coefficients for the training and testing data.
-
-```{r fig-correlation, fig.cap = fig_correlation_cap}
-fig_correlation_cap <- paste0(
-  "Histogram of correlation coefficients for the training and testing data."
-)
-pred %>%
-  unnest(data_prep, predicted) %>%
-  mutate(data_type = fct_inorder(data_type) %>% fct_recode(
-    "Training" = "train_data",
-    "Testing" = "test_data"
-  )) %>%
-  group_by(model_type, sample, data_type) %>%
-  summarize(corr = cor(predicted, Unsaturated_K2cm_cmhr, method = "spearman")) %>%
-  ggplot() +
-  aes(x = corr) +
-  geom_density() +
-  facet_grid(vars(model_type), vars(data_type)) +
-  labs(x = "Correlation between prediction and data") +
-  theme_cowplot()
-```
-
-
-
-
-
-
-```{r table-1-summary}
-# summary for Table 1
-# ANS: This object doesn't exist in this Rmd document
-## min(data_structure$Ksat_cmhr)
-histdata %>%
-  left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay",
-                                 "Top_Type")) %>% select(Percent_Sand, Percent_Silt, Percent_Clay, Ksat, Ksat_Rosseta, mean, model_type) 
-# %>% spread(model_type,mean)
-```
-
-
-```{r table-2-summary}
-# summary for Table 2
-# pred_summary$mean <- ifelse(pred_summary$mean < 0, 0.001, pred_summary$mean)
-pred_summary %>% mutate(S_M = observed - mean) -> pred_summary
-var_modelType <- c("Neural network (no rock)", "RandomForest (no rock, no type)", "RandomForest (no rock, with type)")
-
-evaluation <- function () {
-  results <- data.frame()
-  for (i in 1:length(var_modelType)) {
-    pred_summary %>% filter(model_type == var_modelType[i]) -> subdata
-    SLR <- lm(observed ~ mean, data = subdata)
-    inter <- summary(SLR)$coefficients[1,1] %>% round(3)
-    slope <- summary(SLR)$coefficients[2,1] %>% round(3)
-    r2 <- summary(SLR)$adj.r.squared %>% round(3)
-    # other model evaluation matric
-    E <- (sum(subdata$S_M) / length(subdata$S_M)) %>% round(3)
-    d <-  (1- sum(subdata$S_M^2)/sum((abs(subdata$mean-mean(subdata$observed))+abs(subdata$observed-mean(subdata$observed)))^2)) %>% round(3)
-    # EF <- 1- sum(subdata$S_M^2)/sum((subdata$observed-mean(subdata$observed))^2)
-    RMSE <- (sum(subdata$S_M^2)/length(subdata$S_M))^0.5 %>% round(3)
-    p <- t.test(subdata$S_M)$p.value %>% round(3)
-    
-    results <- rbind(results, data.frame(var_modelType[i], inter, slope, r2, E, d, RMSE, p) )
-  }
-  return(results)
-}
-
-# getwd()
-results <- evaluation()
-write.csv(results, "results.csv", row.names = F)
-results
-```
-
-
-```{r}
-i = 3
-pred_summary %>% filter(model_type == var_modelType[i]) -> subdata
-SLR <- lm(observed ~ mean, data = subdata)
-subdata %>% ggplot(aes(x = mean, y = observed)) + geom_point() + geom_smooth(method = "lm") +
-  geom_abline(h = 0, v = 0)
-```
-
-
-```{r table-3-summary}
-# summary for Table 3
-hist_summary$mean <- ifelse(hist_summary$mean < 0, 0.001, hist_summary$mean)
-
-histdata %>%
-  left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay",
-                                 "Top_Type")) %>% select(Percent_Sand, Percent_Silt, Percent_Clay, Ksat, Ksat_Rosseta, mean, model_type) -> hist_sum
-
-hist_sum %>% mutate(S_M = Ksat - mean) -> hist_sum
+hist_sum %>% mutate(S_M = log_Ksat - mean) -> hist_sum
 var_modelType <- unique(hist_sum$model_type)
 
 evaluation2 <- function () {
   results <- data.frame()
   for (i in 1:length(var_modelType)) {
     hist_sum %>% filter(model_type == var_modelType[i]) -> subdata
-    SLR <- lm(Ksat ~ mean, data = subdata)
+    SLR <- lm(log_Ksat ~ mean, data = subdata)
     inter <- summary(SLR)$coefficients[1,1] %>% round(3)
     slope <- summary(SLR)$coefficients[2,1] %>% round(3)
     r2 <- summary(SLR)$adj.r.squared %>% round(3)
     # other model evaluation matric
     E <- (sum(subdata$S_M) / length(subdata$S_M)) %>% round(3)
-    d <-  (1- sum(subdata$S_M^2)/sum((abs(subdata$mean-mean(subdata$Ksat))+abs(subdata$Ksat-mean(subdata$Ksat)))^2)) %>% round(3)
-    # EF <- 1- sum(subdata$S_M^2)/sum((subdata$Ksat-mean(subdata$Ksat))^2)
+    # EF <- 1- sum(subdata$S_M^2)/sum((subdata$log_Ksat-mean(subdata$log_Ksat))^2)
     RMSE <- (sum(subdata$S_M^2)/length(subdata$S_M))^0.5 %>% round(3)
+    d <-  (1- sum(subdata$S_M^2)/sum((abs(subdata$mean-mean(subdata$log_Ksat))+abs(subdata$log_Ksat-mean(subdata$log_Ksat)))^2)) %>% round(3)
     p <- t.test(subdata$S_M)$p.value %>% round(3)
     
-    results <- rbind(results, data.frame(var_modelType[i], inter, slope, r2, E, d, RMSE, p) )
+    results <- rbind(results, data.frame(var_modelType[i], inter, slope, r2, E, RMSE, d, p) )
   }
   return(results)
 }
@@ -478,8 +575,8 @@ evaluation2 <- function () {
 results2 <- evaluation2()
 write.csv(results2, "results2.csv", row.names = F)
 results2
-```
 
+```
 
 
 ```{r}
@@ -499,6 +596,7 @@ results2
 
 # data_structure %>% select(Type, Top_Type) %>% filter(is.na(Top_Type)) %>% unique()
 ```
+
 
 ```{r}
 # questions need double check

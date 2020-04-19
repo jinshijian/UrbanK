@@ -39,10 +39,11 @@ library(dplyr)
 
 source('functions.R')
 theme_set(theme_bw())
+```
 
+# Prepare data
+```{r}
 # -------------------------------------------
-
-
 # Read and clean data
 histdata <- read.csv(here::here("extdata/UrbanSoilK_V3.csv"))
 subhist <- histdata[, c(5,4,3,9)]
@@ -70,20 +71,20 @@ combdata <- rbind(combdata, subhist)
 ```{r Figure 1.1, fig.height=8, fig.width=8}
 tiff(paste("outputs/Figure1-1.tiff"), width = 10, height = 10, pointsize = 1/300, units = 'in', res = 300)
 # plot soil texture figure
-TT.plot(
-  class.sys = "USDA.TT",
-  tri.data = combdata,
-  # z.name = "OC",
-  grid.col = "white",
-  grid.lty = 1,
-  arrows.show = TRUE,
-  pch = 1,
-  col = combdata$col,
-  bg = "white",
-  fg = "blue",
-  main = "Soil texture triangle plot"
-)
-dev.off()
+# TT.plot(
+#   class.sys = "USDA.TT",
+#   tri.data = combdata,
+#   # z.name = "OC",
+#   grid.col = "white",
+#   grid.lty = 1,
+#   arrows.show = TRUE,
+#   pch = 1,
+#   col = combdata$col,
+#   bg = "white",
+#   fg = "blue",
+#   main = "Soil texture triangle plot"
+# )
+# dev.off()
 
 ```
 
@@ -103,12 +104,10 @@ print(
 )
 # plot_grid(p1, p2, labels = c('( a ), ( b )'), vjust = 4, hjust = c(-2,-2))
 ggsave("Figure1-2.jpg", width = 7.5, height = 7.5, dpi = 300, units = "in")
-
 ```
 
 * Show Figure 2 (why not showing)
 ![Schematic diagram of ANN](manuscript/Figures/Figure 2.jpg)
-
 
 ```{r ANN model, message=FALSE, include = FALSE}
 data_structure <- update_structure(data_orig)
@@ -141,8 +140,13 @@ test$Model <- 'ANN'
 # correlation
 cor(train$kfs_m, train$kfs, method = c("spearman"))
 cor(test$kfs_m, test$kfs, method = c("spearman"))
-
 ```
+
+```{r}
+data_structure %>% select(Top_Type, Type) %>% 
+  filter(is.na(Top_Type))
+```
+
 
 ```{r}
 unique(data_structure$Top_Type)
@@ -186,42 +190,139 @@ cor(test_RF2$kfs_m, test_RF2$Unsaturated_K2cm_cmhr, method = c("spearman"))
 ```
 
 
-
 ```{r Figure 3}
 importance(rf2, type = 1)
 getwd()
 
-pdf("Figure A2.pdf", height = 6, width = 8)
+# pdf("Figure A2.pdf", height = 6, width = 8)
 rf2_visual(model = rf2)
-dev.off()
+# dev.off()
 
-tiff(paste("Figure A2.tiff"), width = 8, height = 6, pointsize = 1/300, units = 'in', res = 300)
+# tiff(paste("Figure A2.tiff"), width = 8, height = 6, pointsize = 1/300, units = 'in', res = 300)
 rf2_visual(model = rf2)
-dev.off()
+# dev.off()
 ```
 
 
+## Test rock fragment
+```{r scenario 1}
+rock_test_data <- clean_data(data_orig)
+rock_test_data %>% 
+  filter(!is.na(ROCK)) %>% 
+  filter(Unsaturated_K2cm_cmhr>0) %>% 
+  mutate(Unsaturated_K2cm_cmhr = log(Unsaturated_K2cm_cmhr)) -> 
+  rock_test_data
+# no rock inputs
+rf_no_rock <- randomForest(Unsaturated_K2cm_cmhr ~ SAND + SILT + CLAY, data=rock_test_data,
+                           ntree = 100,
+                           mtry = 2,
+                           importance = TRUE,
+                           proximity = TRUE)
 
-```{r Figure 4, fig.height=8, fig.width=7}
-# plot measured kfs and predicted kfs by ANN
-# colnames(train_RF)[7] <- 'kfs'
-# colnames(train_RF2)[7] <- 'kfs'
-# colnames(test_RF)[7] <- 'kfs'
-# colnames(test_RF2)[7] <- 'kfs'
-# colnames(test_rosetta)[c(8,11)] <- c('kfs', 'kfs_m')
-# model_evaluation2()
+rock_test_data$no_rock <- predict(rf_no_rock, rock_test_data)
+cor(rock_test_data$no_rock, rock_test_data$Unsaturated_K2cm_cmhr, method = c("spearman"))
+
 ```
 
 
-```{r Figure 5}
-# model_evaluation3 ()
+```{r scenario 2}
+# SSC scale: sand + silt + clay = 100%
+rock_test1 <- randomForest(Unsaturated_K2cm_cmhr ~ SAND + SILT + CLAY + ROCK, data=rock_test_data,
+                           ntree = 100,
+                           mtry = 2,
+                           importance = TRUE,
+                           proximity = TRUE)
 
+# train dataset
+rock_test_data$rock_m1 <- predict(rock_test1, rock_test_data)
+cor(rock_test_data$rock_m1, rock_test_data$Unsaturated_K2cm_cmhr, method = c("spearman"))
 ```
 
+
+```{r scenario 3}
+# SSC scale scenario 2: sand + silt + clay + rock = 100%
+# SSC scale scenario 1: sand + silt + clay = 100%
+rock_test_data2 <- clean_data_rock(data_orig)
+rock_test_data2 %>%
+  filter(Unsaturated_K2cm_cmhr>0) %>% 
+  mutate(Unsaturated_K2cm_cmhr = log(Unsaturated_K2cm_cmhr)) -> 
+  rock_test_data2
+  
+rock_test_data2 %>% select(CLAY, SILT, SAND, ROCK) %>% 
+  mutate(check = 100-CLAY-SILT-SAND-ROCK) %>% 
+  arrange(check)
+
+rock_test2 <- randomForest(Unsaturated_K2cm_cmhr ~ SAND + SILT + CLAY + ROCK, data=rock_test_data2,
+                           ntree = 100,
+                           mtry = 2,
+                           importance = TRUE,
+                           proximity = TRUE)
+
+# train dataset
+rock_test_data2$rock_m2 <- predict(rock_test2, rock_test_data2)
+cor(rock_test_data2$rock_m2, rock_test_data2$Unsaturated_K2cm_cmhr, method = c("spearman"))
+```
+
+
+```{r scenario 4}
+# don't scale sscr
+data_orig %>% 
+  select(Unsaturated_K2cm_cmhr, Percent_Sand, Percent_Clay, Percent_Silt, Percent_Rock_Fragment) %>% 
+  na.omit() %>% 
+  filter(Unsaturated_K2cm_cmhr > 0) %>% 
+  mutate(Unsaturated_K2cm_cmhr = log(Unsaturated_K2cm_cmhr)) ->
+  rock_test_data3
+
+rock_test3 <- randomForest(Unsaturated_K2cm_cmhr ~ Percent_Sand + Percent_Clay + Percent_Silt + Percent_Rock_Fragment, data=rock_test_data3,
+                           ntree = 100,
+                           mtry = 2,
+                           importance = TRUE,
+                           proximity = TRUE)
+
+# train dataset
+rock_test_data3$rock_m3 <- predict(rock_test3, rock_test_data3)
+cor(rock_test_data3$rock_m3, rock_test_data3$Unsaturated_K2cm_cmhr, method = c("spearman"))
+```
 
 
 ```{r}
-# test borehole data
+bind_rows(rock_test_data %>% 
+            mutate(Model = "No rock (R^2=0.92)",
+                   Predict = no_rock) %>% 
+            select(Unsaturated_K2cm_cmhr, Predict, Model),
+          rock_test_data %>% 
+            mutate(Model = "ssc=100 (R^2=0.93)",
+                   Predict = rock_m1) %>% 
+            select(Unsaturated_K2cm_cmhr, Predict, Model), 
+          rock_test_data2 %>% 
+            mutate(Model = "sscr=100 (R^2=0.93)",
+                   Predict = rock_m2) %>% 
+            select(Unsaturated_K2cm_cmhr, Predict, Model),
+          rock_test_data3 %>% 
+            mutate(Model = "No scale (R^2=0.93)",
+                   Predict = rock_m3) %>% 
+            select(Unsaturated_K2cm_cmhr, Predict, Model)
+          ) %>% 
+  ggplot(aes(Predict, Unsaturated_K2cm_cmhr)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  facet_wrap(. ~ Model, nrow = 2) +
+  labs(x = expression(Predicted~K[fs]~(log~transfered)),
+       y = expression(Measured~K[fs]~(log~transfered)))
+  
+```
 
+```{r}
+# normalize_soil_pct(30,30,50)
+data_orig2 %>% 
+  select(Unsaturated_K2cm_cmhr, Percent_Sand, Type
+         , BulkDensity_gcm3
+         ) %>% 
+  na.omit()
+```
+
+
+```{r}
+# normalize_soil_pct(data_structure[,1:4])
 ```
 

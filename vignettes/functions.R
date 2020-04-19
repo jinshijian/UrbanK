@@ -51,13 +51,14 @@ clean_data <- function (data) {
   sdata <- sdata[!is.na(sdata$Type), ]
   
   sdata <- sdata[,c(which(colnames(sdata)=="Percent_Clay"),which(colnames(sdata)=="Percent_Silt")
-                     , which(colnames(sdata)=="Percent_Sand"), which(colnames(sdata)=="Texture_mod")
-                     , which(colnames(sdata)=="Soil_Series_Type"), which(colnames(sdata)=="Unsaturated_K2cm_cmhr")
+                    , which(colnames(sdata)=="Percent_Sand"), which(colnames(sdata)=="Texture_mod")
+                    , which(colnames(sdata)=="Soil_Series_Type"), which(colnames(sdata)=="Unsaturated_K2cm_cmhr")
+                    , which(colnames(sdata)=="Percent_Rock_Fragment")
   )]
   
   sdata <- sdata[!is.na(sdata$Texture_mod),]
   
-  colnames(sdata) <- c("CLAY", "SILT", "SAND", "TEXTURE", "UF", "Unsaturated_K2cm_cmhr")
+  colnames(sdata) <- c("CLAY", "SILT", "SAND", "TEXTURE", "UF", "Unsaturated_K2cm_cmhr", "ROCK")
   
   # handle NA data
   sdata$sum <- sdata$CLAY + sdata$SILT + sdata$SAND
@@ -78,8 +79,44 @@ clean_data <- function (data) {
   sdata
 }
 
-
-
+# clean function with rock considered
+clean_data_rock <- function (data) {
+  sdata <- data
+  
+  sdata <- sdata[!is.na(sdata$Unsaturated_K2cm_cmhr), ]
+  sdata <- sdata[!is.na(sdata$Percent_Sand), ]
+  sdata <- sdata[!is.na(sdata$Type), ]
+  
+  sdata <- sdata[,c(which(colnames(sdata)=="Percent_Clay"),which(colnames(sdata)=="Percent_Silt")
+                    , which(colnames(sdata)=="Percent_Sand"), which(colnames(sdata)=="Texture_mod")
+                    , which(colnames(sdata)=="Soil_Series_Type"), which(colnames(sdata)=="Unsaturated_K2cm_cmhr")
+                    , which(colnames(sdata)=="Percent_Rock_Fragment")
+  )]
+  
+  sdata <- sdata[!is.na(sdata$Texture_mod),]
+  
+  colnames(sdata) <- c("CLAY", "SILT", "SAND", "TEXTURE", "UF", "Unsaturated_K2cm_cmhr", "ROCK")
+  sdata <- sdata[!is.na(sdata$ROCK),]
+  
+  # handle NA data
+  sdata$sum <- sdata$CLAY + sdata$SILT + sdata$SAND
+  sdata$sscr <- 100- sdata$ROCK
+  
+  # convert sum to 100
+  sdata$ratio <- sdata$sscr/sdata$sum
+  
+  sdata$CLAY <- sdata$CLAY*sdata$ratio
+  sdata$SILT <- sdata$SILT*sdata$ratio
+  sdata$SAND <- sdata$SAND*sdata$ratio
+  
+  sdata <- sdata[sdata$UF == "Urban Observed",]
+  sdata <- sdata[!is.na(sdata$Unsaturated_K2cm_cmhr),]
+  sdata <- sdata[!is.na(sdata$CLAY),]
+  
+  print(paste0('-----------------------obs(n)=',nrow(sdata)))
+  
+  sdata
+}
 
 #*******************************************************************************************************
 # clean function 2
@@ -185,6 +222,12 @@ update_structure <- function( data ) {
       sdata[i,]$Top_Type <- "blocky"}
     
     else if (sdata[i,]$Type == "fine granular structure and weak very fine subangular blocky"){
+      sdata[i,]$Top_Type <- "granular"  }
+    
+    else if (sdata[i,]$Type == "coarse granular"){
+      sdata[i,]$Top_Type <- "granular"  }
+    
+    else if (sdata[i,]$Type == "medium granular and strong coarse angular blocky"){
       sdata[i,]$Top_Type <- "granular"  }
     
     else { sdata[i,]$Top_Type <- NA }
@@ -304,28 +347,19 @@ rf2_visual <- function (model) {
 
 #*******************************************************************************************************
 # model evaluation functions
-
 model_evaluation1 <- function (sdata) {
-  
   sdata$S_M <- sdata$kfs_m - sdata$kfs
-  
   # hist(sdata$S_M)
   E <- round(sum(sdata$S_M)/length(sdata$S_M), 5)
-  
   # t-test
   p <- round(t.test(sdata$S_M)$p.value, 5)
-  
   # calculate d
   d <- round(1- sum(sdata$S_M^2)/sum((abs(sdata$kfs_m-mean(sdata$kfs))+abs(sdata$kfs-mean(sdata$kfs)))^2), 5)
-  
   # calculate EF
   EF <- round(1- sum(sdata$S_M^2)/sum((sdata$kfs-mean(sdata$kfs))^2), 5)
-  
   # calculate RMSE
   RMSE <- round((sum(sdata$S_M^2)/length(sdata$S_M))^0.5, 5)
-  
   df <- t.test(sdata$S_M)[2]
-  
   eval_mat <- data.frame(E, p, d, EF, RMSE, df)
   return(eval_mat)
 }
@@ -385,9 +419,7 @@ model_evaluation2 <- function () {
 
 #*******************************************************************************************************
 # plot figure 5 
-
 model_evaluation3 <- function () {
-  
   panel_a <- qplot(Ksat_ANN, Ksat, data = histdata) + geom_abline(slope = 1, linetype = 2, size = 1.5, col = 'blue') +
     geom_smooth(method = 'lm', col = 'red') + ylim (0, 25) + xlim(0, 25) +
     theme(axis.title.x = element_blank()) + theme(axis.title.y = element_blank())
@@ -415,7 +447,28 @@ model_evaluation3 <- function () {
                      , vjust = 3, hjust = c(-1.2, -1.2, -1.2, -0.7), label_size = 8 )
   
   grid.arrange(arrangeGrob(plot, left = y.grob, bottom = x.grob))
-  
 }
 
-
+#*******************************************************************************************************
+# get bulk density from HWSD
+#*******************************************************************************************************
+get_bd <- function (hwsd_data, urban_ksat_data) {
+  for (i in 1:nrow(urban_ksat_data) ) {
+    # get the lat and lon from urban_ksat_data
+    target_lat <- urban_ksat_data$Latitude[i]
+    target_lon <- urban_ksat_data$Longitude[i]
+    if (!is.na(target_lat) & !is.na(target_lon)) {
+      # get the closest lat and lon from hwsd
+      lat <- ncvar_get(hwsd_data, "lat")
+      ilat <- which.min(abs(lat - target_lat))
+      lon <- ncvar_get(hwsd_data, "lon")
+      ilon <- which.min(abs(lon - target_lon))
+      # get the bd information
+      target_bd <- ncvar_get(hwsd_data, "T_BULK_DEN", start = c(ilon, ilat), count = c(1, 1))
+      urban_ksat_data[i, "hwsd_bd"] <- target_bd
+    }
+    else {next}
+    print(paste0("====================", i))
+  }
+  return (urban_ksat_data)
+}
