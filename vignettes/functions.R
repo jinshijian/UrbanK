@@ -472,3 +472,5 @@ get_bd <- function (hwsd_data, urban_ksat_data) {
   }
   return (urban_ksat_data)
 }
+
+

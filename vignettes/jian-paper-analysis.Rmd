@@ -67,71 +67,6 @@ kfs_site %>% select(Latitude, Longitude) %>%
 ```
 
 
-## get latitude and longitude
-```{r}
-SSURG_all <- read_excel("../extdata/All_SSURGO_and_Observed_All.xlsx", sheet = 3)
-SSURG_all <- SSURG_all
-left_join(
-  data_orig, 
-  SSURG_all %>% select(SampleLayer_ID, SampleSite_ID, SamplePoint_ID), by = c("SampleLayer_ID")
-) -> data_orig2
-
-left_join(
-  data_orig2,
-  site %>% select(SampleSite_ID, SamplePoint_ID, Latitude, Longitude),
-  by = c("SampleSite_ID", "SamplePoint_ID")
-) -> data_orig2
-
-data_orig2 %>% 
-  select(Unsaturated_K2cm_cmhr, Percent_Sand, Type
-         # , BulkDensity_gcm3
-         , Latitude, Longitude
-         ) %>% 
-  na.omit()
-
-data_orig2 %>% 
-  select(Latitude, Longitude) %>% 
-  na.omit()
-```
-
-
-## get BD from HWSD if BD is null
-### load HWSD BD data
-```{r}
-HWSD_bd <- nc_open("../extdata/HWSD_BULK_DEN.nc4")
-```
-
-### create function
-```{r}
-# get soil BD from HWSD
-# data_orig3 <- get_bd(HWSD_bd, data_orig2)
-data_orig3$BulkDensity_gcm3 <- ifelse(is.na(data_orig3$BulkDensity_gcm3), data_orig3$hwsd_bd, data_orig3$BulkDensity_gcm3)
-# write.csv(data_orig3, "../extdata/AllCities_Victoria_RDS.csv", row.names = FALSE)
-data_orig3 %>% 
-  select(Unsaturated_K2cm_cmhr, Percent_Sand, Type
-         # , BulkDensity_gcm3
-         , Latitude, Longitude
-         ) %>% 
-  na.omit()
-
-data_orig3 %>% 
-  select(Sort, Unsaturated_K2cm_cmhr, Percent_Sand, Type
-         , BulkDensity_gcm3, hwsd_bd
-         , Latitude, Longitude
-         ) %>% 
-  filter(!is.na(Unsaturated_K2cm_cmhr) & !is.na(Percent_Sand) & !is.na(Type)) %>% 
-  filter(is.na(BulkDensity_gcm3))
-
-```
-
-```{r}
-data_orig3 %>% select(BulkDensity_gcm3, hwsd_bd) %>% 
-  na.omit() %>% 
-  ggplot(aes(hwsd_bd, BulkDensity_gcm3)) +
-  geom_point() +
-  geom_smooth(method = "lm")
-```
-
 ```{r}
 # plot
 theme_set(theme_bw())
@@ -442,7 +377,6 @@ plot_grid(p1, p2, ncol = 2)
 ggsave("Figure2.jpg", width = 8, height = 6, dpi = 300, units = "in")
 # ggsave("Figure2.pdf", width = 8, height = 6, dpi = 300, units = "in")
 ```
-
 
 
 ```{r table-2-summary}
