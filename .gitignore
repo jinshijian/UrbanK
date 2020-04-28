@@ -8,6 +8,7 @@
 
 # big file in extdata
 /extdata/fitted_models.rda
+/extdata/old
 /data/fitted_models.rda
 
 # all files in manuscript

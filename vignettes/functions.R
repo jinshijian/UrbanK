@@ -44,21 +44,20 @@ summarySE <- function(data=NULL, measurevar, groupvars=NULL, na.rm=F,
 #*******************************************************************************************************
 # clean function 1
 clean_data <- function (data) {
+  # data <- data_orig
   sdata <- data
   
-  sdata <- sdata[!is.na(sdata$Unsaturated_K2cm_cmhr), ]
-  sdata <- sdata[!is.na(sdata$Percent_Sand), ]
-  sdata <- sdata[!is.na(sdata$Type), ]
+  sdata %>% 
+    filter(!is.na(Unsaturated_K2cm_cmhr) & !is.na(Percent_Sand) & !is.na(Type)) ->
+    sdata
   
-  sdata <- sdata[,c(which(colnames(sdata)=="Percent_Clay"),which(colnames(sdata)=="Percent_Silt")
-                    , which(colnames(sdata)=="Percent_Sand"), which(colnames(sdata)=="Texture_mod")
-                    , which(colnames(sdata)=="Soil_Series_Type"), which(colnames(sdata)=="Unsaturated_K2cm_cmhr")
-                    , which(colnames(sdata)=="Percent_Rock_Fragment")
-  )]
+  sdata %>% select(Percent_Clay, Percent_Silt, Percent_Sand, Texture,
+                   Unsaturated_K2cm_cmhr, Percent_Rock_Fragment) ->
+    sdata
+
+  sdata <- sdata[!is.na(sdata$Texture),]
   
-  sdata <- sdata[!is.na(sdata$Texture_mod),]
-  
-  colnames(sdata) <- c("CLAY", "SILT", "SAND", "TEXTURE", "UF", "Unsaturated_K2cm_cmhr", "ROCK")
+  colnames(sdata) <- c("CLAY", "SILT", "SAND", "TEXTURE", "Unsaturated_K2cm_cmhr", "ROCK")
   
   # handle NA data
   sdata$sum <- sdata$CLAY + sdata$SILT + sdata$SAND
@@ -70,12 +69,11 @@ clean_data <- function (data) {
   sdata$SILT <- sdata$SILT*sdata$ratio
   sdata$SAND <- sdata$SAND*sdata$ratio
   
-  sdata <- sdata[sdata$UF == "Urban Observed",]
+  sdata$UF <- "Urban Observed"
   sdata <- sdata[!is.na(sdata$Unsaturated_K2cm_cmhr),]
   sdata <- sdata[!is.na(sdata$CLAY),]
   
   print(paste0('-----------------------obs(n)=',nrow(sdata)))
-  
   sdata
 }
 
@@ -88,12 +86,12 @@ clean_data_rock <- function (data) {
   sdata <- sdata[!is.na(sdata$Type), ]
   
   sdata <- sdata[,c(which(colnames(sdata)=="Percent_Clay"),which(colnames(sdata)=="Percent_Silt")
-                    , which(colnames(sdata)=="Percent_Sand"), which(colnames(sdata)=="Texture_mod")
+                    , which(colnames(sdata)=="Percent_Sand"), which(colnames(sdata)=="Texture")
                     , which(colnames(sdata)=="Soil_Series_Type"), which(colnames(sdata)=="Unsaturated_K2cm_cmhr")
                     , which(colnames(sdata)=="Percent_Rock_Fragment")
   )]
   
-  sdata <- sdata[!is.na(sdata$Texture_mod),]
+  sdata <- sdata[!is.na(sdata$Texture),]
   
   colnames(sdata) <- c("CLAY", "SILT", "SAND", "TEXTURE", "UF", "Unsaturated_K2cm_cmhr", "ROCK")
   sdata <- sdata[!is.na(sdata$ROCK),]
@@ -472,5 +470,6 @@ get_bd <- function (hwsd_data, urban_ksat_data) {
   }
   return (urban_ksat_data)
 }
+
 
 

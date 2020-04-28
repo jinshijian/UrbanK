@@ -36,12 +36,92 @@ library(reshape)
 library(scales)
 library(devtools)
 library(dplyr)
+library(readxl)
 
 source('functions.R')
 theme_set(theme_bw())
 ```
 
 # Prepare data
+```{r}
+MFT3 <- read_excel("../extdata/MasterFlatTable_3July19_preColorRemov.xlsx", sheet = 4)
+Surface_HC <- read_excel("../extdata/MasterFlatTable_3July19_preColorRemov.xlsx", sheet = 5)
+Borehole_ksat <- read_excel("../extdata/MasterFlatTable_3July19_preColorRemov.xlsx", sheet = 6)
+data_orig <- read.csv(here::here("extdata/old/AllCities_Victoria_RDS.csv"))
+
+Borehole_ksat %>% select(SampleLayer_ID, Borehole_Ksat_cmhr, BulkDensity_gcm3) %>% 
+  filter(!is.na(Borehole_Ksat_cmhr) & Borehole_Ksat_cmhr!=99999) %>% 
+  group_by(SampleLayer_ID) %>% 
+  summarise(Borehole_Ksat_cmhr = mean(Borehole_Ksat_cmhr),
+            BulkDensity_gcm3 = mean(BulkDensity_gcm3)) ->
+  Borehole_ksat_agg
+
+left_join(
+  MFT3, 
+  Surface_HC %>% select(SampleLayer_ID, Unsaturated_K2cm_cmhr) %>% filter(!is.na(Unsaturated_K2cm_cmhr)),
+  by = c("SampleLayer_ID")
+) -> All_cite_new
+
+left_join(
+  All_cite_new,
+  Borehole_ksat_agg,
+  by = c("SampleLayer_ID")) ->
+  All_cite_new
+
+left_join(
+  All_cite_new,
+  data_orig %>% select(SampleLayer_ID, Latitude, Longitude, Type, hwsd_bd,
+                       Texture_mod, Top_Type, Soil_Series_Type), 
+  by = c("SampleLayer_ID")
+) -> All_cite_new
+
+All_cite_new$Ksat_cmhr <- ifelse(!is.na(All_cite_new$Unsaturated_K2cm_cmhr),
+                                 All_cite_new$Unsaturated_K2cm_cmhr, All_cite_new$Borehole_Ksat_cmhr)
+
+All_cite_new$Ksat_cmhr <- ifelse(All_cite_new$Ksat_cmhr == 0, 
+                                 All_cite_new$Borehole_Ksat_cmhr,
+                                 All_cite_new$Ksat_cmhr)
+
+All_cite_new$BD <- ifelse(!is.na(All_cite_new$BulkDensity_gcm3),
+                          All_cite_new$BulkDensity_gcm3,
+                          All_cite_new$hwsd_bd)
+
+All_cite_new %>% 
+  select(BulkDensity_gcm3) %>% 
+  na.omit()
+
+All_cite_new %>% 
+  select(Unsaturated_K2cm_cmhr) %>% 
+  na.omit() %>% 
+  arrange(Unsaturated_K2cm_cmhr)
+
+All_cite_new %>% 
+  select(Borehole_Ksat_cmhr) %>% 
+  na.omit() %>% 
+  arrange(Borehole_Ksat_cmhr)
+
+All_cite_new %>% 
+  select(Unsaturated_K2cm_cmhr, Borehole_Ksat_cmhr) %>% 
+  na.omit() 
+
+All_cite_new %>% 
+  select(Percent_Sand, Percent_Silt, Percent_Clay, Ksat_cmhr, Type, BD) %>% 
+  na.omit()
+
+All_cite_new %>% 
+  select(BD) %>% 
+  unique()
+
+# write.csv(All_cite_new, "../extdata/AllCities_Victoria_RDS.csv", row.names = F)
+```
+
+
+
+
+
+
+
+# Plot Figure 1
 ```{r}
 # -------------------------------------------
 # Read and clean data
@@ -51,17 +131,17 @@ head(subhist)
 colnames(subhist) <- c("CLAY", "SILT", "SAND", "Unsaturated_K2cm_cmhr")
 subhist$col <- "red"
 
-data_orig <- read.csv(here::here("extdata/AllCities_Victoria_RDS.csv"))
 # resetta test data
 test_rosetta <- read.csv(here::here("extdata/test_with_rosetta_V3.csv"))
 test_rosetta$Model <- 'ROSETTA'
 
 # filt and clean data for soil triangle plot (Figure 1)
+data_orig <- read.csv(here::here("extdata/AllCities_Victoria_RDS.csv"))
 combdata <- clean_data(data_orig)
 combdata$Unsaturated_K2cm_cmhr %>% min()
 combdata$Unsaturated_K2cm_cmhr %>% max()
 combdata$Unsaturated_K2cm_cmhr %>% mean()
-combdata <- combdata[,c(1,2,3,6)]
+combdata <- combdata[,c(1,2,3,5)]
 combdata$col <- "blue"
 colnames(combdata) <- colnames (subhist)
 combdata <- rbind(combdata, subhist)
@@ -69,13 +149,13 @@ combdata <- rbind(combdata, subhist)
 
 ### load HWSD BD data
 ```{r}
-HWSD_bd <- nc_open("../extdata/HWSD_BULK_DEN.nc4")
+# HWSD_bd <- nc_open("../extdata/HWSD_BULK_DEN.nc4")
 ```
 
 
 
 ```{r Figure 1.1, fig.height=8, fig.width=8}
-tiff(paste("outputs/Figure1-1.tiff"), width = 10, height = 10, pointsize = 1/300, units = 'in', res = 300)
+# tiff(paste("outputs/Figure1-1.tiff"), width = 10, height = 10, pointsize = 1/300, units = 'in', res = 300)
 # plot soil texture figure
 # TT.plot(
 #   class.sys = "USDA.TT",
@@ -114,6 +194,7 @@ ggsave("Figure1-2.jpg", width = 7.5, height = 7.5, dpi = 300, units = "in")
 
 * Show Figure 2 (why not showing)
 ![Schematic diagram of ANN](manuscript/Figures/Figure 2.jpg)
+
 
 ```{r ANN model, message=FALSE, include = FALSE}
 data_structure <- update_structure(data_orig)
@@ -198,7 +279,7 @@ cor(test_RF2$kfs_m, test_RF2$Unsaturated_K2cm_cmhr, method = c("spearman"))
 
 ```{r Figure 3}
 importance(rf2, type = 1)
-getwd()
+# getwd()
 
 # pdf("Figure A2.pdf", height = 6, width = 8)
 rf2_visual(model = rf2)
@@ -330,29 +411,29 @@ data_orig2 %>%
 
 ## get latitude and longitude
 ```{r}
-SSURG_all <- read_excel("../extdata/All_SSURGO_and_Observed_All.xlsx", sheet = 3)
-SSURG_all <- SSURG_all
-left_join(
-  data_orig, 
-  SSURG_all %>% select(SampleLayer_ID, SampleSite_ID, SamplePoint_ID), by = c("SampleLayer_ID")
-) -> data_orig2
-
-left_join(
-  data_orig2,
-  site %>% select(SampleSite_ID, SamplePoint_ID, Latitude, Longitude),
-  by = c("SampleSite_ID", "SamplePoint_ID")
-) -> data_orig2
-
-data_orig2 %>% 
-  select(Unsaturated_K2cm_cmhr, Percent_Sand, Type
-         # , BulkDensity_gcm3
-         , Latitude, Longitude
-         ) %>% 
-  na.omit()
-
-data_orig2 %>% 
-  select(Latitude, Longitude) %>% 
-  na.omit()
+# SSURG_all <- read_excel("../extdata/All_SSURGO_and_Observed_All.xlsx", sheet = 3)
+# SSURG_all <- SSURG_all
+# left_join(
+#   data_orig, 
+#   SSURG_all %>% select(SampleLayer_ID, SampleSite_ID, SamplePoint_ID), by = c("SampleLayer_ID")
+# ) -> data_orig2
+# 
+# left_join(
+#   data_orig2,
+#   site %>% select(SampleSite_ID, SamplePoint_ID, Latitude, Longitude),
+#   by = c("SampleSite_ID", "SamplePoint_ID")
+# ) -> data_orig2
+# 
+# data_orig2 %>% 
+#   select(Unsaturated_K2cm_cmhr, Percent_Sand, Type
+#          # , BulkDensity_gcm3
+#          , Latitude, Longitude
+#          ) %>% 
+#   na.omit()
+# 
+# data_orig2 %>% 
+#   select(Latitude, Longitude) %>% 
+#   na.omit()
 ```
 
 
@@ -361,29 +442,29 @@ data_orig2 %>%
 ```{r}
 # get soil BD from HWSD
 # data_orig3 <- get_bd(HWSD_bd, data_orig2)
-data_orig3$BulkDensity_gcm3 <- ifelse(is.na(data_orig3$BulkDensity_gcm3), data_orig3$hwsd_bd, data_orig3$BulkDensity_gcm3)
-# write.csv(data_orig3, "../extdata/AllCities_Victoria_RDS.csv", row.names = FALSE)
-data_orig3 %>% 
-  select(Unsaturated_K2cm_cmhr, Percent_Sand, Type
-         # , BulkDensity_gcm3
-         , Latitude, Longitude
-         ) %>% 
-  na.omit()
-
-data_orig3 %>% 
-  select(Sort, Unsaturated_K2cm_cmhr, Percent_Sand, Type
-         , BulkDensity_gcm3, hwsd_bd
-         , Latitude, Longitude
-         ) %>% 
-  filter(!is.na(Unsaturated_K2cm_cmhr) & !is.na(Percent_Sand) & !is.na(Type)) %>% 
-  filter(is.na(BulkDensity_gcm3))
+# data_orig3$BulkDensity_gcm3 <- ifelse(is.na(data_orig3$BulkDensity_gcm3), data_orig3$hwsd_bd, data_orig3$BulkDensity_gcm3)
+# # write.csv(data_orig3, "../extdata/AllCities_Victoria_RDS.csv", row.names = FALSE)
+# data_orig3 %>% 
+#   select(Unsaturated_K2cm_cmhr, Percent_Sand, Type
+#          # , BulkDensity_gcm3
+#          , Latitude, Longitude
+#          ) %>% 
+#   na.omit()
+# 
+# data_orig3 %>% 
+#   select(Sort, Unsaturated_K2cm_cmhr, Percent_Sand, Type
+#          , BulkDensity_gcm3, hwsd_bd
+#          , Latitude, Longitude
+#          ) %>% 
+#   filter(!is.na(Unsaturated_K2cm_cmhr) & !is.na(Percent_Sand) & !is.na(Type)) %>% 
+#   filter(is.na(BulkDensity_gcm3))
 
 ```
 
 ```{r}
-data_orig3 %>% select(BulkDensity_gcm3, hwsd_bd) %>% 
-  na.omit() %>% 
-  ggplot(aes(hwsd_bd, BulkDensity_gcm3)) +
-  geom_point() +
-  geom_smooth(method = "lm")
+# data_orig3 %>% select(BulkDensity_gcm3, hwsd_bd) %>% 
+#   na.omit() %>% 
+#   ggplot(aes(hwsd_bd, BulkDensity_gcm3)) +
+#   geom_point() +
+#   geom_smooth(method = "lm")
 ```
