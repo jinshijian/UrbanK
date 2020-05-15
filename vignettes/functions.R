@@ -51,13 +51,14 @@ clean_data <- function (data) {
     filter(!is.na(Unsaturated_K2cm_cmhr) & !is.na(Percent_Sand) & !is.na(Type)) ->
     sdata
   
-  sdata %>% select(Percent_Clay, Percent_Silt, Percent_Sand, Texture,
-                   Unsaturated_K2cm_cmhr, Percent_Rock_Fragment) ->
+  sdata %>% select(Percent_Clay, Percent_Silt, Percent_Sand, Texture, Rock_group, BD, 
+                   Unsaturated_K2cm_cmhr, Percent_Rock_Fragment,
+                   Type, Top_Type) ->
     sdata
 
   sdata <- sdata[!is.na(sdata$Texture),]
   
-  colnames(sdata) <- c("CLAY", "SILT", "SAND", "TEXTURE", "Unsaturated_K2cm_cmhr", "ROCK")
+  colnames(sdata) <- c("CLAY", "SILT", "SAND", "TEXTURE", "Rock_group", "BD", "Unsaturated_K2cm_cmhr", "ROCK", "Type", "Top_Type")
   
   # handle NA data
   sdata$sum <- sdata$CLAY + sdata$SILT + sdata$SAND
@@ -72,6 +73,10 @@ clean_data <- function (data) {
   sdata$UF <- "Urban Observed"
   sdata <- sdata[!is.na(sdata$Unsaturated_K2cm_cmhr),]
   sdata <- sdata[!is.na(sdata$CLAY),]
+  
+  sdata$Rock_group <- as.factor(sdata$Rock_group)
+  sdata$BD <- ifelse(is.na(sdata$Rock_group), 1.36, sdata$Rock_group)
+  # sdata$Rock_group <- ifelse(is.na(sdata$Rock_group), "NotReport", sdata$Rock_group)
   
   print(paste0('-----------------------obs(n)=',nrow(sdata)))
   sdata
@@ -89,11 +94,15 @@ clean_data_rock <- function (data) {
                     , which(colnames(sdata)=="Percent_Sand"), which(colnames(sdata)=="Texture")
                     , which(colnames(sdata)=="Soil_Series_Type"), which(colnames(sdata)=="Unsaturated_K2cm_cmhr")
                     , which(colnames(sdata)=="Percent_Rock_Fragment")
+                    , which(colnames(sdata)=="Top_Type")
+                    , which(colnames(sdata)=="BD")
+                    , which(colnames(sdata)=="Rock_group")
   )]
   
   sdata <- sdata[!is.na(sdata$Texture),]
   
-  colnames(sdata) <- c("CLAY", "SILT", "SAND", "TEXTURE", "UF", "Unsaturated_K2cm_cmhr", "ROCK")
+  colnames(sdata) <- c("CLAY", "SILT", "SAND", "TEXTURE", "UF", "Unsaturated_K2cm_cmhr",
+                       "ROCK", "Top_Type", "BD", "Rock_group")
   sdata <- sdata[!is.na(sdata$ROCK),]
   
   # handle NA data
@@ -304,7 +313,7 @@ rf_sscs <- function(sdata) {
 # plot and test RF2 
 
 rf2_visual <- function (model) {
-  p1 <- qplot(1:100,model$mse ) + geom_line() + theme_bw() +
+  p1 <- qplot(1:100, model$mse ) + geom_line() + theme_bw() +
     xlab ("Number of trees (n)") + ylab("  MSE ") +
     theme(axis.text.x = element_text(face = "bold", size = 12),
           axis.text.y = element_text(face = "bold", size = 12),
@@ -451,6 +460,7 @@ model_evaluation3 <- function () {
 # get bulk density from HWSD
 #*******************************************************************************************************
 get_bd <- function (hwsd_data, urban_ksat_data) {
+  hwsd_data <- nc_open("../extdata/HWSD_BULK_DEN.nc4")
   for (i in 1:nrow(urban_ksat_data) ) {
     # get the lat and lon from urban_ksat_data
     target_lat <- urban_ksat_data$Latitude[i]
@@ -471,5 +481,49 @@ get_bd <- function (hwsd_data, urban_ksat_data) {
   return (urban_ksat_data)
 }
 
-
-
+# Bill updated their dataset on April 2020
+update_urban_kfs <- function(){
+  MFT3 <- read_excel("../extdata/MasterFlatTable_3July19_preColorRemov.xlsx", sheet = 4)
+  Surface_HC <- read_excel("../extdata/MasterFlatTable_3July19_preColorRemov.xlsx", sheet = 5)
+  Borehole_ksat <- read_excel("../extdata/MasterFlatTable_3July19_preColorRemov.xlsx", sheet = 6)
+  data_orig <- read.csv(here::here("extdata/old/AllCities_Victoria_RDS.csv"))
+  
+  Borehole_ksat %>% select(SampleLayer_ID, Borehole_Ksat_cmhr, BulkDensity_gcm3) %>% 
+    filter(!is.na(Borehole_Ksat_cmhr) & Borehole_Ksat_cmhr!=99999) %>% 
+    group_by(SampleLayer_ID) %>% 
+    summarise(Borehole_Ksat_cmhr = mean(Borehole_Ksat_cmhr),
+              BulkDensity_gcm3 = mean(BulkDensity_gcm3)) ->
+    Borehole_ksat_agg
+  
+  left_join(
+    MFT3, 
+    Surface_HC %>% select(SampleLayer_ID, Unsaturated_K2cm_cmhr) %>% filter(!is.na(Unsaturated_K2cm_cmhr)),
+    by = c("SampleLayer_ID")
+  ) -> All_cite_new
+  
+  left_join(
+    All_cite_new,
+    Borehole_ksat_agg,
+    by = c("SampleLayer_ID")) ->
+    All_cite_new
+  
+  left_join(
+    All_cite_new,
+    data_orig %>% select(SampleLayer_ID, Latitude, Longitude, Type, hwsd_bd,
+                         Texture_mod, Top_Type, Soil_Series_Type), 
+    by = c("SampleLayer_ID")
+  ) -> All_cite_new
+  
+  All_cite_new$Ksat_cmhr <- ifelse(!is.na(All_cite_new$Unsaturated_K2cm_cmhr),
+                                   All_cite_new$Unsaturated_K2cm_cmhr, All_cite_new$Borehole_Ksat_cmhr)
+  
+  All_cite_new$Ksat_cmhr <- ifelse(All_cite_new$Ksat_cmhr == 0, 
+                                   All_cite_new$Borehole_Ksat_cmhr,
+                                   All_cite_new$Ksat_cmhr)
+  
+  All_cite_new$BD <- ifelse(!is.na(All_cite_new$BulkDensity_gcm3),
+                            All_cite_new$BulkDensity_gcm3,
+                            All_cite_new$hwsd_bd)
+  
+  return(All_cite_new)
+}

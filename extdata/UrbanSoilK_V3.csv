@@ -1,21 +1,21 @@
-,Texture_mod,Percent_Sand,Percent_Silt,Percent_Clay,Check,TextureSource,BulkDensity,Ksat,Ksat_RF,Ksat_ANN,Ksat_Rosseta,Note.1,Note.2,Note3,Unit,Citation,Latitude,Longitude,Top_Type,Comments,Comments2,Ksat_RF2,RF3
-1,sand,89.3,10.6,0.1,100,Reported,1.48,18.7,3.3,4.79,340.18,Compacted,Natural wooded lot F,Constant head double ring infiltrometer ,cm/hr,Gregory (2006),27.66,-81.52,SGR,Single grain,,5.31,4
-2,sand,96.2,1.8,2,100,Reported,1.52,16,9.63,7.75,872,Compacted,Planted forest lot G,Constant head double ring infiltrometer ,cm/hr,Gregory (2006),27.66,-81.52,SGR,Single grain,,7.36,4
-3,sand,96.2,1.8,2,100,Reported,1.47,18.8,9.63,7.75,872,Compacted,Planted forest lot H,Constant head double ring infiltrometer ,cm/hr,Gregory (2006),27.66,-81.52,SGR,Single grain,,7.36,4
-7,loam,28,47,25,100,Reported,NA,0.4,0.65,0.4,13.24,A,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,PL,Subangular blocky,Guessing,0.51,NA
-8,siltLoam,18,59,23,100,Reported,NA,1.2,0.41,0.38,13.25,B,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,PL,Subangular blocky,Guessing,0.29,NA
-9,siltLoam,22,55,23,100,Reported,NA,1.4,0.51,0.39,13.6,C,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.35,NA
-10,sandloam,62,27,11,100,Reported,NA,1.4,1.17,0.99,35.02,D,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,1.61,NA
-11,siltLoam,23,58,19,100,Reported,NA,1.6,1.19,0.4,16.28,E,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.83,NA
-12,loam,44,37,19,100,Reported,NA,1.8,0.7,0.53,10.12,F,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.84,NA
-13,siltLoam,14,63,23,100,Reported,NA,2.2,0.49,0.37,13.02,G,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.37,NA
-14,clayLoam,24,47,29,100,Reported,NA,2.3,0.91,0.38,12.42,H,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.68,NA
-15,siltLoam,27,51,22,100,Reported,NA,2.7,0.43,0.4,14.56,I,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.31,NA
-16,loam,42,33,25,100,Reported,NA,2.9,0.35,0.5,7.21,J,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.53,NA
-17,loam,32,43,25,100,Reported,NA,4.9,0.44,0.42,12.58,K,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,GR,Granular,Guessing,0.47,NA
-18,clayLoam,32,39,29,100,Reported,NA,5.1,0.6,0.41,9.68,L,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,GR,Granular,Guessing,0.35,NA
-19,siltLoam,18,60,22,100,Reported,NA,8.5,0.48,0.38,13.65,M,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,GR,Granular,Guessing,0.36,NA
-20,siltLoam,22,57,21,100,Reported,NA,9.8,0.53,0.39,14.57,N,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,GR,Granular,Guessing,0.4,NA
-21,clayLoam,30,41,29,100,Reported,NA,10,0.59,0.4,11.35,O,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,GR,Subangular blocky,Guessing,0.34,NA
-22,sand,94,3,3,100,USDA soil texture triangle,NA,3,9.63,6.9,629.24,Compacted,Table 3-3,Double ring method (120mins),cm/hr,Pitt (1999),43.11,-88.5,SGR,Single grain,Guessing,7.36,NA
-23,clay,15,15,70,100,USDA soil texture triangle,NA,0.7,2,0.35,16.32,Compacted,Table 3-3,Double ring method (120mins),cm/hr,Pitt (1999),43.11,-88.5,SBK,Subangular blocky,Guessing,1.56,NA
+,Texture_mod,Percent_Sand,Percent_Silt,Percent_Clay,Percent_Rock_Fragment,Check,TextureSource,BulkDensity,Ksat,Ksat_RF,Ksat_ANN,Ksat_Rosseta,Note.1,Note.2,Note3,Unit,Citation,Latitude,Longitude,Top_Type,Comments,Comments2,Ksat_RF2,RF3
+1,sand,89.3,10.6,0.1,0,100,Reported,1.48,18.7,3.3,4.79,340.18,Compacted,Natural wooded lot F,Constant head double ring infiltrometer ,cm/hr,Gregory (2006),27.66,-81.52,SGR,Single grain,,5.31,4
+2,sand,96.2,1.8,2,0,100,Reported,1.52,16,9.63,7.75,872,Compacted,Planted forest lot G,Constant head double ring infiltrometer ,cm/hr,Gregory (2006),27.66,-81.52,SGR,Single grain,,7.36,4
+3,sand,96.2,1.8,2,0,100,Reported,1.47,18.8,9.63,7.75,872,Compacted,Planted forest lot H,Constant head double ring infiltrometer ,cm/hr,Gregory (2006),27.66,-81.52,SGR,Single grain,,7.36,4
+7,loam,28,47,25,0,100,Reported,1.59,0.4,0.65,0.4,13.24,A,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,PL,Subangular blocky,Guessing,0.51,NA
+8,siltLoam,18,59,23,0,100,Reported,1.3,1.2,0.41,0.38,13.25,B,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,PL,Subangular blocky,Guessing,0.29,NA
+9,siltLoam,22,55,23,0,100,Reported,1.23,1.4,0.51,0.39,13.6,C,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.35,NA
+10,sandloam,62,27,11,0,100,Reported,1.37,1.4,1.17,0.99,35.02,D,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,1.61,NA
+11,siltLoam,23,58,19,0,100,Reported,1.18,1.6,1.19,0.4,16.28,E,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.83,NA
+12,loam,44,37,19,0,100,Reported,1.45,1.8,0.7,0.53,10.12,F,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.84,NA
+13,siltLoam,14,63,23,0,100,Reported,1.02,2.2,0.49,0.37,13.02,G,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.37,NA
+14,clayLoam,24,47,29,0,100,Reported,1.55,2.3,0.91,0.38,12.42,H,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.68,NA
+15,siltLoam,27,51,22,0,100,Reported,1.49,2.7,0.43,0.4,14.56,I,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.31,NA
+16,loam,42,33,25,0,100,Reported,1.57,2.9,0.35,0.5,7.21,J,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,SBK,Subangular blocky,Guessing,0.53,NA
+17,loam,32,43,25,0,100,Reported,1.49,4.9,0.44,0.42,12.58,K,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,GR,Granular,Guessing,0.47,NA
+18,clayLoam,32,39,29,0,100,Reported,1.59,5.1,0.6,0.41,9.68,L,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,GR,Granular,Guessing,0.35,NA
+19,siltLoam,18,60,22,0,100,Reported,1.27,8.5,0.48,0.38,13.65,M,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,GR,Granular,Guessing,0.36,NA
+20,siltLoam,22,57,21,0,100,Reported,1.13,9.8,0.53,0.39,14.57,N,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,GR,Granular,Guessing,0.4,NA
+21,clayLoam,30,41,29,0,100,Reported,1.35,10,0.59,0.4,11.35,O,,Double ring method,cm/hr,Hamilton (1999),40.79,-77.86,GR,Subangular blocky,Guessing,0.34,NA
+22,sand,94,3,3,0,100,USDA soil texture triangle,NA,3,9.63,6.9,629.24,Compacted,Table 3-3,Double ring method (120mins),cm/hr,Pitt (1999),43.11,-88.5,SGR,Single grain,Guessing,7.36,NA
+23,clay,15,15,70,0,100,USDA soil texture triangle,NA,0.7,2,0.35,16.32,Compacted,Table 3-3,Double ring method (120mins),cm/hr,Pitt (1999),43.11,-88.5,SBK,Subangular blocky,Guessing,1.56,NA

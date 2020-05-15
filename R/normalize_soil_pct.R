@@ -31,7 +31,9 @@ normalize_soil_pct <- function(Percent_Sand, Percent_Silt, Percent_Clay, Percent
   sum <- Percent_Sand + Percent_Silt + Percent_Clay + Percent_Rock_Fragment
   ratio <- (100 - Percent_Rock_Fragment) / ssc_sum
   ssc_list <- lapply(list(Percent_Sand, Percent_Silt, Percent_Clay), `*`, ratio)
-  c(ssc_list, list(Percent_Rock_Fragment))
+  # c(ssc_list, list(Percent_Rock_Fragment)) # use this if chose sscr = 100%
+  out <- lapply(list(Percent_Sand, Percent_Silt, Percent_Clay), `*`, 100 / ssc_sum)
+  c(out, list(Percent_Rock_Fragment)) # ssc = 100%
 }
 
 #' @rdname normalize_soil_pct
