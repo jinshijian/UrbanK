@@ -60,6 +60,11 @@ comb_data <- function(){
   test_rosetta$Model <- 'ROSETTA'
   # filt and clean data for soil triangle plot (Figure 1)
   data_orig <- read.csv(here::here("extdata/AllCities_Victoria_RDS_rock.csv"))
+  data_orig %>% 
+    mutate(sum = Percent_Clay + Percent_Silt + Percent_Sand) %>% 
+    filter(sum > 99 & sum < 101) ->
+    data_orig
+  
   combdata <- clean_data(data_orig)
   combdata %>% 
     select(CLAY, SILT, SAND, Unsaturated_K2cm_cmhr) ->
@@ -75,6 +80,7 @@ combdata <- comb_data()
 combdata$Unsaturated_K2cm_cmhr %>% min()
 combdata$Unsaturated_K2cm_cmhr %>% max()
 combdata$Unsaturated_K2cm_cmhr %>% mean()
+
 
 # TT.plot does not work in the updated R
 # tiff(paste("outputs/Figure1-1.tiff"), width = 10, height = 10, pointsize = 1/300, units = 'in', res = 300)
@@ -94,20 +100,31 @@ combdata$Unsaturated_K2cm_cmhr %>% mean()
 # )
 # dev.off()
 
+histdata <- read.csv(here::here("extdata/UrbanSoilK_V3.csv"))
+sd(histdata$Ksat)
+mean(histdata$Ksat)
+mean(histdata$Ksat_ANN)
+mean(histdata$Ksat_RF)
+mean(histdata$Ksat_RF2)
+mean(histdata$Ksat_Rosseta)
 ```
 
 
 ```{r Figure 1.2, fig.height=6, fig.width=6}
-ggplot(combdata, aes(Unsaturated_K2cm_cmhr, stat(density), fill = col)) + 
+combdata %>% 
+  mutate(log_kfs = log(Unsaturated_K2cm_cmhr)) ->
+  combdata
+ggplot(combdata, aes(log_kfs, stat(density), fill = col)) + 
 # geom_freqpoly()
-geom_histogram(binwidth = 2, col = 'gray') +
+geom_histogram(binwidth = 0.25, col = 'gray') +
 # geom_density()+
-theme(legend.position = "none", legend.background = element_rect(fill = alpha('white',0.0))
-      , axis.title = element_text(size = 20)
-      , axis.text = element_text(size = 20)) +
-scale_fill_discrete(name = "Data", labels=c('Training', 'Verification')) +
-xlab(expression( K[fs]~(cm~h^{-1}) )) +
-ylab('Density')
+  theme(legend.position = "none", legend.background = element_rect(fill = alpha('white',0.0))
+        , axis.title = element_text(size = 20)
+        , axis.text = element_text(size = 20)) +
+  scale_fill_manual(values = c("blue", "red")) +
+# scale_fill_discrete(name = "Data", labels=c('Training', 'Verification')) +
+  xlab(expression( K[fs]~","~log~(cm~h^{-1}) )) +
+  ylab('Density')
 
 # plot_grid(p1, p2, labels = c('( a ), ( b )'), vjust = 4, hjust = c(-2,-2))
 # ggsave("Figure1-2.jpg", width = 7.5, height = 7.5, dpi = 300, units = "in")
@@ -116,7 +133,7 @@ ylab('Density')
 * Show Figure 2 (why not showing)
 ![Schematic diagram of ANN](manuscript/Figures/Figure 2.jpg)
 
-```{r}
+```{r, include=FALSE}
 data_orig <- read.csv(here::here("extdata/AllCities_Victoria_RDS_rock.csv"))
 data_orig <- update_structure(data_orig)
 data_orig %>% 
@@ -215,7 +232,7 @@ rf2 <- rf_sscs(data_structure)
 ```
 
 
-```{r Figure 3}
+```{r Figure}
 importance(rf2, type = 1)
 # getwd()
 
@@ -226,6 +243,68 @@ rf2_visual(model = rf2)
 # tiff(paste("Figure A2.tiff"), width = 8, height = 6, pointsize = 1/300, units = 'in', res = 300)
 rf2_visual(model = rf2)
 # dev.off()
+```
+
+
+```{r}
+# rf 3 
+data_orig %>% 
+  select(Percent_Sand, Percent_Silt, Percent_Clay, Percent_Rock_Fragment, Top_Type, Unsaturated_K2cm_cmhr) %>% 
+  na.omit() ->
+  data_rock
+
+set.seed(20200602)
+rf3 <- randomForest(Unsaturated_K2cm_cmhr ~ Percent_Sand + Percent_Silt + Percent_Clay + Percent_Rock_Fragment + Top_Type,
+                    data=data_rock,
+                    ntree = 100,
+                    mtry = 2,
+                    importance = TRUE,
+                    proximity = TRUE)  
+
+importance(rf3, type = 1)
+
+
+# panel a
+qplot(1:100, rf3$mse ) + geom_line() + theme_bw() +
+  xlab ("Number of trees (n)") + ylab("   MSE ") +
+  theme(axis.text.x = element_text(face = "bold", size = 12),
+        axis.text.y = element_text(face = "bold", size = 12),
+        axis.title = element_text(face = "bold", size = 12),
+        axis.title.y = element_text(angle = 0, vjust = 0.5) ) ->
+  p_a
+
+# panel b
+qplot(sort(importance(rf3, type = 1)[1:5]), 1:5) +
+  geom_line() + theme_bw() +
+  xlab ("Change of MSE (%)") +
+  theme(axis.text.x = element_text(face = "bold", size = 12),
+        axis.text.y = element_text(face = "bold", size = 12),
+        axis.title = element_text(face = "bold", size = 12),
+        axis.title.y = element_blank()) + 
+  scale_y_continuous(labels = c("Structure", "%Rock", "%Silt", "%Clay", "%Sand") )->
+  p_b
+
+# panel c
+qplot(sort(importance(rf3, type = 2)[1:5]), 1:5) + geom_line() + theme_bw() +
+  xlab ("Change of node purity") +
+  theme(axis.text.x = element_text(face = "bold", size = 12),
+        axis.text.y = element_text(face = "bold", size = 12),
+        axis.title = element_text(face = "bold", size = 12),
+        axis.title.y = element_blank()) + 
+  scale_y_continuous(labels = c(" ", " ", " ", " ", "") )->
+  p_c
+
+panel_b <- plot_grid(p_b, p_c, ncol = 2,
+                     labels = c("b", "c"),
+                     hjust = c(-9.5, -4),
+                     vjust = 2.75,
+                     rel_widths = c(1.15, 1))
+
+print(plot_grid(p_a, panel_b, nrow = 2, labels = c("a", "")
+                , hjust = -10, vjust = 2.75 ) )
+
+ggsave("Figure A2.tiff", width = 8, height = 6, dpi = 300, units = "in")
+
 ```
 
 
@@ -465,9 +544,11 @@ read.csv(here::here("extdata/AllCities_Victoria_RDS_rock.csv")) %>%
 ```{r}
 rock_test_data4 %>% 
   ggplot(aes(Percent_Rock_Fragment, Unsaturated_K2cm_cmhr)) +
-  geom_point(alpha = 0.5) +
+  geom_hex(col = "gray", bins = 30) +
+  scale_fill_distiller(palette = "YlGnBu", name = "Count") +
   labs(x = expression(Rock~fragment~("%")),
-       y = expression(Log~K[fs]~(cm~h^{-1}))) ->
+       y = expression(K[fs]~","~log~(cm~h^{-1}))) +
+  theme(legend.position = "right") ->
   p1
 
 # density 1 panel
@@ -495,5 +576,53 @@ dens1 + plot_spacer() + p1 + dens2 +
   
 ggsave("Figure A4.jpg", width = 6, height = 4, dpi = 300, units = "in")
 rock_test_data4$Percent_Rock_Fragment %>% max()
+```
+
+```{r}
+read.csv(here::here("extdata/AllCities_Victoria_RDS_rock.csv")) %>% 
+  filter(!is.na(Unsaturated_K2cm_cmhr) & !is.na(Percent_Sand) &
+           !is.na(Type) & !is.na(Texture)) %>% 
+  select(BulkDensity_gcm3, Unsaturated_K2cm_cmhr, Percent_Sand,
+         Percent_Silt, Percent_Clay, hwsd_bd, Texture) -> 
+  bd_test_data 
+
+bd_test_data %>% 
+  mutate(log_kfs = log(Unsaturated_K2cm_cmhr)) ->
+  bd_test_data
+
+# density 1 panel
+bd_test_data %>% 
+  ggplot(aes(hwsd_bd)) +
+  geom_histogram(bins = 50, fill = "white", col = "black") +
+  theme_void() -> 
+  dens_bd1
+
+# density 2 panel
+bd_test_data %>% 
+  ggplot(aes(log_kfs)) +
+  geom_histogram(bins = 30, fill = "white", col = "black") +
+  theme_void() +
+  coord_flip() -> 
+  dens_bd2
+
+bd_test_data %>% 
+  ggplot(aes(hwsd_bd, log_kfs)) +
+   geom_hex(col = "gray", bins = 25) +
+  scale_fill_distiller(palette = "YlGnBu", name = "Count") +
+  labs(x = expression(Bulk~density~(g~cm^{-3})),
+       y = expression(K[fs]~","~log~(cm~h^{-1}))) ->
+  p2
+
+dens_bd1 + plot_spacer() + p2 + dens_bd2 +
+  dens1 + plot_spacer() + p1 + dens2 + 
+  plot_layout(
+    ncol = 2, 
+    nrow = 4, 
+    widths = c(4, 1),
+    heights = c(1, 4) ) ->
+  final_plot_bd
+print(final_plot_bd)  
+
+ggsave("Figure A4.jpg", width = 6, height = 6, dpi = 300, units = "in")
 ```
 

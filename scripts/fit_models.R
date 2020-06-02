@@ -23,6 +23,8 @@ data_orig <- file.path("extdata", "AllCities_Victoria_RDS_rock.csv") %>%
 type_df <- as_tibble(soil_types())
 
 data_structure <- data_orig %>%
+  mutate(ssc = Percent_Sand + Percent_Silt + Percent_Clay) %>%
+  filter(ssc > 99 & ssc < 101) %>% 
   select(Percent_Sand, Percent_Silt, Percent_Clay, Percent_Rock_Fragment,
          Unsaturated_K2cm_cmhr, Type) %>%
   filter_at(vars(-Percent_Rock_Fragment), negate(is.na)) %>%
