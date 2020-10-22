@@ -16,7 +16,7 @@ library(urbankfs)
 n_boot <- 500
 set.seed(20190426)
 
-data_orig <- file.path("extdata", "AllCities_Victoria_RDS_rock.csv") %>%
+data_orig <- file.path("extdata", "AllCities_Victoria_RDS_rock_bd.csv") %>%
   read.csv() %>%
   as_tibble()
 

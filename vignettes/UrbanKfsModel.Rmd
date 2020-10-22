@@ -36,6 +36,11 @@ source('functions.R')
 theme_set(theme_bw())
 ```
 
+# functions
+```{r}
+read_xlsx <- function(x, n_sheet, n_skip) read_excel(file.path(DATA_DIR, x), sheet = n_sheet, skip = n_skip)
+```
+
 # Prepare data
 ```{r update urban kfs data}
 # already done, do not need to run again
@@ -43,6 +48,38 @@ theme_set(theme_bw())
 # write.csv(All_cite_new, "../extdata/AllCities_Victoria_RDS.csv", row.names = F)
 ```
 
+```{r, include=FALSE}
+DATA_DIR <- here::here("extdata")
+raw_data <- read.csv(here::here("extdata/AllCities_Victoria_RDS_rock.csv"))
+bd_data <- read_xlsx('BDdata.xlsx', n_sheet = 1, n_skip = 0)
+```
+
+
+```{r join and get BD}
+bd_data %>% 
+  select(SampleLayer_ID) %>% 
+  count(SampleLayer_ID) %>% 
+  arrange(n)
+
+raw_data %>% 
+  select(SampleLayer_ID) %>% 
+  count(SampleLayer_ID) %>% 
+  arrange(n)
+
+raw_data %>% 
+  select(BulkDensity_gcm3) %>% 
+  na.omit()
+
+all_city_joint_bd <- left_join(raw_data %>% select(-BulkDensity_gcm3),
+                               bd_data %>% select(SampleLayer_ID, BulkDensity_gcm3), by = "SampleLayer_ID")
+
+all_city_joint_bd %>% 
+  select(BulkDensity_gcm3) %>% 
+  na.omit() %>% 
+  arrange(BulkDensity_gcm3)
+
+# write.csv(all_city_joint_bd, "../extdata/AllCities_Victoria_RDS_rock_bd.csv", row.names = F)
+```
 
 # Plot Figure 1
 ```{r Figure 1.1, fig.height=8, fig.width=8}
@@ -133,9 +170,9 @@ geom_histogram(binwidth = 0.25, col = 'gray') +
 * Show Figure 2 (why not showing)
 ![Schematic diagram of ANN](manuscript/Figures/Figure 2.jpg)
 
-```{r, include=FALSE}
-data_orig <- read.csv(here::here("extdata/AllCities_Victoria_RDS_rock.csv"))
-data_orig <- update_structure(data_orig)
+```{r}
+data_orig <- update_structure(read.csv(here::here("extdata/AllCities_Victoria_RDS_rock_bd.csv")))
+
 data_orig %>% 
   select(BulkDensity_gcm3) %>% 
   na.omit()
@@ -155,13 +192,14 @@ data_orig %>%
   na.omit() 
 
 data_orig %>% 
-  select(Percent_Sand, Percent_Silt, Percent_Clay, Ksat_cmhr, Type, BD) %>% 
+  select(Percent_Sand, Percent_Silt, Percent_Clay, Ksat_cmhr, Type, BulkDensity_gcm3) %>% 
   na.omit()
 
 data_orig %>% 
   select(BD) %>% 
   unique()
 ```
+
 
 ```{r ANN model, message=FALSE, include = FALSE}
 data_structure <- update_structure(data_orig)
@@ -233,6 +271,7 @@ rf2 <- rf_sscs(data_structure)
 
 
 ```{r Figure}
+set.seed(20191120)
 importance(rf2, type = 1)
 # getwd()
 
@@ -379,7 +418,7 @@ summary(lm(rock_test_data3$Unsaturated_K2cm_cmhr ~ rock_test_data3$rock_m3))$r.s
 ```{r scenario 4}
 # sscr: with no scaled sscr
 data_orig %>% 
-  select(Unsaturated_K2cm_cmhr, Percent_Sand, Percent_Clay, Percent_Silt, Percent_Rock_Fragment) %>% 
+  select(Unsaturated_K2cm_cmhr, Percent_Sand, Percent_Clay, Percent_Silt, Percent_Rock_Fragment, Rock_group, Rock_Fragment_Type) %>% 
   na.omit() %>% 
   filter(Unsaturated_K2cm_cmhr > 0) %>% 
   mutate(Unsaturated_K2cm_cmhr = log(Unsaturated_K2cm_cmhr)) ->
@@ -534,20 +573,25 @@ summary(full.model)
 ```
 
 ```{r}
-read.csv(here::here("extdata/AllCities_Victoria_RDS_rock.csv")) %>% 
+all_city_joint_bd %>% 
   select(Percent_Sand, Percent_Silt, Percent_Clay, Unsaturated_K2cm_cmhr, Type) %>% 
   mutate(ssc = Percent_Sand + Percent_Silt + Percent_Clay) %>% 
   na.omit() %>% 
   arrange(ssc)
 ```
 
+
 ```{r}
 rock_test_data4 %>% 
-  ggplot(aes(Percent_Rock_Fragment, Unsaturated_K2cm_cmhr)) +
-  geom_hex(col = "gray", bins = 30) +
-  scale_fill_distiller(palette = "YlGnBu", name = "Count") +
+  ggplot(aes(Percent_Rock_Fragment, Unsaturated_K2cm_cmhr, col = Rock_group)) +
+  geom_point() +
+  # geom_hex(bins = 30) +
+  # scale_fill_distiller(palette = "YlGnBu", name = "Count") +
   labs(x = expression(Rock~fragment~("%")),
-       y = expression(K[fs]~","~log~(cm~h^{-1}))) +
+       y = expression(K[fs]*","~'log'~(cm~h^{-1}))) +
+  scale_color_discrete(name = element_blank()) +
+  # scale_fill_continuous(name = element_blank()) +
+  guides(fill = FALSE) +
   theme(legend.position = "right") ->
   p1
 
@@ -560,7 +604,7 @@ rock_test_data4 %>%
 # density 2 panel
 rock_test_data4 %>% 
   ggplot(aes(Unsaturated_K2cm_cmhr)) +
-  geom_histogram(bins = 30, fill = "white", col = "black") +
+  geom_histogram(bins = 25, fill = "white", col = "black") +
   theme_void() +
   coord_flip() -> 
   dens2
@@ -574,43 +618,46 @@ dens1 + plot_spacer() + p1 + dens2 +
     final_plot
   print(final_plot)
   
-ggsave("Figure A4.jpg", width = 6, height = 4, dpi = 300, units = "in")
+# ggsave("Figure A4.jpg", width = 6, height = 4, dpi = 300, units = "in")
 rock_test_data4$Percent_Rock_Fragment %>% max()
 ```
 
-```{r}
-read.csv(here::here("extdata/AllCities_Victoria_RDS_rock.csv")) %>% 
+```{r, fig.width=6, fig.height=6}
+data_orig %>% 
   filter(!is.na(Unsaturated_K2cm_cmhr) & !is.na(Percent_Sand) &
-           !is.na(Type) & !is.na(Texture)) %>% 
+           !is.na(Type) & !is.na(Texture) & !is.na(BulkDensity_gcm3)) %>% 
   select(BulkDensity_gcm3, Unsaturated_K2cm_cmhr, Percent_Sand,
-         Percent_Silt, Percent_Clay, hwsd_bd, Texture) -> 
+         Percent_Silt, Percent_Clay, BulkDensity_gcm3, Texture) -> 
   bd_test_data 
 
 bd_test_data %>% 
   mutate(log_kfs = log(Unsaturated_K2cm_cmhr)) ->
   bd_test_data
 
+lm(bd_test_data$log_kfs ~ bd_test_data$BulkDensity_gcm3) %>% summary()
+
 # density 1 panel
 bd_test_data %>% 
-  ggplot(aes(hwsd_bd)) +
-  geom_histogram(bins = 50, fill = "white", col = "black") +
+  ggplot(aes(BulkDensity_gcm3)) +
+  geom_histogram(bins = 30, fill = "white", col = "black") +
   theme_void() -> 
   dens_bd1
 
 # density 2 panel
 bd_test_data %>% 
   ggplot(aes(log_kfs)) +
-  geom_histogram(bins = 30, fill = "white", col = "black") +
+  geom_histogram(bins = 20, fill = "white", col = "black") +
   theme_void() +
   coord_flip() -> 
   dens_bd2
 
 bd_test_data %>% 
-  ggplot(aes(hwsd_bd, log_kfs)) +
-   geom_hex(col = "gray", bins = 25) +
+  ggplot(aes(BulkDensity_gcm3, log_kfs)) +
+  # geom_point() +
+  geom_hex(col = "gray", bins = 25) +
   scale_fill_distiller(palette = "YlGnBu", name = "Count") +
   labs(x = expression(Bulk~density~(g~cm^{-3})),
-       y = expression(K[fs]~","~log~(cm~h^{-1}))) ->
+       y = expression(K[fs]*","~log~(cm~h^{-1}))) ->
   p2
 
 dens_bd1 + plot_spacer() + p2 + dens_bd2 +
@@ -621,8 +668,149 @@ dens_bd1 + plot_spacer() + p2 + dens_bd2 +
     widths = c(4, 1),
     heights = c(1, 4) ) ->
   final_plot_bd
+
 print(final_plot_bd)  
 
-ggsave("Figure A4.jpg", width = 6, height = 6, dpi = 300, units = "in")
+# ggsave("Figure A4_V2.jpg", width = 6, height = 7, dpi = 300, units = "in")
+```
+
+```{r}
+histdata
+wilcox.test(histdata$Ksat, histdata$Ksat_ANN, mu = 0, paired = TRUE, alternative = "two.sided", conf.int = TRUE, conf.level = 0.95)
+wilcox.test(histdata$Ksat, histdata$Ksat_RF, mu = 0, paired = TRUE, alternative = "two.sided", conf.int = TRUE, conf.level = 0.95)
+wilcox.test(histdata$Ksat, histdata$Ksat_RF2, mu = 0, paired = TRUE, alternative = "two.sided", conf.int = TRUE, conf.level = 0.95)
+wilcox.test(histdata$Ksat, histdata$Ksat_Rosseta, mu = 0, paired = TRUE, alternative = "two.sided", conf.int = TRUE, conf.level = 0.95)
+```
+
+
+## test BD
+```{r test BD}
+## ssc: with no scaled ssc
+rf_no_bd <- randomForest(log_kfs ~ Percent_Sand + Percent_Clay + Percent_Silt, data=bd_test_data,
+                           ntree = 100,
+                           mtry = 2,
+                           importance = TRUE,
+                           proximity = TRUE)
+
+## train dataset
+bd_test_data$rf_no_bd <- predict(rf_no_bd, bd_test_data)
+bd_test_data %>% mutate(S_M1 = log_kfs - rf_no_bd) -> bd_test_data
+cor(bd_test_data$rf_no_bd, bd_test_data$log_kfs, method = c("spearman"))
+slr_rf_np_bd <- lm(bd_test_data$log_kfs ~ bd_test_data$rf_no_bd)
+tibble(inter = summary(slr_rf_np_bd)$coefficients[1,1] %>% round(3),
+       slope = summary(slr_rf_np_bd)$coefficients[2,1] %>% round(3),
+       r2 = summary(slr_rf_np_bd)$adj.r.squared %>% round(2),
+       E = sum(bd_test_data$S_M1) / length(bd_test_data$S_M1) %>% round(3), #E
+       RMSE = (sum(bd_test_data$S_M1^2)/length(bd_test_data$S_M1))^0.5 %>% round(3),
+       d = (1- sum(bd_test_data$S_M1^2)/sum((abs(bd_test_data$log_kfs-mean(bd_test_data$rf_no_bd))+
+                                              abs(bd_test_data$rf_no_bd-mean(bd_test_data$rf_no_bd)))^2)) %>% round(3)
+       )
+
+## sscbd: with no scaled ssc
+rf_wt_bd <- randomForest(log_kfs ~ Percent_Sand + Percent_Clay + Percent_Silt + BulkDensity_gcm3, data=bd_test_data,
+                           ntree = 100,
+                           mtry = 2,
+                           importance = TRUE,
+                           proximity = TRUE)
+
+## train dataset
+bd_test_data$rf_wt_bd <- predict(rf_wt_bd, bd_test_data)
+cor(bd_test_data$rf_wt_bd, bd_test_data$log_kfs, method = c("spearman"))
+bd_test_data %>% mutate(S_M3 = log_kfs - rf_wt_bd) -> bd_test_data
+
+slr_rf_wt_bd <- lm(bd_test_data$log_kfs ~ bd_test_data$rf_wt_bd)
+tibble(inter = summary(slr_rf_wt_bd)$coefficients[1,1] %>% round(3),
+       slope = summary(slr_rf_wt_bd)$coefficients[2,1] %>% round(3),
+       r2 = summary(slr_rf_wt_bd)$adj.r.squared %>% round(2),
+       E = sum(bd_test_data$S_M3) / length(bd_test_data$S_M3) %>% round(3), #E
+       RMSE = (sum(bd_test_data$S_M3^2)/length(bd_test_data$S_M3))^0.5 %>% round(3),
+       d = (1- sum(bd_test_data$S_M3^2)/sum((abs(bd_test_data$log_kfs-mean(bd_test_data$rf_wt_bd))+
+                                              abs(bd_test_data$rf_wt_bd-mean(bd_test_data$rf_wt_bd)))^2)) %>% round(3)
+       )
+
+
+## ssc: with no scaled ssc, ann model
+ann_no_bd <- neuralnet(log_kfs ~ Percent_Sand + Percent_Silt + Percent_Clay,
+                       data=bd_test_data, hidden=c(5,3), linear.output=T, stepmax=1e6)
+
+## train dataset
+bd_test_data$ann_no_bd <- neuralnet::compute(ann_no_bd, bd_test_data[,c('Percent_Sand' , 'Percent_Silt' , 'Percent_Clay')])$net.result
+cor(bd_test_data$ann_no_bd, bd_test_data$log_kfs, method = c("spearman"))
+slr_ann_np_bd <- lm(bd_test_data$log_kfs ~ bd_test_data$ann_no_bd)
+bd_test_data %>% mutate(S_M2 = log_kfs - ann_no_bd) -> bd_test_data
+tibble(inter = summary(slr_ann_np_bd)$coefficients[1,1] %>% round(3),
+       slope = summary(slr_ann_np_bd)$coefficients[2,1] %>% round(3),
+       r2 = summary(slr_ann_np_bd)$adj.r.squared %>% round(2),
+       E = sum(bd_test_data$S_M2) / length(bd_test_data$S_M2) %>% round(3), #E
+       RMSE = (sum(bd_test_data$S_M2^2)/length(bd_test_data$S_M2))^0.5 %>% round(3),
+       d = (1- sum(bd_test_data$S_M2^2)/sum((abs(bd_test_data$log_kfs-mean(bd_test_data$ann_no_bd))+
+                                              abs(bd_test_data$ann_no_bd-mean(bd_test_data$ann_no_bd)))^2)) %>% round(3)
+       )
+
+## sscbd: with no scaled ssc, ann model
+ann_wt_bd <- neuralnet(log_kfs ~ Percent_Sand + Percent_Silt + Percent_Clay + BulkDensity_gcm3,
+                       data=bd_test_data, hidden=c(5,3), linear.output=T, stepmax=1e6)
+
+## train dataset
+bd_test_data$ann_wt_bd <- neuralnet::compute(ann_wt_bd, bd_test_data[,c('Percent_Sand' , 'Percent_Silt' , 'Percent_Clay', 'BulkDensity_gcm3')])$net.result
+
+slr_ann_wt_bd <- lm(bd_test_data$log_kfs ~ bd_test_data$ann_wt_bd)
+bd_test_data %>% mutate(S_M3 = log_kfs - ann_wt_bd) -> bd_test_data
+tibble(inter = summary(slr_ann_wt_bd)$coefficients[1,1] %>% round(3),
+       slope = summary(slr_ann_wt_bd)$coefficients[2,1] %>% round(3),
+       r2 = summary(slr_ann_wt_bd)$adj.r.squared %>% round(2),
+       E = sum(bd_test_data$S_M3) / length(bd_test_data$S_M3) %>% round(3), #E
+       RMSE = (sum(bd_test_data$S_M3^2)/length(bd_test_data$S_M3))^0.5 %>% round(3),
+       d = (1- sum(bd_test_data$S_M3^2)/sum((abs(bd_test_data$log_kfs-mean(bd_test_data$ann_wt_bd))+
+                                              abs(bd_test_data$ann_wt_bd-mean(bd_test_data$ann_wt_bd)))^2)) %>% round(3)
+       )
+```
+
+```{r model evaluation}
+# response to review
+library(ggridges)
+r2results <- read.csv(here::here("vignettes/r2evaluation.csv"))
+r2results %>% 
+  dplyr::select(Group, R2, RMSE) %>% 
+  tidyr::gather(-Group, key = "Key", value = "Value") %>% 
+  ggplot(aes(Value, Group, fill = 0.5 - abs(0.5 - stat(ecdf)))) +
+  stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
+  scale_fill_viridis_c(name = "Probability", direction = -1) +
+  facet_grid(cols = vars(Key), scales = "free") +
+  xlab(expression(R^{2}~"                                        "~RMSE~(cm~hr^{-1}))) +
+  ylab(element_blank()) +
+  scale_y_discrete(labels= c("From papers", "This study"))
+```
+
+## Test SSC and SC
+```{r}
+rf_no_bd_SC <- randomForest(log_kfs ~ Percent_Sand + Percent_Clay , data=bd_test_data,
+                           ntree = 100,
+                           mtry = 2,
+                           importance = TRUE,
+                           proximity = TRUE)
+
+bd_test_data$rf_no_bd_SC <- predict(rf_no_bd_SC, bd_test_data)
+cor(bd_test_data$rf_no_bd_SC, bd_test_data$log_kfs, method = c("spearman"))
+lm(bd_test_data$rf_no_bd_SC ~ bd_test_data$rf_no_bd) %>% summary()
+```
+
+```{r plot SSC vs SC test}
+bd_test_data %>% 
+  ggplot(aes(rf_no_bd, rf_no_bd_SC)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  geom_abline(slope = 1, intercept = 0, col = "red", linetype = "dotted") +
+  labs(x = expression("Sand+Silt+Clay"~predicted~K[fs]~(cm~hr^{-1}~","~log~transfered)),
+       y = expression("Sand+Clay"~predicted~K[fs]~(cm~hr^{-1}~","~log~transfered))) +
+  annotate("text", x = -0.5, y = 2, label = "italic(R) ^ 2 == 0.97", parse = TRUE)
+```
+
+```{r}
+log(2.78)
+exp(log(2.78))
+
+log10(2.78)
+10^(log10(2.78))
 ```
 
