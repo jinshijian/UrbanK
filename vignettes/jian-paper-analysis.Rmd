@@ -171,26 +171,29 @@ hist_summary
 
 How well does it do?
 
-```{r fig-urbandata, fig.cap = fig_urbandata_cap, fig.width=4, fig.height=6}
+```{r fig-urbandata, fig.cap = fig_urbandata_cap, fig.width=4, fig.height=5}
 facet_title = c("(a) ANN-no-structure-no-rock" = "Neural network (no rock)",
                 "(b) RF-no-structure-no-rock" = "RandomForest (no rock, no type)",
-                "(c) RF-with-structure-no-rock" = "RandomForest (no rock, with type)",
-                "(d) ROSETTA" = "ROSETTA")
+                "(c) RF-with-structure-no-rock" = "RandomForest (no rock, with type)")
 
-bind_rows(
-  histdata %>%
-    transmute(
-      mean = log(Ksat_Rosseta),
-      log_Ksat = log(Ksat),
-      q050 = log_Ksat,
-      q950 = log_Ksat,
-      model_type = "ROSETTA") %>%
-    filter_if(is.numeric, all_vars(is.finite(.))),
-  histdata %>%
+# bind_rows(
+#   histdata %>%
+#     transmute(
+#       mean = log(Ksat_Rosseta),
+#       log_Ksat = log(Ksat),
+#       q050 = log_Ksat,
+#       q950 = log_Ksat,
+#       model_type = "ROSETTA") %>%
+#     filter_if(is.numeric, all_vars(is.finite(.))),
+#   histdata %>%
+#     left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay", "Top_Type")) %>%
+#     mutate(log_Ksat = log(Ksat)) %>%
+#     select(mean, log_Ksat, q050, q950, model_type)) 
+
+histdata %>%
     left_join(hist_summary, by = c("Percent_Sand", "Percent_Silt", "Percent_Clay", "Top_Type")) %>%
     mutate(log_Ksat = log(Ksat)) %>%
-    select(mean, log_Ksat, q050, q950, model_type)
-) %>%
+    select(mean, log_Ksat, q050, q950, model_type) %>%
   mutate(model_type = fct_recode(model_type, !!!facet_title)) %>%
   ggplot() +
   aes(x = mean, xmin = q050, xmax = q950, y = log_Ksat) +

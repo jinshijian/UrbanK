@@ -766,18 +766,19 @@ tibble(inter = summary(slr_ann_wt_bd)$coefficients[1,1] %>% round(3),
        )
 ```
 
-```{r model evaluation}
+```{r model evaluation, fig.height = 3, fig.width = 6}
 # response to review
 library(ggridges)
 r2results <- read.csv(here::here("vignettes/r2evaluation.csv"))
 r2results %>% 
   dplyr::select(Group, R2, RMSE) %>% 
+  rename("(a)" = R2, "(b)" = RMSE) %>% 
   tidyr::gather(-Group, key = "Key", value = "Value") %>% 
   ggplot(aes(Value, Group, fill = 0.5 - abs(0.5 - stat(ecdf)))) +
   stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
   scale_fill_viridis_c(name = "Probability", direction = -1) +
   facet_grid(cols = vars(Key), scales = "free") +
-  xlab(expression(R^{2}~"                                        "~RMSE~(cm~hr^{-1}))) +
+  xlab(expression("          "~R^{2}~"                              "~RMSE~(cm~hr^{-1}))) +
   ylab(element_blank()) +
   scale_y_discrete(labels= c("From papers", "This study"))
 ```
@@ -812,5 +813,19 @@ exp(log(2.78))
 
 log10(2.78)
 10^(log10(2.78))
+```
+
+```{r}
+# compare PTF of this study with ROSETTA
+PTFvsROSETTA <- read.csv(here::here("vignettes/PTFs-vs-ROSETTA.csv"))
+PTFvsROSETTA %>% 
+  dplyr::select(Group, Kfs) %>% 
+  mutate(Kfs = log(Kfs)) %>% 
+  ggplot(aes(Kfs, Group, fill = 0.5 - abs(0.5 - stat(ecdf)))) +
+  stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
+  scale_fill_viridis_c(name = "Probability", direction = -1) +
+  xlab(expression(K[fs]~(cm~hr^{-1}))) +
+  ylab(element_blank()) +
+  scale_y_discrete(labels= c("(e) ROSETTA", "(d) RF-with-structure-no-rock", "(c) RF-no-structure-no-rock", "(b) ANN-no-structure-no-rock", "(a) Measured"))
 ```
 

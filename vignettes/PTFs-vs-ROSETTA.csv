@@ -1,0 +1,101 @@
+﻿Texture,Sa,Si,Cl,BD,Type,Kfs,Citation,Group
+Sand,89,11,0,1.48,SG,18.7,Gregory et al. (2006),(e)Measured
+Sand,96,2,2,1.52,SG,16,Gregory et al. (2006),(e)Measured
+Sand,96,2,2,1.47,SG,18.8,Gregory et al. (2006),(e)Measured
+Loam,28,47,25,NA,PL,0.4,Hamilton & Waddington (1999),(e)Measured
+Silt loam,18,59,23,NA,PL,1.2,Hamilton & Waddington (1999),(e)Measured
+Silt loam,22,55,23,NA,SBK,1.4,Hamilton & Waddington (1999),(e)Measured
+Sandy loam,62,27,11,NA,SBK,1.4,Hamilton & Waddington (1999),(e)Measured
+Silt loam,23,58,19,NA,SBK,1.6,Hamilton & Waddington (1999),(e)Measured
+Loam,44,37,19,NA,SBK,1.8,Hamilton & Waddington (1999),(e)Measured
+Silt loam,14,63,23,NA,SBK,2.2,Hamilton & Waddington (1999),(e)Measured
+Clay loam,24,47,29,NA,SBK,2.3,Hamilton & Waddington (1999),(e)Measured
+Silt loam,27,51,22,NA,SBK,2.7,Hamilton & Waddington (1999),(e)Measured
+Loam,42,33,25,NA,SBK,2.9,Hamilton & Waddington (1999),(e)Measured
+Loam,32,43,25,NA,GR,4.9,Hamilton & Waddington (1999),(e)Measured
+Clay loam,32,39,29,NA,GR,5.1,Hamilton & Waddington (1999),(e)Measured
+Silt loam,18,60,22,NA,GR,8.5,Hamilton & Waddington (1999),(e)Measured
+Silt loam,22,57,21,NA,GR,9.8,Hamilton & Waddington (1999),(e)Measured
+Clay loam,30,41,29,NA,GR,10,Hamilton & Waddington (1999),(e)Measured
+Sand,94,3,3,NA,SG,3,Pitt et al. (1999),(e)Measured
+Clay,15,15,70,NA,SBK,0.7,Pitt et al. (1999),(e)Measured
+Sand,89,11,0,1.48,SG,2.91,Gregory et al. (2006),(d)ANN-no-structure-no-rock
+Sand,96,2,2,1.52,SG,22.33,Gregory et al. (2006),(d)ANN-no-structure-no-rock
+Sand,96,2,2,1.47,SG,22.33,Gregory et al. (2006),(d)ANN-no-structure-no-rock
+Loam,28,47,25,NA,PL,0.26,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Silt loam,18,59,23,NA,PL,0.21,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Silt loam,22,55,23,NA,SBK,0.25,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Sandy loam,62,27,11,NA,SBK,0.76,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Silt loam,23,58,19,NA,SBK,0.3,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Loam,44,37,19,NA,SBK,0.38,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Silt loam,14,63,23,NA,SBK,0.18,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Clay loam,24,47,29,NA,SBK,0.21,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Silt loam,27,51,22,NA,SBK,0.28,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Loam,42,33,25,NA,SBK,0.32,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Loam,32,43,25,NA,GR,0.28,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Clay loam,32,39,29,NA,GR,0.26,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Silt loam,18,60,22,NA,GR,0.22,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Silt loam,22,57,21,NA,GR,0.27,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Clay loam,30,41,29,NA,GR,0.25,Hamilton & Waddington (1999),(d)ANN-no-structure-no-rock
+Sand,94,3,3,NA,SG,12.99,Pitt et al. (1999),(d)ANN-no-structure-no-rock
+Clay,15,15,70,NA,SBK,0.28,Pitt et al. (1999),(d)ANN-no-structure-no-rock
+Sand,89,11,0,1.48,SG,3,Gregory et al. (2006),(c)RF-no-structure-no-rock
+Sand,96,2,2,1.52,SG,17.14,Gregory et al. (2006),(c)RF-no-structure-no-rock
+Sand,96,2,2,1.47,SG,17.14,Gregory et al. (2006),(c)RF-no-structure-no-rock
+Loam,28,47,25,NA,PL,0.6,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Silt loam,18,59,23,NA,PL,0.24,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Silt loam,22,55,23,NA,SBK,0.36,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Sandy loam,62,27,11,NA,SBK,1.17,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Silt loam,23,58,19,NA,SBK,0.48,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Loam,44,37,19,NA,SBK,0.82,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Silt loam,14,63,23,NA,SBK,0.22,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Clay loam,24,47,29,NA,SBK,0.56,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Silt loam,27,51,22,NA,SBK,0.24,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Loam,42,33,25,NA,SBK,0.5,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Loam,32,43,25,NA,GR,0.47,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Clay loam,32,39,29,NA,GR,0.28,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Silt loam,18,60,22,NA,GR,0.24,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Silt loam,22,57,21,NA,GR,0.33,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Clay loam,30,41,29,NA,GR,0.29,Hamilton & Waddington (1999),(c)RF-no-structure-no-rock
+Sand,94,3,3,NA,SG,12.41,Pitt et al. (1999),(c)RF-no-structure-no-rock
+Clay,15,15,70,NA,SBK,0.42,Pitt et al. (1999),(c)RF-no-structure-no-rock
+Sand,89,11,0,1.48,SG,4.54,Gregory et al. (2006),(b)RF-with-structure-no-rock
+Sand,96,2,2,1.52,SG,17.25,Gregory et al. (2006),(b)RF-with-structure-no-rock
+Sand,96,2,2,1.47,SG,17.25,Gregory et al. (2006),(b)RF-with-structure-no-rock
+Loam,28,47,25,NA,PL,0.76,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Silt loam,18,59,23,NA,PL,0.49,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Silt loam,22,55,23,NA,SBK,0.25,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Sandy loam,62,27,11,NA,SBK,0.93,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Silt loam,23,58,19,NA,SBK,0.37,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Loam,44,37,19,NA,SBK,0.63,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Silt loam,14,63,23,NA,SBK,0.23,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Clay loam,24,47,29,NA,SBK,0.3,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Silt loam,27,51,22,NA,SBK,0.18,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Loam,42,33,25,NA,SBK,0.31,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Loam,32,43,25,NA,GR,0.27,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Clay loam,32,39,29,NA,GR,0.23,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Silt loam,18,60,22,NA,GR,0.22,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Silt loam,22,57,21,NA,GR,0.3,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Clay loam,30,41,29,NA,GR,0.24,Hamilton & Waddington (1999),(b)RF-with-structure-no-rock
+Sand,94,3,3,NA,SG,12.97,Pitt et al. (1999),(b)RF-with-structure-no-rock
+Clay,15,15,70,NA,SBK,0.32,Pitt et al. (1999),(b)RF-with-structure-no-rock
+Sand,89,11,0,1.48,SG,340.18,Gregory et al. (2006),(a)ROSETTA
+Sand,96,2,2,1.52,SG,872,Gregory et al. (2006),(a)ROSETTA
+Sand,96,2,2,1.47,SG,872,Gregory et al. (2006),(a)ROSETTA
+Loam,28,47,25,NA,PL,13.24,Hamilton & Waddington (1999),(a)ROSETTA
+Silt loam,18,59,23,NA,PL,13.25,Hamilton & Waddington (1999),(a)ROSETTA
+Silt loam,22,55,23,NA,SBK,13.6,Hamilton & Waddington (1999),(a)ROSETTA
+Sandy loam,62,27,11,NA,SBK,35.02,Hamilton & Waddington (1999),(a)ROSETTA
+Silt loam,23,58,19,NA,SBK,16.28,Hamilton & Waddington (1999),(a)ROSETTA
+Loam,44,37,19,NA,SBK,10.12,Hamilton & Waddington (1999),(a)ROSETTA
+Silt loam,14,63,23,NA,SBK,13.02,Hamilton & Waddington (1999),(a)ROSETTA
+Clay loam,24,47,29,NA,SBK,12.42,Hamilton & Waddington (1999),(a)ROSETTA
+Silt loam,27,51,22,NA,SBK,14.56,Hamilton & Waddington (1999),(a)ROSETTA
+Loam,42,33,25,NA,SBK,7.21,Hamilton & Waddington (1999),(a)ROSETTA
+Loam,32,43,25,NA,GR,12.58,Hamilton & Waddington (1999),(a)ROSETTA
+Clay loam,32,39,29,NA,GR,9.68,Hamilton & Waddington (1999),(a)ROSETTA
+Silt loam,18,60,22,NA,GR,13.65,Hamilton & Waddington (1999),(a)ROSETTA
+Silt loam,22,57,21,NA,GR,14.57,Hamilton & Waddington (1999),(a)ROSETTA
+Clay loam,30,41,29,NA,GR,11.35,Hamilton & Waddington (1999),(a)ROSETTA
+Sand,94,3,3,NA,SG,629.24,Pitt et al. (1999),(a)ROSETTA
+Clay,15,15,70,NA,SBK,16.32,Pitt et al. (1999),(a)ROSETTA
