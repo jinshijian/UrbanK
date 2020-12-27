@@ -1,35 +1,32 @@
 Group,var_modelType,inter,slope,R2,E,lnRMSE,d,p,RMSE,log10RMSE
-ThisStudy,Neural network (no rock),0.32,0.914,0.505,0.333,0.99,0.81,0,2.691234472,
-ThisStudy,"RandomForest (no rock, no type)",0.294,0.983,0.46,0.296,1.015,0.777,0,2.759363397,
-ThisStudy,"RandomForest (no rock, with type)",0.292,1.041,0.486,0.288,0.99,0.785,0,2.691234472,
-ThisStudy,Neural network (with rock),0.305,0.922,0.285,0.322,1.094,0.665,0,2.986194995,
-ThisStudy,"RandomForest (with rock, no type)",0.188,0.868,0.236,0.201,1.102,0.634,0.019,3.010180368,
-ThisStudy,"RandomForest (with rock, with type)",0.193,0.902,0.237,0.202,1.1,0.626,0.018,3.004166024,
-ThisStudy,Neural network (no rock),1.429,0.387,0.364,1.554,2.105,0.608,0,8.20710301,
-ThisStudy,"RandomForest (no rock, no type)",1.344,0.39,0.276,1.334,1.9,0.609,0,6.685894442,
-ThisStudy,"RandomForest (no rock, with type)",1.382,0.361,0.263,1.439,2.034,0.584,0,7.644603698,
+ThisStudy,Neural network (no rock),0.381,0.88,0.467,0.412,1.097,0.788,0,2.995167031,0.476421047
+ThisStudy,"RandomForest (no rock, no type)",0.348,0.9,0.403,0.369,1.134,0.751,0,3.108,0.4925
+ThisStudy,Neural network (with rock),0.353,0.962,0.432,0.361,1.102,0.76,0,3.010180368,0.478592519
+ThisStudy,"RandomForest (with rock, no type)",0.372,0.86,0.286,0.421,1.184,0.669,0,3.267417769,0.514204667
+ThisStudy,Neural network (no rock),0.251,0.756,0.21,0.309,1.214,0.629,0.001,3.366925455,0.527233501
+ThisStudy,"RandomForest (no rock, no type)",0.265,0.815,0.221,0.309,1.199,0.625,0.001,3.316798465,0.520719084
 FromPapers,Szab—2020_Table6,,,0.307,,,,,15.171,1.181
 FromPapers,Szab—2020_Table6,,,0.548,,,,,8.974,0.953
 FromPapers,Szab—2020_Table6,,,0.32,,,,,14.791,1.17
 FromPapers,Szab—2020_Table6,,,0.123,,,,,9.099,0.959
-FromPapers,Szab—2020_Table6,,,0.151,,,,,8.790,0.944
-FromPapers,Szab—2020_Table6,,,0.157,,,,,8.710,0.94
-FromPapers,Szab—2020_Table6,,,0.562,,,,,8.690,0.939
-FromPapers,Szab—2020_Table6,,,0.153,,,,,8.770,0.943
-FromPapers,Szab—2020_Table6,,,0.162,,,,,8.670,0.938
-FromPapers,Szab—2020_Table6,,,0.162,,,,,8.670,0.938
+FromPapers,Szab—2020_Table6,,,0.151,,,,,8.79,0.944
+FromPapers,Szab—2020_Table6,,,0.157,,,,,8.71,0.94
+FromPapers,Szab—2020_Table6,,,0.562,,,,,8.69,0.939
+FromPapers,Szab—2020_Table6,,,0.153,,,,,8.77,0.943
+FromPapers,Szab—2020_Table6,,,0.162,,,,,8.67,0.938
+FromPapers,Szab—2020_Table6,,,0.162,,,,,8.67,0.938
 FromPapers,Szab—2020_Table6,,,0.136,,,,,8.954,0.952
 FromPapers,Szab—2020_Table6,,,0.145,,,,,8.851,0.947
-FromPapers,Szab—2020_Table6,,,0.157,,,,,8.730,0.941
+FromPapers,Szab—2020_Table6,,,0.157,,,,,8.73,0.941
 FromPapers,Szab—2020_Table6,,,0.189,,,,,8.375,0.923
-FromPapers,Szab—2020_Table6,,,0.156,,,,,8.730,0.941
-FromPapers,Szab—2020_Table6,,,0.158,,,,,8.710,0.94
-FromPapers,Szab—2020_Table6,,,0.171,,,,,8.570,0.933
+FromPapers,Szab—2020_Table6,,,0.156,,,,,8.73,0.941
+FromPapers,Szab—2020_Table6,,,0.158,,,,,8.71,0.94
+FromPapers,Szab—2020_Table6,,,0.171,,,,,8.57,0.933
 FromPapers,Szab—2020_Table6,,,0.172,,,,,8.551,0.932
 FromPapers,Szab—2020_Table6,,,0.179,,,,,8.472,0.928
 FromPapers,Szab—2020_Table6,,,0.177,,,,,8.492,0.929
 FromPapers,Szab—2020_Table6,,,0.184,,,,,8.414,0.925
-FromPapers,Szab—2020_Table6,,,0.17,,,,,8.570,0.933
+FromPapers,Szab—2020_Table6,,,0.17,,,,,8.57,0.933
 FromPapers,Szab—2020_Table6,,,0.247,,,,,7.745,0.889
 FromPapers,Szab—2020_Table6,,,0.125,,,,,9.078,0.958
 FromPapers,Szab—2020_Table6,,,0.14,,,,,8.913,0.95
@@ -40,9 +37,12 @@ FromPapers,Szab—2020_Table6,,,0.193,,,,,8.337,0.921
 FromPapers,Szab—2020_Table6,,,0.25,,,,,7.709,0.887
 FromPapers,Szab—2020_Table6,,,0.207,,,,,8.166,0.912
 FromPapers,Szab—2020_Table6,,,0.201,,,,,8.241,0.916
-FromPapers,Arya1999,,,0.976,,,,,4.677,0.67
-FromPapers,Schapp2001,,,0.427,,,,,5.483,0.739
-FromPapers,Schapp2001,,,0.717,,,,,5.212,0.717
-FromPapers,Schapp2001,,,0.666,,,,,4.634,0.666
-FromPapers,Schapp2001,,,0.586,,,,,3.855,0.586
-FromPapers,Schapp2001,,,0.581,,,,,3.811,0.581
+FromPapers,Arya1981,Table 3,,0.913,,,,,10,1
+FromPapers,Arya1981,Table 3,,0.964,,,,,,
+FromPapers,Arya1981,Table 3,,0.972,,,,,9.908,0.996
+FromPapers,Arya1981,Table 3,,0.976,,,,,4.677,0.67
+FromPapers,Schapp2001,Table 1,,0.427,,,,,5.483,0.739
+FromPapers,Schapp2001,Table 1,,0.717,,,,,5.212,0.717
+FromPapers,Schapp2001,Table 1,,0.666,,,,,4.634,0.666
+FromPapers,Schapp2001,Table 1,,0.586,,,,,3.855,0.586
+FromPapers,Schapp2001,Table 1,,0.581,,,,,3.811,0.581

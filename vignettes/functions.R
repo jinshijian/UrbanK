@@ -483,46 +483,53 @@ get_bd <- function (hwsd_data, urban_ksat_data) {
 
 # Bill updated their dataset on April 2020
 update_urban_kfs <- function(){
-  MFT3 <- read_excel("../extdata/MasterFlatTable_3July19_preColorRemov.xlsx", sheet = 4)
-  Surface_HC <- read_excel("../extdata/MasterFlatTable_3July19_preColorRemov.xlsx", sheet = 5)
-  Borehole_ksat <- read_excel("../extdata/MasterFlatTable_3July19_preColorRemov.xlsx", sheet = 6)
-  data_orig <- read.csv(here::here("extdata/old/AllCities_Victoria_RDS.csv"))
+  MFT3 <- read_excel("../extdata/MasterFlatTable_19Dec20.xlsx", sheet = 4) # updated in Dec 2020
+  # Surface_HC <- read_excel("../extdata/MasterFlatTable_3July19_preColorRemov.xlsx", sheet = 5) # no longer used 
+  Borehole_ksat <- read_excel("../extdata/MasterFlatTable_3July19_preColorRemov.xlsx", sheet = 6) # no longer used
+  data_orig <- read.csv(here::here("extdata/old/AllCities_Victoria_RDS_rock_bd.csv"))
   
-  Borehole_ksat %>% select(SampleLayer_ID, Borehole_Ksat_cmhr, BulkDensity_gcm3) %>% 
-    filter(!is.na(Borehole_Ksat_cmhr) & Borehole_Ksat_cmhr!=99999) %>% 
-    group_by(SampleLayer_ID) %>% 
-    summarise(Borehole_Ksat_cmhr = mean(Borehole_Ksat_cmhr),
-              BulkDensity_gcm3 = mean(BulkDensity_gcm3)) ->
-    Borehole_ksat_agg
+  # set 99999 to 3600 and 0 to 0.0042 (column BZ)
+  # Borehole_ksat$Borehole_Ksat_cmhr[Borehole_ksat$Borehole_Ksat_cmhr == 0,] = 0.0042
+  # Borehole_ksat$Borehole_Ksat_cmhr[Borehole_ksat$Borehole_Ksat_cmhr == 99999,] = 3600
+  # Borehole_ksat %>% select(SampleLayer_ID, Borehole_Ksat_cmhr, BulkDensity_gcm3) %>%
+  #   filter(!is.na(Borehole_Ksat_cmhr)) %>%
+  #   group_by(SampleLayer_ID) %>%
+  #   summarise(Borehole_Ksat_cmhr = mean(Borehole_Ksat_cmhr),
+  #             BulkDensity_gcm3 = mean(BulkDensity_gcm3)) ->
+  #   Borehole_ksat_agg
+  # Borehole_ksat_agg$SampleLayer_ID = as.character(Borehole_ksat_agg$SampleLayer_ID)
   
+  
+  # left_join(
+  #   MFT3, 
+  #   Surface_HC %>% select(SampleLayer_ID, Unsaturated_K2cm_cmhr) %>% filter(!is.na(Unsaturated_K2cm_cmhr)),
+  #   by = c("SampleLayer_ID")
+  # ) -> All_cite_new
+  
+  # left_join(
+  #   MFT3,
+  #   Borehole_ksat_agg,
+  #   by = c("SampleLayer_ID")) ->
+  #   All_cite_new
+  # 
+  MFT3$SampleLayer_ID = as.character(MFT3$SampleLayer_ID)
+  data_orig$SampleLayer_ID = as.character(data_orig$SampleLayer_ID)
   left_join(
-    MFT3, 
-    Surface_HC %>% select(SampleLayer_ID, Unsaturated_K2cm_cmhr) %>% filter(!is.na(Unsaturated_K2cm_cmhr)),
-    by = c("SampleLayer_ID")
-  ) -> All_cite_new
-  
-  left_join(
-    All_cite_new,
-    Borehole_ksat_agg,
-    by = c("SampleLayer_ID")) ->
-    All_cite_new
-  
-  left_join(
-    All_cite_new,
-    data_orig %>% select(SampleLayer_ID, Latitude, Longitude, Type, hwsd_bd,
+    MFT3,
+    data_orig %>% select(SampleLayer_ID, Latitude, Longitude, Type, hwsd_bd, Rock_group,
                          Texture_mod, Top_Type, Soil_Series_Type), 
     by = c("SampleLayer_ID")
   ) -> All_cite_new
   
-  All_cite_new$Ksat_cmhr <- ifelse(!is.na(All_cite_new$Unsaturated_K2cm_cmhr),
-                                   All_cite_new$Unsaturated_K2cm_cmhr, All_cite_new$Borehole_Ksat_cmhr)
+  # only data from minidisk was used
+  All_cite_new$Unsaturated_K2cm_cmhr <- coalesce(All_cite_new$K_minidisk_cmhr)
   
-  All_cite_new$Ksat_cmhr <- ifelse(All_cite_new$Ksat_cmhr == 0, 
-                                   All_cite_new$Borehole_Ksat_cmhr,
-                                   All_cite_new$Ksat_cmhr)
+  # All_cite_new$Ksat_cmhr <- ifelse(All_cite_new$Ksat_cmhr == 0, 
+  #                                  All_cite_new$Borehole_Ksat_cmhr,
+  #                                  All_cite_new$Ksat_cmhr)
   
-  All_cite_new$BD <- ifelse(!is.na(All_cite_new$BulkDensity_gcm3),
-                            All_cite_new$BulkDensity_gcm3,
+  All_cite_new$BD <- ifelse(!is.na(All_cite_new$Bulk_Density_Avg_g_cm3),
+                            All_cite_new$Bulk_Density_Avg_g_cm3,
                             All_cite_new$hwsd_bd)
   
   return(All_cite_new)

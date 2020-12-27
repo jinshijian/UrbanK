@@ -43,42 +43,47 @@ read_xlsx <- function(x, n_sheet, n_skip) read_excel(file.path(DATA_DIR, x), she
 
 # Prepare data
 ```{r update urban kfs data}
-# already done, do not need to run again
-# All_cite_new <- update_urban_kfs()
+# Updated 2020 Dec
+All_cite_new <- update_urban_kfs()
 # write.csv(All_cite_new, "../extdata/AllCities_Victoria_RDS.csv", row.names = F)
+All_cite_new %>% filter(!is.na(Unsaturated_K2cm_cmhr))
+All_cite_new %>% mutate(BulkDensity_gcm3 = Bulk_Density_Avg_g_cm3) -> All_cite_new
+All_cite_new %>% filter(!is.na(BulkDensity_gcm3)) %>% select(BulkDensity_gcm3)
+All_cite_new[All_cite_new$Unsaturated_K2cm_cmhr < 0.004 & !is.na(All_cite_new$Unsaturated_K2cm_cmhr), ]$Unsaturated_K2cm_cmhr <- 0.0042
+# write.csv(All_cite_new, "../extdata/AllCities_Victoria_RDS_rock_bd.csv", row.names = F)
 ```
 
+
 ```{r, include=FALSE}
-DATA_DIR <- here::here("extdata")
-raw_data <- read.csv(here::here("extdata/AllCities_Victoria_RDS_rock.csv"))
-bd_data <- read_xlsx('BDdata.xlsx', n_sheet = 1, n_skip = 0)
+# DATA_DIR <- here::here("extdata")
+# raw_data <- read.csv(here::here("extdata/AllCities_Victoria_RDS_rock.csv"))
+# bd_data <- read_xlsx('BDdata.xlsx', n_sheet = 1, n_skip = 0)
 ```
 
 
 ```{r join and get BD}
-bd_data %>% 
-  select(SampleLayer_ID) %>% 
-  count(SampleLayer_ID) %>% 
-  arrange(n)
+# bd_data %>% 
+#   select(SampleLayer_ID) %>% 
+#   count(SampleLayer_ID) %>% 
+#   arrange(n)
+# 
+# raw_data %>% 
+#   select(SampleLayer_ID) %>% 
+#   count(SampleLayer_ID) %>% 
+#   arrange(n)
+# 
+# raw_data %>% 
+#   select(BulkDensity_gcm3) %>% 
+#   na.omit()
+# 
+# all_city_joint_bd <- left_join(raw_data %>% select(-BulkDensity_gcm3),
+#                                bd_data %>% select(SampleLayer_ID, BulkDensity_gcm3), by = "SampleLayer_ID")
+# 
+# all_city_joint_bd %>% 
+#   select(BulkDensity_gcm3) %>% 
+#   na.omit() %>% 
+#   arrange(BulkDensity_gcm3)
 
-raw_data %>% 
-  select(SampleLayer_ID) %>% 
-  count(SampleLayer_ID) %>% 
-  arrange(n)
-
-raw_data %>% 
-  select(BulkDensity_gcm3) %>% 
-  na.omit()
-
-all_city_joint_bd <- left_join(raw_data %>% select(-BulkDensity_gcm3),
-                               bd_data %>% select(SampleLayer_ID, BulkDensity_gcm3), by = "SampleLayer_ID")
-
-all_city_joint_bd %>% 
-  select(BulkDensity_gcm3) %>% 
-  na.omit() %>% 
-  arrange(BulkDensity_gcm3)
-
-# write.csv(all_city_joint_bd, "../extdata/AllCities_Victoria_RDS_rock_bd.csv", row.names = F)
 ```
 
 # Plot Figure 1
@@ -96,7 +101,7 @@ comb_data <- function(){
   test_rosetta <- read.csv(here::here("extdata/test_with_rosetta_V3.csv"))
   test_rosetta$Model <- 'ROSETTA'
   # filt and clean data for soil triangle plot (Figure 1)
-  data_orig <- read.csv(here::here("extdata/AllCities_Victoria_RDS_rock.csv"))
+  data_orig <- read.csv(here::here("extdata/AllCities_Victoria_RDS_rock_bd.csv"))
   data_orig %>% 
     mutate(sum = Percent_Clay + Percent_Silt + Percent_Sand) %>% 
     filter(sum > 99 & sum < 101) ->
@@ -160,7 +165,7 @@ geom_histogram(binwidth = 0.25, col = 'gray') +
         , axis.text = element_text(size = 20)) +
   scale_fill_manual(values = c("blue", "red")) +
 # scale_fill_discrete(name = "Data", labels=c('Training', 'Verification')) +
-  xlab(expression( K[fs]~","~log~(cm~h^{-1}) )) +
+  xlab(expression( Log~"["~K[fs]~(cm~h^{-1})~"]" )) +
   ylab('Density')
 
 # plot_grid(p1, p2, labels = c('( a ), ( b )'), vjust = 4, hjust = c(-2,-2))
@@ -182,18 +187,9 @@ data_orig %>%
   na.omit() %>% 
   arrange(Unsaturated_K2cm_cmhr)
 
-data_orig %>% 
-  select(Borehole_Ksat_cmhr) %>% 
-  na.omit() %>% 
-  arrange(Borehole_Ksat_cmhr)
-
-data_orig %>% 
-  select(Unsaturated_K2cm_cmhr, Borehole_Ksat_cmhr) %>% 
-  na.omit() 
-
-data_orig %>% 
-  select(Percent_Sand, Percent_Silt, Percent_Clay, Ksat_cmhr, Type, BulkDensity_gcm3) %>% 
-  na.omit()
+# data_orig %>% 
+#   select(Percent_Sand, Percent_Silt, Percent_Clay, Ksat_cmhr, Type, BulkDensity_gcm3) %>% 
+#   na.omit()
 
 data_orig %>% 
   select(BD) %>% 
@@ -771,16 +767,18 @@ tibble(inter = summary(slr_ann_wt_bd)$coefficients[1,1] %>% round(3),
 library(ggridges)
 r2results <- read.csv(here::here("vignettes/r2evaluation.csv"))
 r2results %>% 
-  dplyr::select(Group, R2, RMSE) %>% 
-  rename("(a)" = R2, "(b)" = RMSE) %>% 
+  dplyr::select(Group, R2, log10RMSE) %>% 
+  dplyr::rename("(a)" = R2, "(b)" = log10RMSE) %>%
   tidyr::gather(-Group, key = "Key", value = "Value") %>% 
   ggplot(aes(Value, Group, fill = 0.5 - abs(0.5 - stat(ecdf)))) +
   stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
   scale_fill_viridis_c(name = "Probability", direction = -1) +
   facet_grid(cols = vars(Key), scales = "free") +
-  xlab(expression("          "~R^{2}~"                              "~RMSE~(cm~hr^{-1}))) +
+  xlab(expression("          "~R^{2}~"                            log ["~RMSE~(cm~hr^{-1})~"]")) +
   ylab(element_blank()) +
-  scale_y_discrete(labels= c("From papers", "This study"))
+  scale_y_discrete(labels= c("Other papers", "This study"))
+
+# ggsave("Figure5.jpg", width = 6, height = 3, dpi = 300, units = "in")
 ```
 
 ## Test SSC and SC
@@ -827,5 +825,14 @@ PTFvsROSETTA %>%
   xlab(expression(K[fs]~(cm~hr^{-1}))) +
   ylab(element_blank()) +
   scale_y_discrete(labels= c("(e) ROSETTA", "(d) RF-with-structure-no-rock", "(c) RF-no-structure-no-rock", "(b) ANN-no-structure-no-rock", "(a) Measured"))
+```
+
+```{r}
+# compare DR and minidisk kfs
+All_cite_new %>% filter(!is.na(K_minidisk_cmhr)) %>% 
+  select(K_minidisk_cmhr, `K_DR (cm/h)`) %>% 
+  ggplot(aes(K_minidisk_cmhr, `K_DR (cm/h)`)) +
+  geom_point() +
+  geom_smooth(method = "lm")
 ```
 

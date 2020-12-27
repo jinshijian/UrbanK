@@ -67,7 +67,7 @@ if (requireNamespace("furrr", quietly = TRUE)) {
 
 # Save these in extdata for use in downstream analyses
 # only save this data if want to update the old runs
-# save(fitted_models, file = "extdata/fitted_models.rda")
+save(fitted_models, file = "extdata/fitted_models.rda")
 if (requireNamespace("fs", quietly = TRUE)) fs::file_size("extdata/fitted_models.rda")
 
 # Store the first 100 runs locally inside the package
