@@ -1,7 +1,7 @@
 "var_modelType.i.","inter","slope","r2","E","RMSE","d","p"
-"Neural network (no rock)",0.381,0.88,0.467,0.412,1.097,0.788,0
-"RandomForest (no rock, no type)",0.348,0.9,0.403,0.369,1.134,0.751,0
-"RandomForest (no rock, with type)",0.353,0.962,0.432,0.361,1.102,0.76,0
-"Neural network (with rock)",0.372,0.86,0.286,0.421,1.184,0.669,0
-"RandomForest (with rock, no type)",0.251,0.756,0.21,0.309,1.214,0.629,0.001
-"RandomForest (with rock, with type)",0.265,0.815,0.221,0.309,1.199,0.625,0.001
+"Neural network (no rock)",1.774,0.501,0.023,0.027,1.393,0.338,0.786
+"RandomForest (no rock, no type)",2.817,0.206,0.004,0.082,1.482,0.373,0.432
+"RandomForest (no rock, with type)",2.836,0.201,0.002,0.087,1.47,0.357,0.405
+"Neural network (with rock)",3.768,-0.075,-0.005,-0.135,1.47,0.244,0.232
+"RandomForest (with rock, no type)",3.646,-0.044,-0.006,0.071,1.492,0.298,0.538
+"RandomForest (with rock, with type)",3.932,-0.128,-0.004,0.071,1.484,0.27,0.532

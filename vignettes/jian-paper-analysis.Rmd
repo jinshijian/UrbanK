@@ -121,7 +121,7 @@ model_rock_type <- tribble(
   "rf2r", TRUE, TRUE
 )
 pred <- fitted_models %>%
-  select(sample, train_data, test_data, model_type, model_fit) %>%
+  dplyr::select(sample, train_data, test_data, model_type, model_fit) %>%
   gather(data_type, data, train_data, test_data) %>%
   left_join(model_rock_type, by = "model_type") %>%
   mutate(
