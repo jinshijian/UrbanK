@@ -5,12 +5,13 @@
 /vignettes/jian-paper-analysis.docx
 /vignettes/results2.csv
 /vignettes/jian-paper-analysis_cache/
+/*.ini
 
 # big file in extdata
 /extdata/fitted_models.rda
 /extdata/fitted_models_dr.rda
 /extdata/old
-/data/fitted_models.rda
+/data/fitted_models_100.rda
 
 # all files in manuscript
 manuscript/

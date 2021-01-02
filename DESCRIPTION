@@ -23,3 +23,5 @@ Imports:
     assertthat,
     forcats,
     here
+Depends: 
+    R (>= 2.10)
