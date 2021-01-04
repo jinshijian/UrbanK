@@ -52,6 +52,7 @@ data_funs <- data_list %>%
   select(sample = .id, train_data = train_df, test_data = test_df,
          model_type = model, fit_fun = fun)
 
+message("Beginning model fit...")
 if (requireNamespace("furrr", quietly = TRUE)) {
   # Fit in parallel
   message("Detected furrr package. Running in parallel.")
@@ -68,11 +69,13 @@ if (requireNamespace("furrr", quietly = TRUE)) {
 
 # Save these in extdata for use in downstream analyses
 # only save this data if want to update the old runs
+message("Saving fitted models.")
 save(fitted_models, file = "extdata/fitted_models.rda")
 if (requireNamespace("fs", quietly = TRUE)) fs::file_size("extdata/fitted_models.rda")
 
 # Store the first 100 runs locally inside the package
 # fitted_models_full <- fitted_models
+message("Saving model subset for package")
 fitted_models_100 <- fitted_models %>%
   filter(as.numeric(sample) <= 100) %>%
   mutate(model_fit = modify_if(model_fit, ~inherits(., "randomForest"), shrink_randomforest))
