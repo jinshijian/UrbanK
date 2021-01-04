@@ -8,8 +8,9 @@ Science Framework (OSF)}
 download_jian_fits(destfile, ...)
 }
 \arguments{
-\item{destfile}{A character string with the name where the downloaded
-    file is saved.  Tilde-expansion is performed.}
+\item{destfile}{a character string (or vector, see \code{url}) with
+    the name where the downloaded file is saved.  Tilde-expansion is
+    performed.}
 
 \item{...}{Additional arguments to \code{\link[utils:download.file]{utils::download.file()}}}
 }
