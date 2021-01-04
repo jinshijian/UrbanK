@@ -58,11 +58,12 @@ if (requireNamespace("furrr", quietly = TRUE)) {
   future::plan("multisession")
   fitted_models <- data_funs %>%
     mutate(model_fit = furrr::future_map2(train_data, fit_fun, ~.y(.x),
-                                          .progress = TRUE), seed=TRUE)
+                                          .progress = TRUE,
+                                          .options = furrr::furrr_options(seed = TRUE)))
 } else {
   pb <- progress_bar$new(total = nrow(data_funs))
   fitted_models <- data_funs %>%
-    mutate(model_fit = map2(train_data, fit_fun, ~with_pb(.y, pb)(.x)), seed=TRUE)
+    mutate(model_fit = map2(train_data, fit_fun, ~with_pb(.y, pb)(.x)))
 }
 
 # Save these in extdata for use in downstream analyses
