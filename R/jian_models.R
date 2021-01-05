@@ -20,24 +20,31 @@ fit_jian_ann <- function(data, use_rock = FALSE, verbose = FALSE) {
     paste0("Percent_", c("Sand", "Silt", "Clay"))
   )
   if (use_rock) cols <- c(cols, "Percent_Rock_Fragment")
-  sdata_unscaled <- prepare_data(data, use_rock = use_rock)
-  out_scale <- range(sdata_unscaled[["log_Unsaturated_K2"]])
-  sdata <- purrr::map_dfc(sdata_unscaled, scale_range)
-  form <- as.formula(paste("log_Unsaturated_K2 ~ ", paste(cols[-1], collapse = " + ")))
+  sdata <- prepare_data(data, use_rock = use_rock)
+  out_scale <- range(sdata[["log_Unsaturated_K2"]])
+  sdata[["log_Unsaturated_K2_scaled"]] <- scale_range(sdata[["log_Unsaturated_K2"]])
+  form <- as.formula(paste("log_Unsaturated_K2_scaled ~ ", paste(cols[-1], collapse = " + ")))
   runmodel <- TRUE
   i <- 0
-  while(runmodel) {
+  while (runmodel) {
     i <- i + 1
     if (verbose) message("Attempt ", i)
-    out <- neuralnet::neuralnet(
-      form,
-      data = sdata,
-      hidden = c(5, 3),
-      linear.output = TRUE,
-      stepmax = 1e6
-    )
-    test_predict <- neuralnet::compute(out, sdata)[["net.result"]]
-    runmodel <- any(test_predict < 0)
+    runmodel <- tryCatch({
+      out <- neuralnet::neuralnet(
+        form,
+        data = sdata,
+        hidden = c(5, 3),
+        linear.output = TRUE,
+        stepmax = 1e4,
+        rep = 3
+      )
+      FALSE
+    }, error = function(e) {
+      warning(conditionMessage(e))
+      TRUE
+    })
+    ## test_predict <- neuralnet::compute(out, sdata)[["net.result"]]
+    ## runmodel <- any(test_predict < 0)
   }
   
   class(out) <- c("urbankfs_ann", class(out))
@@ -80,8 +87,7 @@ predict.urbankfs_ann <- function(object, newdata, ...) {
   cols <- paste0("Percent_", c("Sand", "Silt", "Clay"))
   use_rock <- attr(object, "use_rock")
   if (!is.null(use_rock) && use_rock) cols <- c(cols, "Percent_Rock_Fragment")
-  sdata_unscaled <- newdata[, cols]
-  sdata <- purrr::map_dfc(sdata_unscaled, scale_range)
+  sdata <- newdata[, cols]
   result <- neuralnet::compute(object, sdata, ...)
   out <- result[["net.result"]]
   unscale_range(out, attr(object, "scale_factors"))
