@@ -37,7 +37,7 @@ data_list <- data_structure %>%
   mutate_at(c("train", "test"), list(df = ~map(., as_tibble)))
 
 fun_list <- list(
-  ann = fit_jian_ann,
+  ann = partial(fit_jian_ann, use_rock = FALSE),
   annr = partial(fit_jian_ann, use_rock = TRUE),
   rf1 = partial(fit_jian_rf, top_type = FALSE),
   rf1r = partial(fit_jian_rf, use_rock = TRUE, top_type = FALSE),
@@ -58,13 +58,22 @@ if (requireNamespace("furrr", quietly = TRUE)) {
   message("Detected furrr package. Running in parallel.")
   future::plan("multisession")
   fitted_models <- data_funs %>%
-    mutate(model_fit = furrr::future_map2(train_data, fit_fun, ~.y(.x),
-                                          .progress = TRUE,
-                                          .options = furrr::furrr_options(seed = TRUE)))
+    mutate(model_fit = furrr::future_map2(
+      train_data, fit_fun,
+      ~.y(.x),
+      .progress = TRUE,
+      .options = furrr::furrr_options(seed = TRUE)
+    ))
 } else {
-  pb <- progress_bar$new(total = nrow(data_funs))
+  outlist <- list()
+  for (i in seq_len(nrow(data_funs))) {
+    message(data_funs$model_type[[i]], " ",
+            data_funs$sample[[i]], " ", i, "/", nrow(data_funs))
+    result <- data_funs$fit_fun[[i]](data_funs$train_data[[i]])
+    outlist[[i]] <- result
+  }
   fitted_models <- data_funs %>%
-    mutate(model_fit = map2(train_data, fit_fun, ~with_pb(.y, pb)(.x)))
+    mutate(model_fit = outlist)
 }
 
 # Save these in extdata for use in downstream analyses
@@ -75,9 +84,9 @@ if (requireNamespace("fs", quietly = TRUE)) fs::file_size("extdata/fitted_models
 
 # Store the first 100 runs locally inside the package
 # fitted_models_full <- fitted_models
-message("Saving model subset for package")
-fitted_models_100 <- fitted_models %>%
-  filter(as.numeric(sample) <= 100) %>%
-  mutate(model_fit = modify_if(model_fit, ~inherits(., "randomForest"), shrink_randomforest))
-use_data(fitted_models_100, compress = "xz")
-if (requireNamespace("fs", quietly = TRUE)) fs::file_size("data/fitted_models_100.rda")
+## message("Saving model subset for package")
+## fitted_models_100 <- fitted_models %>%
+##   filter(as.numeric(sample) <= 100) %>%
+##   mutate(model_fit = modify_if(model_fit, ~inherits(., "randomForest"), shrink_randomforest))
+## use_data(fitted_models_100, compress = "xz", overwrite = TRUE)
+## if (requireNamespace("fs", quietly = TRUE)) fs::file_size("data/fitted_models_100.rda")

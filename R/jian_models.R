@@ -29,22 +29,23 @@ fit_jian_ann <- function(data, use_rock = FALSE, verbose = FALSE) {
   while (runmodel) {
     i <- i + 1
     if (verbose) message("Attempt ", i)
+    if (i > 10) stop("NeuralNet fit failed after 10 attempts.")
     runmodel <- tryCatch({
       out <- neuralnet::neuralnet(
         form,
         data = sdata,
         hidden = c(5, 3),
         linear.output = TRUE,
-        stepmax = 1e4,
-        rep = 3
+        stepmax = 1e4
       )
       FALSE
     }, error = function(e) {
-      warning(conditionMessage(e))
+      if (verbose) message("ERROR: ", conditionMessage(e))
+      TRUE
+    }, warning = function(w) {
+      if (verbose) message("WARNING: ", conditionMessage(w))
       TRUE
     })
-    ## test_predict <- neuralnet::compute(out, sdata)[["net.result"]]
-    ## runmodel <- any(test_predict < 0)
   }
   
   class(out) <- c("urbankfs_ann", class(out))
