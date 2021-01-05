@@ -82,7 +82,7 @@ fit_jian_rf <- function(data, use_rock = FALSE, top_type = FALSE) {
 #' @inheritParams stats::predict.lm
 #' @param ... Additional arguments to [neuralnet::compute()]
 #' @seealso fit_jian_ann
-#' @export predict.urbankfs_ann
+#' @export
 predict.urbankfs_ann <- function(object, newdata, ...) {
   cols <- paste0("Percent_", c("Sand", "Silt", "Clay"))
   use_rock <- attr(object, "use_rock")
