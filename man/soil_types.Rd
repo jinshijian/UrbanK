@@ -11,9 +11,11 @@ soil_types(col = NULL, stringsAsFactors = FALSE)
 the full \code{data.frame}}
 
 \item{stringsAsFactors}{logical: should character vectors be converted
-    to factors?  The \sQuote{factory-fresh} default is \code{TRUE}, but
-    this can be changed by setting \code{\link{options}(stringsAsFactors
-      = FALSE)}.}
+    to factors?  The \sQuote{factory-fresh} default has been \code{TRUE}
+    previously but has been changed to \code{FALSE} for \R 4.0.0.
+    Only as short time workaround, you can revert by setting
+    \code{\link[base]{options}(stringsAsFactors = TRUE)} which now warns about
+    its deprecation.}
 }
 \value{
 If \code{is.null(col)}, \code{data.frame} linking specific (\code{Type})

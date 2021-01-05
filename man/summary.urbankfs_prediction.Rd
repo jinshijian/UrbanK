@@ -4,8 +4,7 @@
 \alias{summary.urbankfs_prediction}
 \title{Summary method for output of \code{\link[=predict_bootstrap]{predict_bootstrap()}}.}
 \usage{
-\method{summary}{urbankfs_prediction}(object, quantiles = c(0.05, 0.5,
-  0.95), ...)
+\method{summary}{urbankfs_prediction}(object, quantiles = c(0.05, 0.5, 0.95), ...)
 }
 \arguments{
 \item{object}{Output of \code{\link[=predict_bootstrap]{predict_bootstrap()}}}
