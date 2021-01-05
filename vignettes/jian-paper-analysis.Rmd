@@ -54,8 +54,8 @@ histdata$Top_Type <- ifelse(is.na(histdata$Top_Type), "SG", histdata$Top_Type)
 ## plot sites spatial distribution
 ```{r}
 # prepare data
-site <- read.csv("All_SSURGO_and_Point.csv")
-kfsdata <- read.csv("All_SSURGO_and_Surface_HC.csv")
+site <- read.csv(here::here("vignettes", "All_SSURGO_and_Point.csv"))
+kfsdata <- read.csv(here::here("vignettes", "All_SSURGO_and_Surface_HC.csv"))
 left_join(site %>% select(SampleSite_ID,SamplePoint_ID, Longitude, Latitude),
           kfsdata %>% select(SampleSite_ID,SamplePoint_ID, Unsaturated_K2cm_cmhr) %>% 
             filter(!is.na(Unsaturated_K2cm_cmhr))) %>% 
