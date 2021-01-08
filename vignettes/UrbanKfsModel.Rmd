@@ -165,7 +165,7 @@ geom_histogram(binwidth = 0.25, col = 'gray') +
         , axis.text = element_text(size = 20)) +
   scale_fill_manual(values = c("blue", "red")) +
 # scale_fill_discrete(name = "Data", labels=c('Training', 'Verification')) +
-  xlab(expression( Log~"["~K[fs]~(cm~h^{-1})~"]" )) +
+  xlab(expression( Log~"["~k[n]~(cm~h^{-1})~"]" )) +
   ylab('Density')
 
 # plot_grid(p1, p2, labels = c('( a ), ( b )'), vjust = 4, hjust = c(-2,-2))
@@ -194,6 +194,8 @@ data_orig %>%
 data_orig %>% 
   select(Type) %>% 
   unique()
+
+data_orig 
 ```
 
 
@@ -543,8 +545,8 @@ bind_rows(rock_test_data %>%
   geom_point(alpha = 0.5) +
   geom_smooth(method = "lm") +
   facet_wrap(. ~ Model, nrow = 4) +
-  labs(x = expression(Predicted~K[fs]~(cm~hr^{-1}~","~log~transfered)),
-       y = expression(Measured~K[fs]~(cm~hr^{-1}~","~log~transfered)))
+  labs(x = expression(Predicted~k[n]~(cm~hr^{-1}~","~log~transfered)),
+       y = expression(Measured~k[n]~(cm~hr^{-1}~","~log~transfered)))
 
 # ggsave("Figure A3.jpg", width = 6, height = 7, dpi = 300, units = "in")
 ```
@@ -569,11 +571,11 @@ summary(full.model)
 ```
 
 ```{r}
-all_city_joint_bd %>% 
-  select(Percent_Sand, Percent_Silt, Percent_Clay, Unsaturated_K2cm_cmhr, Type) %>% 
-  mutate(ssc = Percent_Sand + Percent_Silt + Percent_Clay) %>% 
-  na.omit() %>% 
-  arrange(ssc)
+# all_city_joint_bd %>% 
+#   select(Percent_Sand, Percent_Silt, Percent_Clay, Unsaturated_K2cm_cmhr, Type) %>% 
+#   mutate(ssc = Percent_Sand + Percent_Silt + Percent_Clay) %>% 
+#   na.omit() %>% 
+#   arrange(ssc)
 ```
 
 
@@ -584,7 +586,7 @@ rock_test_data4 %>%
   # geom_hex(bins = 30) +
   # scale_fill_distiller(palette = "YlGnBu", name = "Count") +
   labs(x = expression(Rock~fragment~("%")),
-       y = expression(K[fs]*","~'log'~(cm~h^{-1}))) +
+       y = expression(Log~"["~k[n]*","~(cm~h^{-1})~"]")) +
   scale_color_discrete(name = element_blank()) +
   # scale_fill_continuous(name = element_blank()) +
   guides(fill = FALSE) +
@@ -618,7 +620,7 @@ dens1 + plot_spacer() + p1 + dens2 +
 rock_test_data4$Percent_Rock_Fragment %>% max()
 ```
 
-```{r, fig.width=6, fig.height=6}
+```{r Figure2-BD, fig.width=6, fig.height=6}
 data_orig %>% 
   filter(!is.na(Unsaturated_K2cm_cmhr) & !is.na(Percent_Sand) &
            !is.na(Type) & !is.na(Texture) & !is.na(BulkDensity_gcm3)) %>% 
@@ -653,7 +655,7 @@ bd_test_data %>%
   geom_hex(col = "gray", bins = 25) +
   scale_fill_distiller(palette = "YlGnBu", name = "Count") +
   labs(x = expression(Bulk~density~(g~cm^{-3})),
-       y = expression(K[fs]*","~log~(cm~h^{-1}))) ->
+       y = expression(Log~"["~k[n]*","~(cm~h^{-1})~"]")) ->
   p2
 
 dens_bd1 + plot_spacer() + p2 + dens_bd2 +
@@ -667,7 +669,7 @@ dens_bd1 + plot_spacer() + p2 + dens_bd2 +
 
 print(final_plot_bd)  
 
-# ggsave("Figure A4_V2.jpg", width = 6, height = 7, dpi = 300, units = "in")
+# ggsave("Figure2-BD.jpg", width = 6, height = 7, dpi = 300, units = "in")
 ```
 
 ```{r}
@@ -767,8 +769,8 @@ tibble(inter = summary(slr_ann_wt_bd)$coefficients[1,1] %>% round(3),
 library(ggridges)
 r2results <- read.csv(here::here("vignettes/r2evaluation.csv"))
 r2results %>% 
-  dplyr::select(Group, R2, log10RMSE) %>% 
-  dplyr::rename("(a)" = R2, "(b)" = log10RMSE) %>%
+  dplyr::select(Group, R2, lnRMSE) %>% 
+  dplyr::rename("(a)" = R2, "(b)" = lnRMSE) %>%
   tidyr::gather(-Group, key = "Key", value = "Value") %>% 
   ggplot(aes(Value, Group, fill = 0.5 - abs(0.5 - stat(ecdf)))) +
   stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
@@ -800,8 +802,8 @@ bd_test_data %>%
   geom_point() +
   geom_smooth(method = "lm") +
   geom_abline(slope = 1, intercept = 0, col = "red", linetype = "dotted") +
-  labs(x = expression("Sand+Silt+Clay"~predicted~K[fs]~(cm~hr^{-1}~","~log~transfered)),
-       y = expression("Sand+Clay"~predicted~K[fs]~(cm~hr^{-1}~","~log~transfered))) +
+  labs(x = expression("Sand+Silt+Clay"~predicted~k[n]~(cm~hr^{-1}~","~log~transfered)),
+       y = expression("Sand+Clay"~predicted~k[n]~(cm~hr^{-1}~","~log~transfered))) +
   annotate("text", x = -0.5, y = 2, label = "italic(R) ^ 2 == 0.97", parse = TRUE)
 ```
 
@@ -822,7 +824,7 @@ PTFvsROSETTA %>%
   ggplot(aes(Kfs, Group, fill = 0.5 - abs(0.5 - stat(ecdf)))) +
   stat_density_ridges(geom = "density_ridges_gradient", calc_ecdf = TRUE) +
   scale_fill_viridis_c(name = "Probability", direction = -1) +
-  xlab(expression(K[fs]~(cm~hr^{-1}))) +
+  xlab(expression(k[n]~(cm~hr^{-1}))) +
   ylab(element_blank()) +
   scale_y_discrete(labels= c("(e) ROSETTA", "(d) RF-with-structure-no-rock", "(c) RF-no-structure-no-rock", "(b) ANN-no-structure-no-rock", "(a) Measured"))
 ```

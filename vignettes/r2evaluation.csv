@@ -1,48 +1,46 @@
 Group,var_modelType,inter,slope,R2,E,lnRMSE,d,p,RMSE,log10RMSE
-ThisStudy,Neural network (no rock),0.381,0.88,0.467,0.412,1.097,0.788,0,2.995167031,0.476421047
-ThisStudy,"RandomForest (no rock, no type)",0.348,0.9,0.403,0.369,1.134,0.751,0,3.108,0.4925
-ThisStudy,Neural network (with rock),0.353,0.962,0.432,0.361,1.102,0.76,0,3.010180368,0.478592519
-ThisStudy,"RandomForest (with rock, no type)",0.372,0.86,0.286,0.421,1.184,0.669,0,3.267417769,0.514204667
-ThisStudy,Neural network (no rock),0.251,0.756,0.21,0.309,1.214,0.629,0.001,3.366925455,0.527233501
-ThisStudy,"RandomForest (no rock, no type)",0.265,0.815,0.221,0.309,1.199,0.625,0.001,3.316798465,0.520719084
-FromPapers,Szab—2020_Table6,,,0.307,,,,,15.171,1.181
-FromPapers,Szab—2020_Table6,,,0.548,,,,,8.974,0.953
-FromPapers,Szab—2020_Table6,,,0.32,,,,,14.791,1.17
-FromPapers,Szab—2020_Table6,,,0.123,,,,,9.099,0.959
-FromPapers,Szab—2020_Table6,,,0.151,,,,,8.79,0.944
-FromPapers,Szab—2020_Table6,,,0.157,,,,,8.71,0.94
-FromPapers,Szab—2020_Table6,,,0.562,,,,,8.69,0.939
-FromPapers,Szab—2020_Table6,,,0.153,,,,,8.77,0.943
-FromPapers,Szab—2020_Table6,,,0.162,,,,,8.67,0.938
-FromPapers,Szab—2020_Table6,,,0.162,,,,,8.67,0.938
-FromPapers,Szab—2020_Table6,,,0.136,,,,,8.954,0.952
-FromPapers,Szab—2020_Table6,,,0.145,,,,,8.851,0.947
-FromPapers,Szab—2020_Table6,,,0.157,,,,,8.73,0.941
-FromPapers,Szab—2020_Table6,,,0.189,,,,,8.375,0.923
-FromPapers,Szab—2020_Table6,,,0.156,,,,,8.73,0.941
-FromPapers,Szab—2020_Table6,,,0.158,,,,,8.71,0.94
-FromPapers,Szab—2020_Table6,,,0.171,,,,,8.57,0.933
-FromPapers,Szab—2020_Table6,,,0.172,,,,,8.551,0.932
-FromPapers,Szab—2020_Table6,,,0.179,,,,,8.472,0.928
-FromPapers,Szab—2020_Table6,,,0.177,,,,,8.492,0.929
-FromPapers,Szab—2020_Table6,,,0.184,,,,,8.414,0.925
-FromPapers,Szab—2020_Table6,,,0.17,,,,,8.57,0.933
-FromPapers,Szab—2020_Table6,,,0.247,,,,,7.745,0.889
-FromPapers,Szab—2020_Table6,,,0.125,,,,,9.078,0.958
-FromPapers,Szab—2020_Table6,,,0.14,,,,,8.913,0.95
-FromPapers,Szab—2020_Table6,,,0.19,,,,,8.356,0.922
-FromPapers,Szab—2020_Table6,,,0.241,,,,,7.816,0.893
-FromPapers,Szab—2020_Table6,,,0.185,,,,,8.414,0.925
-FromPapers,Szab—2020_Table6,,,0.193,,,,,8.337,0.921
-FromPapers,Szab—2020_Table6,,,0.25,,,,,7.709,0.887
-FromPapers,Szab—2020_Table6,,,0.207,,,,,8.166,0.912
-FromPapers,Szab—2020_Table6,,,0.201,,,,,8.241,0.916
-FromPapers,Arya1981,Table 3,,0.913,,,,,10,1
+ThisStudy,Neural network (no rock),0.403,0.829,0.253,0.457,1.314,0.637,0,3.721028096,0.570662949
+ThisStudy,"RandomForest (no rock, no type)",0.43,0.861,0.336,0.476,1.254,0.705,0,3.504332289,0.54460528
+ThisStudy,"RandomForest (with rock, no type)",0.329,1.152,0.232,0.291,1.184,0.554,0,3.267417769,0.514204667
+ThisStudy,Neural network (no rock),0.202,0.779,0.22,0.247,1.192,0.637,0,3.293661948,0.517679022
+FromPapers,Szab—2020_Table6,,,0.307,,2.719385711,,,15.171,1.181
+FromPapers,Szab—2020_Table6,,,0.548,,2.194331508,,,8.974,0.953
+FromPapers,Szab—2020_Table6,,,0.32,,2.694018888,,,14.791,1.17
+FromPapers,Szab—2020_Table6,,,0.123,,2.208164517,,,9.099,0.959
+FromPapers,Szab—2020_Table6,,,0.151,,2.173614712,,,8.79,0.944
+FromPapers,Szab—2020_Table6,,,0.157,,2.164471791,,,8.71,0.94
+FromPapers,Szab—2020_Table6,,,0.562,,2.162172939,,,8.69,0.939
+FromPapers,Szab—2020_Table6,,,0.153,,2.171336806,,,8.77,0.943
+FromPapers,Szab—2020_Table6,,,0.162,,2.159868791,,,8.67,0.938
+FromPapers,Szab—2020_Table6,,,0.162,,2.159868791,,,8.67,0.938
+FromPapers,Szab—2020_Table6,,,0.136,,2.19210036,,,8.954,0.952
+FromPapers,Szab—2020_Table6,,,0.145,,2.180530447,,,8.851,0.947
+FromPapers,Szab—2020_Table6,,,0.157,,2.16676537,,,8.73,0.941
+FromPapers,Szab—2020_Table6,,,0.189,,2.125251078,,,8.375,0.923
+FromPapers,Szab—2020_Table6,,,0.156,,2.16676537,,,8.73,0.941
+FromPapers,Szab—2020_Table6,,,0.158,,2.164471791,,,8.71,0.94
+FromPapers,Szab—2020_Table6,,,0.171,,2.148267733,,,8.57,0.933
+FromPapers,Szab—2020_Table6,,,0.172,,2.146048235,,,8.551,0.932
+FromPapers,Szab—2020_Table6,,,0.179,,2.136766608,,,8.472,0.928
+FromPapers,Szab—2020_Table6,,,0.177,,2.139124544,,,8.492,0.929
+FromPapers,Szab—2020_Table6,,,0.184,,2.129896985,,,8.414,0.925
+FromPapers,Szab—2020_Table6,,,0.17,,2.148267733,,,8.57,0.933
+FromPapers,Szab—2020_Table6,,,0.247,,2.047047474,,,7.745,0.889
+FromPapers,Szab—2020_Table6,,,0.125,,2.205853904,,,9.078,0.958
+FromPapers,Szab—2020_Table6,,,0.14,,2.187510885,,,8.913,0.95
+FromPapers,Szab—2020_Table6,,,0.19,,2.122979844,,,8.356,0.922
+FromPapers,Szab—2020_Table6,,,0.241,,2.056172915,,,7.816,0.893
+FromPapers,Szab—2020_Table6,,,0.185,,2.129896985,,,8.414,0.925
+FromPapers,Szab—2020_Table6,,,0.193,,2.120703439,,,8.337,0.921
+FromPapers,Szab—2020_Table6,,,0.25,,2.042388477,,,7.709,0.887
+FromPapers,Szab—2020_Table6,,,0.207,,2.099979193,,,8.166,0.912
+FromPapers,Szab—2020_Table6,,,0.201,,2.109121696,,,8.241,0.916
+FromPapers,Arya1981,Table 3,,0.913,,2.302585093,,,10,1
 FromPapers,Arya1981,Table 3,,0.964,,,,,,
-FromPapers,Arya1981,Table 3,,0.972,,,,,9.908,0.996
-FromPapers,Arya1981,Table 3,,0.976,,,,,4.677,0.67
-FromPapers,Schapp2001,Table 1,,0.427,,,,,5.483,0.739
-FromPapers,Schapp2001,Table 1,,0.717,,,,,5.212,0.717
-FromPapers,Schapp2001,Table 1,,0.666,,,,,4.634,0.666
-FromPapers,Schapp2001,Table 1,,0.586,,,,,3.855,0.586
-FromPapers,Schapp2001,Table 1,,0.581,,,,,3.811,0.581
+FromPapers,Arya1981,Table 3,,0.972,,2.293342512,,,9.908,0.996
+FromPapers,Arya1981,Table 3,,0.976,,1.542656879,,,4.677,0.67
+FromPapers,Schapp2001,Table 1,,0.427,,1.701652396,,,5.483,0.739
+FromPapers,Schapp2001,Table 1,,0.717,,1.650963659,,,5.212,0.717
+FromPapers,Schapp2001,Table 1,,0.666,,1.533420426,,,4.634,0.666
+FromPapers,Schapp2001,Table 1,,0.586,,1.349371007,,,3.855,0.586
+FromPapers,Schapp2001,Table 1,,0.581,,1.337891622,,,3.811,0.581

@@ -244,6 +244,9 @@ update_structure <- function( data ) {
   
   # 2 convert sum to 100
   sdata$sum <- sdata$Percent_Sand + sdata$Percent_Silt + sdata$Percent_Clay
+  sdata %>% 
+    filter(sum > 99 & sum < 101) ->
+    sdata
   sdata$ratio <- 100/sdata$sum
   sdata$Percent_Clay <- sdata$Percent_Clay*sdata$ratio
   sdata$Percent_Silt <- sdata$Percent_Silt*sdata$ratio
